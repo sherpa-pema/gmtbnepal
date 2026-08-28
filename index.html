@@ -129,46 +129,51 @@
   <!-- =========================================================================
        2. FULLSCREEN IMMERSIVE HERO SECTION
        ========================================================================= -->
-  <section class="hero-container">
-    <!-- Cover Background Video & Poster -->
-    <video 
-      id="hero-video"
-      autoplay 
-      loop 
-      muted 
-      playsinline 
-      webkit-playsinline
-      preload="auto"
-      poster="assets/hero-poster.jpg"
-      class="hero-video-bg"
-    >
-      <source src="assets/hero-bg.webm" type="video/webm" />
-      <source src="assets/hero-bg.mp4" type="video/mp4" />
-      <source src="assets/Hero%20background%20video.webm" type="video/webm" />
-    </video>
+  <section class="relative w-full flex flex-col bg-[#0D0D0D]">
+    <!-- Video Wrapper (75vh height so full video can be seen better) -->
+    <div class="relative w-full h-[75svh] min-h-[500px]">
+      <video 
+        id="hero-video"
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        webkit-playsinline
+        preload="auto"
+        poster="assets/hero-poster.jpg"
+        class="hero-video-bg"
+      >
+        <source src="assets/hero-bg.webm" type="video/webm" />
+        <source src="assets/hero-bg.mp4" type="video/mp4" />
+        <source src="assets/Hero%20background%20video.webm" type="video/webm" />
+      </video>
 
-    <!-- Gradient Darkness Overlay -->
-    <div class="hero-overlay"></div>
+      <!-- Gradient overlay inside video to smoothly blend into the dark background below -->
+      <div class="hero-overlay"></div>
 
-    <!-- Hero Content Cluster -->
-    <div class="hero-content max-w-5xl mx-auto px-4 sm:px-6 text-center pt-16">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#FFC700]/30 mb-6">
+      <!-- Title overlapping the bottom edge of the video -->
+      <div class="absolute bottom-0 left-0 w-full px-4 sm:px-6 translate-y-1/2 z-30 text-center">
+        <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white uppercase leading-[0.9] tracking-tight drop-shadow-2xl">
+          EARTH’S HIGHEST <br />
+          <span class="text-[#FFC700] italic font-normal">PLAYGROUND</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Texts and buttons below the video -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center pt-24 pb-16 z-20 relative">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#1a1a1a] border border-[#FFC700]/30 mb-8">
         <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
         <span class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700]">
           2026/2027 EXPEDITION SEASON OPEN
         </span>
       </div>
 
-      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white uppercase leading-[0.9] tracking-tight mb-6">
-        EARTH’S HIGHEST <br />
-        <span class="text-[#FFC700] italic font-normal">PLAYGROUND</span>
-      </h1>
-
-      <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+      <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 mx-auto font-light leading-relaxed mb-10">
         Imagine mountain biking amidst the mighty Himalayas. Drop 4,200m down to 2,800m on pristine singletracks, navigate ancient Buddhist trade paths, and shred with passionate local riders.
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
         <a href="#tours" class="btn-tactical btn-primary w-full sm:w-auto px-8 py-4 text-base">
           Explore Expeditions
         </a>
@@ -176,12 +181,12 @@
           The Himalayan Enduro
         </a>
       </div>
-    </div>
 
-    <!-- Bouncing Scroll Down Chevron -->
-    <div id="hero-scroll-trigger" class="hero-scroll-btn flex flex-col items-center group" title="Scroll to content">
-      <span class="font-heading text-[10px] uppercase tracking-widest text-gray-400 group-hover:text-[#FFC700] mb-1">SCROLL</span>
-      <i data-lucide="chevrons-down" class="w-6 h-6 text-[#FFC700]"></i>
+      <!-- Bouncing Scroll Down Chevron -->
+      <div id="hero-scroll-trigger" class="animate-bounce flex flex-col items-center justify-center group mx-auto cursor-pointer" title="Scroll to content">
+        <span class="font-heading text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-[#FFC700] mb-1 transition-colors">SCROLL</span>
+        <i data-lucide="chevrons-down" class="w-6 h-6 text-[#FFC700]"></i>
+      </div>
     </div>
   </section>
 
