@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GNARLY MTB NEPAL | Guided Himalayan Mountain Bike Tours & Enduro Expeditions</title>
+  <meta name="description" content="Epic guided mountain biking tours, high-altitude E-MTB expeditions, and enduro racing in Nepal. Ride Lower Mustang, Everest Khumbu, and Nagarkot with certified local guides." />
+  
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: "#FFC700",
+              hover: "#E5B300",
+              dark: "#CCA000",
+            },
+            canvas: "#0D0D0D",
+            surface: {
+              DEFAULT: "#141414",
+              secondary: "#1A1A1A",
+              elevated: "#242424",
+            }
+          },
+          fontFamily: {
+            display: ["Anton", "sans-serif"],
+            heading: ["Oswald", "sans-serif"],
+            body: ["Roboto", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Design System Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-[#0D0D0D] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
+
+  <!-- =========================================================================
+       1. NAVIGATION HEADER (Sticky & Frosted)
+       ========================================================================= -->
+  <header id="main-navbar" class="navbar-fixed navbar-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 bg-[#FFC700] rounded-sm flex items-center justify-center text-black font-display text-2xl tracking-tighter shadow-lg group-hover:scale-105 transition-transform duration-200">
+            G
+          </div>
+          <div class="flex flex-col">
+            <span class="font-display text-2xl tracking-wider text-white uppercase group-hover:text-[#FFC700] transition-colors duration-200">
+              GNARLY <span class="text-[#FFC700]">MTB</span>
+            </span>
+            <span class="font-heading text-[10px] tracking-[0.25em] text-gray-400 uppercase -mt-1">
+              NEPAL • HIMALAYAS
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a href="#tours" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Tours</a>
+          <a href="#emtb" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">E-MTB</a>
+          <a href="#enduro-race" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">The Enduro</a>
+          <a href="#skills" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Skills</a>
+          <a href="#schedule" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Dates</a>
+          <a href="#reviews" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Reviews</a>
+          <a href="#about" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">About</a>
+        </nav>
+
+        <!-- Right Action Cluster -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <a href="https://wa.me/9779803661496" target="_blank" class="p-2.5 rounded border border-white/20 text-white hover:text-[#FFC700] hover:border-[#FFC700] transition-colors duration-200" title="WhatsApp Us">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+          </a>
+          <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air" class="btn-tactical btn-primary">
+            Book Expedition
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded text-white hover:text-[#FFC700] transition-colors focus:outline-none" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-In Drawer -->
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-[#121212] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-white/10">
+        <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
+        <button id="mobile-drawer-close" class="p-2 text-gray-400 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <nav class="mt-8 flex flex-col space-y-5">
+        <a href="#tours" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Tours & Itineraries</a>
+        <a href="#emtb" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Mustang E-Motion</a>
+        <a href="#enduro-race" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">The Himalayan Enduro</a>
+        <a href="#skills" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">G MTB Skills Clinic</a>
+        <a href="#schedule" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Departure Dates</a>
+        <a href="#reviews" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Rider Reviews</a>
+        <a href="#about" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">About & Guides</a>
+        <a href="#contact" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Contact Us</a>
+      </nav>
+    </div>
+    <div class="pt-6 border-t border-white/10 flex flex-col space-y-3">
+      <a href="#booking-modal" data-open-modal class="btn-tactical btn-primary w-full text-center">Book Expedition</a>
+      <a href="tel:+9779803661496" class="btn-tactical btn-outline w-full text-center">+977 980 366 1496</a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. FULLSCREEN IMMERSIVE HERO SECTION
+       ========================================================================= -->
+  <section class="hero-container">
+    <!-- Cover Background Video & Poster -->
+    <video 
+      id="hero-video"
+      autoplay 
+      loop 
+      muted 
+      playsinline 
+      webkit-playsinline
+      preload="auto"
+      poster="assets/hero-poster.jpg"
+      class="hero-video-bg"
+    >
+      <source src="assets/hero-bg.webm" type="video/webm" />
+      <source src="assets/hero-bg.mp4" type="video/mp4" />
+      <source src="assets/Hero%20background%20video.webm" type="video/webm" />
+    </video>
+
+    <!-- Gradient Darkness Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Hero Content Cluster -->
+    <div class="hero-content max-w-5xl mx-auto px-4 sm:px-6 text-center pt-16">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#FFC700]/30 mb-6">
+        <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
+        <span class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700]">
+          2026/2027 EXPEDITION SEASON OPEN
+        </span>
+      </div>
+
+      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white uppercase leading-[0.9] tracking-tight mb-6">
+        EARTH’S HIGHEST <br />
+        <span class="text-[#FFC700] italic font-normal">PLAYGROUND</span>
+      </h1>
+
+      <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+        Imagine mountain biking amidst the mighty Himalayas. Drop 4,200m down to 2,800m on pristine singletracks, navigate ancient Buddhist trade paths, and shred with passionate local riders.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+        <a href="#tours" class="btn-tactical btn-primary w-full sm:w-auto px-8 py-4 text-base">
+          Explore Expeditions
+        </a>
+        <a href="#enduro-race" class="btn-tactical btn-outline w-full sm:w-auto px-8 py-4 text-base">
+          The Himalayan Enduro
+        </a>
+      </div>
+    </div>
+
+    <!-- Bouncing Scroll Down Chevron -->
+    <div id="hero-scroll-trigger" class="hero-scroll-btn flex flex-col items-center group" title="Scroll to content">
+      <span class="font-heading text-[10px] uppercase tracking-widest text-gray-400 group-hover:text-[#FFC700] mb-1">SCROLL</span>
+      <i data-lucide="chevrons-down" class="w-6 h-6 text-[#FFC700]"></i>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. INFINITE RUNNING MARQUEE TICKER
+       ========================================================================= -->
+  <div id="marquee-banner" class="marquee-container select-none">
+    <div class="marquee-track">
+      <div class="flex items-center space-x-12 text-xl sm:text-2xl md:text-3xl font-heading font-bold uppercase text-[#FFC700] tracking-widest pr-12">
+        <span>❖ GUIDED HIMALAYAN MOUNTAIN BIKE EXPEDITIONS</span>
+        <span>❖ 100% LOCALLY OWNED & OPERATED</span>
+        <span>❖ SHRED FROM 4,200M DOWN TO 2,800M</span>
+        <span>❖ FULL 4X4 SHUTTLE & MECHANICAL BACKUP</span>
+        <span>❖ DEFY THE LIMITS • BE UNSTOPPABLE</span>
+      </div>
+      <div class="flex items-center space-x-12 text-xl sm:text-2xl md:text-3xl font-heading font-bold uppercase text-[#FFC700] tracking-widest pr-12">
+        <span>❖ GUIDED HIMALAYAN MOUNTAIN BIKE EXPEDITIONS</span>
+        <span>❖ 100% LOCALLY OWNED & OPERATED</span>
+        <span>❖ SHRED FROM 4,200M DOWN TO 2,800M</span>
+        <span>❖ FULL 4X4 SHUTTLE & MECHANICAL BACKUP</span>
+        <span>❖ DEFY THE LIMITS • BE UNSTOPPABLE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. WHY RIDE WITH US (Split Layout + Interactive Accordion)
+       ========================================================================= -->
+  <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Left Column: Manifesto & Stats -->
+      <div class="lg:col-span-5 reveal-init">
+        <div class="inline-block font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-3">
+          WHY RIDE WITH GNARLY
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl text-white uppercase leading-[1.05] tracking-tight mb-6">
+          HAND CRAFTED, <br />
+          OFF THE BEATEN <br />
+          <span class="text-[#FFC700]">TRACK TRAILS</span>
+        </h2>
+        <p class="font-body text-gray-300 text-base sm:text-lg leading-relaxed mb-8">
+          Every tour is crafted by local Nepali riders who live and breathe the Himalayan topography. We don’t run generic routes—we guide you deep into hidden valleys, remote singletracks, and ancient monastery trails rarely seen by outsiders.
+        </p>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+          <div>
+            <div class="font-display text-3xl sm:text-4xl text-[#FFC700]">15+</div>
+            <div class="font-heading text-xs uppercase tracking-wider text-gray-400 mt-1">Years Guiding</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl sm:text-4xl text-white">4,200M</div>
+            <div class="font-heading text-xs uppercase tracking-wider text-gray-400 mt-1">Max Elevation</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl sm:text-4xl text-[#FFC700]">100%</div>
+            <div class="font-heading text-xs uppercase tracking-wider text-gray-400 mt-1">Local Sherpa Crew</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Accordion Features -->
+      <div class="lg:col-span-7 reveal-init delay-200">
+        <div class="space-y-4">
+          
+          <!-- Accordion 1 -->
+          <div class="accordion-item active bg-[#141414] border border-white/10 rounded-sm p-6">
+            <button class="accordion-trigger" type="button">
+              <span>01. Certified Guides & Deep Local Knowledge</span>
+              <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-gray-400 transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+              Our team consists of PMBIA/UCI certified guides and national enduro champions led by Shyam G Limbu. We know every rock, root, switchback, and weather pattern in the Himalayas to ensure the highest safety and thrilling descents.
+            </div>
+          </div>
+
+          <!-- Accordion 2 -->
+          <div class="accordion-item bg-[#141414] border border-white/10 rounded-sm p-6">
+            <button class="accordion-trigger" type="button">
+              <span>02. Full 4x4 Shuttle & Mechanical Support</span>
+              <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-gray-400 transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+              Maximize your descent time without grueling highway pedaling. Our dedicated 4x4 support vehicles haul your gear, spare parts, tool kits, and provide trailside mechanical fixes and medical evacuation readiness.
+            </div>
+          </div>
+
+          <!-- Accordion 3 -->
+          <div class="accordion-item bg-[#141414] border border-white/10 rounded-sm p-6">
+            <button class="accordion-trigger" type="button">
+              <span>03. Tailored Small-Group Itineraries</span>
+              <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-gray-400 transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+              We cap our groups to maintain a premium, personalized flow on singletrack. Whether you seek high-altitude desert scree, technical rock gardens, or flowing pine forest trails, we adapt pace to your riding capability.
+            </div>
+          </div>
+
+          <!-- Accordion 4 -->
+          <div class="accordion-item bg-[#141414] border border-white/10 rounded-sm p-6">
+            <button class="accordion-trigger" type="button">
+              <span>04. Authentic Culture, Food & Apple Orchards</span>
+              <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-gray-400 transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+              It’s more than just shredding. Taste fresh apple pies and artisanal brandy in Marpha, stay in traditional Thakali homestays, visit ancient Tibetan monasteries, and experience genuine Nepali hospitality.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. EXPEDITION TOURS CATALOG (Video-on-Hover Cards)
+       ========================================================================= -->
+  <section id="tours" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal-init">
+      <div>
+        <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+          FLAGSHIP EXPEDITIONS
+        </div>
+        <h2 class="font-display text-4xl sm:text-6xl text-white uppercase tracking-tight">
+          FIND YOUR PERFECT <span class="text-[#FFC700]">HOLIDAY</span>
+        </h2>
+      </div>
+      <p class="font-body text-gray-400 max-w-md text-sm mt-4 md:mt-0">
+        From the high desert trails of Mustang to the colossal shadows of Mount Everest. Fully guided, fully supported.
+      </p>
+    </div>
+
+    <!-- Tour Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+      
+      <!-- Tour Card 1: Enduro Thin Air -->
+      <div class="tour-card reveal-init">
+        <div class="tour-media-box">
+          <img 
+            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80" 
+            alt="Enduro Thin Air Mustang" 
+            class="tour-poster-img" 
+          />
+          <video class="tour-video-preview" muted loop playsinline preload="none">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-extreme-mountain-biking-in-the-forest-42172-large.mp4" type="video/mp4" />
+          </video>
+          <!-- Badges -->
+          <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+            <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
+              10 DAYS • LOWER MUSTANG
+            </span>
+            <span class="bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 font-heading text-xs uppercase tracking-wider text-white">
+              DESCENT: 4,200M → 2,800M
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
+            <span>Singletrack & High Scree</span>
+            <span class="text-[#FFC700]">Spring & Autumn</span>
+          </div>
+          <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
+            ENDURO THIN AIR
+          </h3>
+          <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
+            The legendary Mustang singletrack adventure. Ride Lubra Pass, Smooth Criminal, and Chasing Capra. Drop 1,400m vert through ancient canyons with stopovers in Marpha for homemade apple pie.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air" class="btn-tactical btn-primary flex-1">
+              Book Expedition
+            </a>
+            <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour Card 2: Everest Express -->
+      <div class="tour-card reveal-init delay-100">
+        <div class="tour-media-box">
+          <img 
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80" 
+            alt="Everest Express Mountain Biking" 
+            class="tour-poster-img" 
+          />
+          <video class="tour-video-preview" muted loop playsinline preload="none">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-cyclist-riding-on-a-mountain-trail-42171-large.mp4" type="video/mp4" />
+          </video>
+          <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+            <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
+              9 DAYS • SOLUKHUMBU
+            </span>
+            <span class="bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 font-heading text-xs uppercase tracking-wider text-white">
+              ELEVATION: 3,900M
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
+            <span>Alpine Ridge & Rocky Steps</span>
+            <span class="text-[#FFC700]">Spring & Autumn</span>
+          </div>
+          <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
+            EVEREST EXPRESS
+          </h3>
+          <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
+            A fast-paced MTB adventure through the Khumbu heartland. Ride thrilling singletrack directly under Mount Everest, Ama Dablam, and Lhotse, surrounded by Sherpa monasteries and prayer flags.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="#booking-modal" data-open-modal data-tour="everest-express" class="btn-tactical btn-primary flex-1">
+              Book Expedition
+            </a>
+            <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour Card 3: Mustang E-Motion -->
+      <div id="emtb" class="tour-card reveal-init delay-200">
+        <div class="tour-media-box">
+          <img 
+            src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=1000&q=80" 
+            alt="Mustang E-Motion E-MTB" 
+            class="tour-poster-img" 
+          />
+          <video class="tour-video-preview" muted loop playsinline preload="none">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-cyclist-riding-on-a-mountain-trail-42171-large.mp4" type="video/mp4" />
+          </video>
+          <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+            <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
+              12 DAYS • UPPER MUSTANG
+            </span>
+            <span class="bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 font-heading text-xs uppercase tracking-wider text-white">
+              E-BIKE ASSIST • 85NM
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
+            <span>High-Torque Canyons</span>
+            <span class="text-[#FFC700]">Spring, Summer, Autumn</span>
+          </div>
+          <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
+            MUSTANG E-MOTION (E-MTB)
+          </h3>
+          <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
+            Conquer high-altitude passes and dramatic red-rock canyons with electric assist. Ride into the ancient walled kingdom of Lo Manthang and explore thousand-year-old cliffside sky caves with zero elevation dread.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="#booking-modal" data-open-modal data-tour="mustang-e-motion" class="btn-tactical btn-primary flex-1">
+              Book Expedition
+            </a>
+            <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour Card 4: Moto Mustang -->
+      <div class="tour-card reveal-init delay-300">
+        <div class="tour-media-box">
+          <img 
+            src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=80" 
+            alt="Moto Mustang Dual Sport" 
+            class="tour-poster-img" 
+          />
+          <video class="tour-video-preview" muted loop playsinline preload="none">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-extreme-mountain-biking-in-the-forest-42172-large.mp4" type="video/mp4" />
+          </video>
+          <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+            <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
+              8 DAYS • MOTO EXPEDITION
+            </span>
+            <span class="bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 font-heading text-xs uppercase tracking-wider text-white">
+              DUAL-SPORT & DIRT
+            </span>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
+            <span>Riverbeds & Dirt Passes</span>
+            <span class="text-[#FFC700]">Spring, Summer, Autumn</span>
+          </div>
+          <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
+            MOTO MUSTANG
+          </h3>
+          <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
+            For riders who love high-octane throttle therapy. Tackle rocky river crossings, vast Tibetan plateaus, and dramatic gorge passes on fully supported dual-sport enduro motorcycles with backup mechanics.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="#booking-modal" data-open-modal data-tour="moto-mustang" class="btn-tactical btn-primary flex-1">
+              Book Expedition
+            </a>
+            <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. SIGNATURE SPOTLIGHT: THE HIMALAYAN ENDURO
+       ========================================================================= -->
+  <section id="enduro-race" class="relative py-28 px-4 sm:px-6 lg:px-8 bg-[#121212] border-y border-white/10 overflow-hidden">
+    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#FFC700_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    
+    <div class="relative max-w-5xl mx-auto text-center reveal-init">
+      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FFC700]/10 border border-[#FFC700]/40 text-[#FFC700] font-heading text-xs font-bold uppercase tracking-widest mb-6">
+        <i data-lucide="trophy" class="w-4 h-4"></i>
+        <span>NEPAL’S PREMIER INTERNATIONAL ENDURO RACE</span>
+      </div>
+
+      <h2 class="font-display text-5xl sm:text-7xl lg:text-8xl text-white uppercase leading-[0.95] mb-6">
+        THE HIMALAYAN <span class="text-[#FFC700]">ENDURO</span>
+      </h2>
+
+      <p class="font-heading text-xl sm:text-2xl text-gray-300 uppercase tracking-widest mb-6 font-semibold">
+        “RIDE THE HIMALAYAS. DEFY THE LIMITS. BE UNSTOPPABLE.”
+      </p>
+
+      <p class="font-body text-gray-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed mb-10">
+        Returning to the legendary Nagarkot Hills and Mustang, The Himalayan Enduro gathers riders from across the globe for multi-stage chrono-timed downhill stages on pristine loamy singletrack, technical rock gardens, and high-altitude ridges.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#booking-modal" data-open-modal data-tour="himalayan-enduro" class="btn-tactical btn-primary px-8 py-4 text-base">
+          Register for 2026 Race
+        </a>
+        <a href="#contact" class="btn-tactical btn-outline px-8 py-4 text-base">
+          Sponsorship & Logistics
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. COACHING ACADEMY: G MTB SKILLS CLINICS
+       ========================================================================= -->
+  <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-6 reveal-init">
+        <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+          PROGRESSION & COACHING
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl text-white uppercase leading-[1.05] mb-6">
+          LEVEL UP WITH <br />
+          <span class="text-[#FFC700]">G MTB SKILLS</span>
+        </h2>
+        <p class="font-body text-gray-300 text-base leading-relaxed mb-8">
+          Ready to ride with total confidence on steep, technical trails? Our PMBIA-certified coaches deliver one-on-one sessions and group clinics covering braking mechanics, body-bike separation, high-speed berm cornering, and steep drop progression.
+        </p>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3">
+            <div class="w-6 h-6 rounded-full bg-[#FFC700]/20 text-[#FFC700] flex items-center justify-center flex-shrink-0 mt-1">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider">Level 1: Foundation & Balance</h4>
+              <p class="font-body text-xs text-gray-400">Neutral body position, efficient gear modulation, line selection, and trail safety fundamentals.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <div class="w-6 h-6 rounded-full bg-[#FFC700]/20 text-[#FFC700] flex items-center justify-center flex-shrink-0 mt-1">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider">Level 2: Flow & Cornering Mastery</h4>
+              <p class="font-body text-xs text-gray-400">High-speed flat turns, berm pumping, bunny hops, wheel lifts, and carrying speed through root sections.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <div class="w-6 h-6 rounded-full bg-[#FFC700]/20 text-[#FFC700] flex items-center justify-center flex-shrink-0 mt-1">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider">Level 3: High-Altitude Technical Shred</h4>
+              <p class="font-body text-xs text-gray-400">Steep scree switchbacks, rock garden commitment, drop progression, and high-altitude pacing strategies.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="#booking-modal" data-open-modal data-tour="g-mtb-skills" class="btn-tactical btn-primary">
+          Book a Skills Clinic
+        </a>
+      </div>
+
+      <div class="lg:col-span-6 reveal-init delay-200">
+        <div class="relative rounded-sm overflow-hidden border border-white/10 aspect-[4/3] bg-black">
+          <img 
+            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80" 
+            alt="Skills Clinic" 
+            class="w-full h-full object-cover" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex items-end p-8">
+            <div>
+              <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">HEAD COACH</span>
+              <h4 class="font-display text-2xl text-white uppercase">SHYAM G LIMBU</h4>
+              <p class="font-body text-xs text-gray-300">PMBIA Certified Coach • Nepal Enduro Pioneer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. MACHINERY & FLEET MATRIX
+       ========================================================================= -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal-init">
+      <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+        EXPEDITION RIGS
+      </div>
+      <h2 class="font-display text-4xl sm:text-6xl text-white uppercase tracking-tight">
+        THE BIKES WE <span class="text-[#FFC700]">RIDE</span>
+      </h2>
+      <p class="font-body text-gray-400 text-sm mt-3">
+        Meticulously serviced after every single tour by our expert mechanics. Available for rental or bring your own rig.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Bike 1 -->
+      <div class="bg-[#141414] border border-white/10 rounded-sm p-6 reveal-init">
+        <div class="font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700] mb-1">FULL-SUSPENSION ENDURO</div>
+        <h3 class="font-display text-2xl text-white uppercase mb-4">SANTA CRUZ MEGATOWER / NOMAD</h3>
+        <div class="space-y-3 font-heading text-xs uppercase tracking-wider text-gray-300 border-t border-white/10 pt-4">
+          <div class="flex justify-between">
+            <span class="text-gray-500">Travel</span>
+            <span class="text-white">170mm Front / 165mm Rear</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Brakes</span>
+            <span class="text-white">4-Piston Hydraulic 203mm</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Drivetrain</span>
+            <span class="text-white">SRAM GX Eagle 12-Speed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bike 2 -->
+      <div class="bg-[#141414] border border-white/10 rounded-sm p-6 reveal-init delay-100">
+        <div class="font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700] mb-1">HIGH-TORQUE E-MTB</div>
+        <h3 class="font-display text-2xl text-white uppercase mb-4">SPECIALIZED TURBO LEVO EXPERT</h3>
+        <div class="space-y-3 font-heading text-xs uppercase tracking-wider text-gray-300 border-t border-white/10 pt-4">
+          <div class="flex justify-between">
+            <span class="text-gray-500">Motor & Battery</span>
+            <span class="text-white">Full Power 2.2 • 700Wh</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Torque</span>
+            <span class="text-white">90Nm Alpine Torque</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Suspension</span>
+            <span class="text-white">FOX FLOAT 38 Performance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bike 3 -->
+      <div class="bg-[#141414] border border-white/10 rounded-sm p-6 reveal-init delay-200">
+        <div class="font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700] mb-1">DUAL-SPORT ENDURO</div>
+        <h3 class="font-display text-2xl text-white uppercase mb-4">HONDA CRF 300L RALLY / KTM 390</h3>
+        <div class="space-y-3 font-heading text-xs uppercase tracking-wider text-gray-300 border-t border-white/10 pt-4">
+          <div class="flex justify-between">
+            <span class="text-gray-500">Engine</span>
+            <span class="text-white">286cc Liquid-Cooled Single</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Ground Clearance</span>
+            <span class="text-white">285mm High Clearance</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Setup</span>
+            <span class="text-white">Skid Plates & Barkbusters</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. DEPARTURE DATES & BOOKING SCHEDULE (Responsive Grid)
+       ========================================================================= -->
+  <section id="schedule" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-init">
+      <div>
+        <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+          SCHEDULE & AVAILABILITY
+        </div>
+        <h2 class="font-display text-4xl sm:text-6xl text-white uppercase tracking-tight">
+          UPCOMING <span class="text-[#FFC700]">DEPARTURES</span>
+        </h2>
+      </div>
+
+      <!-- Season Filter Tabs -->
+      <div class="flex items-center space-x-2 mt-6 md:mt-0 p-1 bg-[#141414] border border-white/10 rounded-sm font-heading text-xs font-bold uppercase tracking-wider">
+        <button class="schedule-filter-btn px-4 py-2 rounded-sm bg-[#FFC700] text-black" data-filter="all">All Dates</button>
+        <button class="schedule-filter-btn px-4 py-2 rounded-sm text-white/70 hover:text-white" data-filter="spring">Spring</button>
+        <button class="schedule-filter-btn px-4 py-2 rounded-sm text-white/70 hover:text-white" data-filter="autumn">Autumn</button>
+      </div>
+    </div>
+
+    <!-- Schedule Table -->
+    <div class="schedule-table-wrap reveal-init delay-100">
+      
+      <!-- Table Header -->
+      <div class="schedule-header-row">
+        <div>Trip Start Date</div>
+        <div>Trip End Date</div>
+        <div>Expedition Route</div>
+        <div class="text-right">Reservation</div>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="schedule-row" data-season="spring">
+        <div>
+          <span class="block text-xs font-heading uppercase tracking-wider text-[#FFC700] lg:hidden mb-1">Start Date</span>
+          <span class="text-sm md:text-base font-body font-semibold text-white">Mon, 12 Apr 2026</span>
+          <span class="block text-xs text-gray-400">Kathmandu, Nepal</span>
+        </div>
+        <div class="schedule-col-end">
+          <span class="text-sm md:text-base font-body font-semibold text-white">Wed, 22 Apr 2026</span>
+          <span class="block text-xs text-gray-400">10 Days Tour</span>
+        </div>
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-[#FFC700]/10 border border-[#FFC700]/30 font-heading text-[11px] font-bold uppercase tracking-wider text-[#FFC700] mb-1">
+            ENDURO THIN AIR
+          </span>
+          <span class="block text-xs text-gray-300">Lower Mustang (4,200m descent)</span>
+        </div>
+        <div class="justify-self-end w-full lg:w-auto">
+          <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air" data-date="12 Apr 2026" class="btn-tactical btn-primary w-full lg:w-[210px]">
+            Book Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="schedule-row" data-season="spring">
+        <div>
+          <span class="block text-xs font-heading uppercase tracking-wider text-[#FFC700] lg:hidden mb-1">Start Date</span>
+          <span class="text-sm md:text-base font-body font-semibold text-white">Sat, 02 May 2026</span>
+          <span class="block text-xs text-gray-400">Kathmandu, Nepal</span>
+        </div>
+        <div class="schedule-col-end">
+          <span class="text-sm md:text-base font-body font-semibold text-white">Sun, 10 May 2026</span>
+          <span class="block text-xs text-gray-400">9 Days Tour</span>
+        </div>
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-white/10 border border-white/20 font-heading text-[11px] font-bold uppercase tracking-wider text-white mb-1">
+            EVEREST EXPRESS
+          </span>
+          <span class="block text-xs text-gray-300">Khumbu / Solukhumbu Alpine</span>
+        </div>
+        <div class="justify-self-end w-full lg:w-auto">
+          <a href="#booking-modal" data-open-modal data-tour="everest-express" data-date="02 May 2026" class="btn-tactical btn-primary w-full lg:w-[210px]">
+            Book Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Row 3 (Sold Out) -->
+      <div class="schedule-row" data-season="autumn">
+        <div>
+          <span class="block text-xs font-heading uppercase tracking-wider text-[#FFC700] lg:hidden mb-1">Start Date</span>
+          <span class="text-sm md:text-base font-body font-semibold text-white">Mon, 14 Sep 2026</span>
+          <span class="block text-xs text-gray-400">Kathmandu, Nepal</span>
+        </div>
+        <div class="schedule-col-end">
+          <span class="text-sm md:text-base font-body font-semibold text-white">Fri, 25 Sep 2026</span>
+          <span class="block text-xs text-gray-400">12 Days Tour</span>
+        </div>
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-[#FFC700]/10 border border-[#FFC700]/30 font-heading text-[11px] font-bold uppercase tracking-wider text-[#FFC700] mb-1">
+            MUSTANG E-MOTION
+          </span>
+          <span class="block text-xs text-gray-300">Upper Mustang & Lo Manthang</span>
+        </div>
+        <div class="justify-self-end w-full lg:w-auto">
+          <span class="btn-tactical btn-sold-out w-full lg:w-[210px]">
+            Sold Out
+          </span>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="schedule-row" data-season="autumn">
+        <div>
+          <span class="block text-xs font-heading uppercase tracking-wider text-[#FFC700] lg:hidden mb-1">Start Date</span>
+          <span class="text-sm md:text-base font-body font-semibold text-white">Thu, 08 Oct 2026</span>
+          <span class="block text-xs text-gray-400">Kathmandu, Nepal</span>
+        </div>
+        <div class="schedule-col-end">
+          <span class="text-sm md:text-base font-body font-semibold text-white">Sun, 18 Oct 2026</span>
+          <span class="block text-xs text-gray-400">10 Days Tour</span>
+        </div>
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-[#FFC700]/10 border border-[#FFC700]/30 font-heading text-[11px] font-bold uppercase tracking-wider text-[#FFC700] mb-1">
+            ENDURO THIN AIR
+          </span>
+          <span class="block text-xs text-gray-300">Peak Autumn Singletrack</span>
+        </div>
+        <div class="justify-self-end w-full lg:w-auto">
+          <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air" data-date="08 Oct 2026" class="btn-tactical btn-primary w-full lg:w-[210px]">
+            Book Now
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       10. TESTIMONIALS & RIDER REVIEWS (Interactive Slider)
+       ========================================================================= -->
+  <section id="reviews" class="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-b border-white/10">
+    <div class="text-center mb-12 reveal-init">
+      <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+        TESTIMONIALS
+      </div>
+      <h2 class="font-display text-4xl sm:text-6xl text-white uppercase tracking-tight">
+        TALES FROM <span class="text-[#FFC700]">OUR RIDERS</span>
+      </h2>
+    </div>
+
+    <!-- Testimonial Slider Frame -->
+    <div class="bg-[#141414] border border-white/10 rounded-sm p-8 sm:p-12 text-center relative reveal-init delay-100">
+      
+      <!-- Slide 1 -->
+      <div class="testimonial-slide">
+        <div class="flex justify-center text-[#FFC700] space-x-1 mb-6">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="font-body text-lg sm:text-2xl text-gray-200 italic leading-relaxed max-w-3xl mx-auto mb-6 font-light">
+          “Epic. Incredible. Unreal. Trip of a lifetime. Shyam and his team offer such a special experience, you won’t find a better group of people to guide you. Their passion and love for what they do is pure. Nepal is a magical place and Gnarly MTB does a fantastic job of showcasing that both on and off the bike.”
+        </p>
+        <div class="font-heading text-base font-bold uppercase tracking-wider text-white">Spenser</div>
+        <div class="font-body text-xs text-[#FFC700] uppercase tracking-widest">United States</div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="testimonial-slide hidden">
+        <div class="flex justify-center text-[#FFC700] space-x-1 mb-6">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="font-body text-lg sm:text-2xl text-gray-200 italic leading-relaxed max-w-3xl mx-auto mb-6 font-light">
+          “Thank you to our friend Shyam Limbu of GNARLY for the top notch and tailor made service. It wasn’t just bikes but a good dose of Nepali history, culture and food as well. 5 star! Everything was more than we expected. We hope to see you again soon.”
+        </p>
+        <div class="font-heading text-base font-bold uppercase tracking-wider text-white">Rafael Cordova</div>
+        <div class="font-body text-xs text-[#FFC700] uppercase tracking-widest">Philippines</div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="testimonial-slide hidden">
+        <div class="flex justify-center text-[#FFC700] space-x-1 mb-6">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="font-body text-lg sm:text-2xl text-gray-200 italic leading-relaxed max-w-3xl mx-auto mb-6 font-light">
+          “Thank you guys, had the most amazing time with you, thanks for making Mel’s first experience of Nepal and my first experience of Solukhumbu so incredible. Fantastic shredding down the mountains!”
+        </p>
+        <div class="font-heading text-base font-bold uppercase tracking-wider text-white">Mr & Mrs Mark Spratt</div>
+        <div class="font-body text-xs text-[#FFC700] uppercase tracking-widest">United Kingdom</div>
+      </div>
+
+      <!-- Slide Dots -->
+      <div class="flex justify-center items-center space-x-3 mt-8">
+        <button class="testimonial-dot h-3 w-8 rounded-full bg-[#FFC700] transition-all duration-300" aria-label="Slide 1"></button>
+        <button class="testimonial-dot h-3 w-3 rounded-full bg-white/40 hover:bg-white transition-all duration-300" aria-label="Slide 2"></button>
+        <button class="testimonial-dot h-3 w-3 rounded-full bg-white/40 hover:bg-white transition-all duration-300" aria-label="Slide 3"></button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       11. CONTACT & WHATSAPP QUICK ACTION
+       ========================================================================= -->
+  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-6 reveal-init">
+        <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+          GET IN TOUCH
+        </div>
+        <h2 class="font-display text-4xl sm:text-6xl text-white uppercase leading-[0.95] mb-6">
+          PLAN YOUR CUSTOM <br />
+          <span class="text-[#FFC700]">EXPEDITION</span>
+        </h2>
+        <p class="font-body text-gray-300 text-base leading-relaxed mb-8">
+          Have questions about elevation acclimatization, bike setup, custom dates, or private group bookings? Message us directly on WhatsApp for instant coordination with Shyam and our guiding desk.
+        </p>
+
+        <div class="space-y-4">
+          <a href="https://wa.me/9779803661496" target="_blank" class="flex items-center space-x-4 p-4 bg-[#141414] border border-white/10 hover:border-[#FFC700] transition-colors rounded-sm group">
+            <div class="w-12 h-12 bg-[#FFC700] text-black rounded flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <i data-lucide="phone-call" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="font-heading text-xs uppercase tracking-wider text-gray-400">Direct Phone / WhatsApp</div>
+              <div class="font-heading text-lg font-bold text-white group-hover:text-[#FFC700]">+977 980 366 1496</div>
+            </div>
+          </a>
+
+          <a href="mailto:info@gnarlymtb.com" class="flex items-center space-x-4 p-4 bg-[#141414] border border-white/10 hover:border-[#FFC700] transition-colors rounded-sm group">
+            <div class="w-12 h-12 bg-white/10 text-white rounded flex items-center justify-center flex-shrink-0 group-hover:text-[#FFC700] transition-colors">
+              <i data-lucide="mail" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="font-heading text-xs uppercase tracking-wider text-gray-400">Email Inquiries</div>
+              <div class="font-heading text-lg font-bold text-white group-hover:text-[#FFC700]">info@gnarlymtb.com</div>
+            </div>
+          </a>
+
+          <div class="flex items-center space-x-4 p-4 bg-[#141414] border border-white/10 rounded-sm">
+            <div class="w-12 h-12 bg-white/10 text-white rounded flex items-center justify-center flex-shrink-0">
+              <i data-lucide="map-pin" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="font-heading text-xs uppercase tracking-wider text-gray-400">Base Headquarters</div>
+              <div class="font-body text-sm text-gray-200">GNARLY PVT. LTD. • Nakhipot - 14, Lalitpur, Nepal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Message Box -->
+      <div class="lg:col-span-6 reveal-init delay-200">
+        <div class="bg-[#141414] border border-white/10 rounded-sm p-8 sm:p-10">
+          <h3 class="font-display text-2xl text-white uppercase mb-2">QUICK EXPEDITION INQUIRY</h3>
+          <p class="font-body text-xs text-gray-400 mb-6">Send an inquiry and our team will get back within 24 hours.</p>
+
+          <form action="#" method="POST" class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Our crew will connect with you via WhatsApp/Email shortly.');">
+            <div>
+              <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Full Name</label>
+              <input type="text" required placeholder="e.g. Alex Henderson" class="form-input-dark" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Email Address</label>
+                <input type="email" required placeholder="alex@example.com" class="form-input-dark" />
+              </div>
+              <div>
+                <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">WhatsApp / Phone</label>
+                <input type="tel" required placeholder="+1 555 019 283" class="form-input-dark" />
+              </div>
+            </div>
+            <div>
+              <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Interested Tour</label>
+              <select class="form-input-dark">
+                <option>Enduro Thin Air (Lower Mustang)</option>
+                <option>Everest Express (Khumbu)</option>
+                <option>Mustang E-Motion (E-MTB)</option>
+                <option>The Himalayan Enduro Race</option>
+                <option>G MTB Skills Coaching</option>
+                <option>Custom Private Expedition</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Message / Riding Experience</label>
+              <textarea rows="3" placeholder="Tell us about your riding background and preferred dates..." class="form-input-dark"></textarea>
+            </div>
+            <button type="submit" class="btn-tactical btn-primary w-full py-3.5">
+              Submit Inquiry
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       12. TACTICAL FOOTER
+       ========================================================================= -->
+  <footer class="bg-[#080808] border-t border-white/10 pt-16 pb-12 text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        
+        <!-- Col 1: Brand -->
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-8 h-8 bg-[#FFC700] rounded-sm flex items-center justify-center text-black font-display text-xl">G</div>
+            <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
+          </div>
+          <p class="font-body text-xs text-gray-400 leading-relaxed mb-6">
+            Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours, E-MTB expeditions, and skills clinics.
+          </p>
+          <div class="flex items-center space-x-3">
+            <a href="https://www.facebook.com/gnarlymtb" target="_blank" class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#FFC700] hover:border-[#FFC700] transition-colors">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="https://www.instagram.com/gnarlymtb" target="_blank" class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#FFC700] hover:border-[#FFC700] transition-colors">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="https://www.youtube.com" target="_blank" class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#FFC700] hover:border-[#FFC700] transition-colors">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Tours -->
+        <div>
+          <h4 class="font-heading text-sm font-bold uppercase tracking-widest text-white mb-4">Expeditions</h4>
+          <ul class="space-y-2.5 font-body text-xs">
+            <li><a href="#tours" class="hover:text-[#FFC700] transition-colors">Enduro Thin Air (Mustang)</a></li>
+            <li><a href="#tours" class="hover:text-[#FFC700] transition-colors">Everest Express (Khumbu)</a></li>
+            <li><a href="#emtb" class="hover:text-[#FFC700] transition-colors">Mustang E-Motion (E-MTB)</a></li>
+            <li><a href="#tours" class="hover:text-[#FFC700] transition-colors">Moto Mustang Dual-Sport</a></li>
+            <li><a href="#skills" class="hover:text-[#FFC700] transition-colors">G MTB Skills Academy</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Quick Links -->
+        <div>
+          <h4 class="font-heading text-sm font-bold uppercase tracking-widest text-white mb-4">Company & Info</h4>
+          <ul class="space-y-2.5 font-body text-xs">
+            <li><a href="#enduro-race" class="hover:text-[#FFC700] transition-colors">The Himalayan Enduro Race</a></li>
+            <li><a href="#about" class="hover:text-[#FFC700] transition-colors">Meet Guide Shyam G Limbu</a></li>
+            <li><a href="#schedule" class="hover:text-[#FFC700] transition-colors">2026/2027 Departure Schedule</a></li>
+            <li><a href="#reviews" class="hover:text-[#FFC700] transition-colors">Past Rider Testimonials</a></li>
+            <li><a href="#contact" class="hover:text-[#FFC700] transition-colors">Lalitpur Office & Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div>
+          <h4 class="font-heading text-sm font-bold uppercase tracking-widest text-white mb-4">Dispatch & Alerts</h4>
+          <p class="font-body text-xs text-gray-400 mb-4">Subscribe for race registration alerts and early bird dates.</p>
+          <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to Gnarly MTB Nepal Dispatches!');" class="flex flex-col space-y-2">
+            <input type="email" required placeholder="Enter your email" class="form-input-dark text-xs py-2.5" />
+            <button type="submit" class="btn-tactical btn-primary py-2.5 text-xs">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Micro-footer -->
+      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] font-heading tracking-widest uppercase text-gray-400">
+        <div>Copyright © 2026 GNARLY MTB Nepal (GNARLY PVT. LTD.). All Rights Reserved.</div>
+        <div class="mt-2 sm:mt-0 flex space-x-4">
+          <a href="#" class="hover:text-[#FFC700]">Privacy Policy</a>
+          <span>•</span>
+          <a href="#" class="hover:text-[#FFC700]">Terms & Conditions</a>
+          <span>•</span>
+          <a href="#" class="hover:text-[#FFC700]">Safety Protocols</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       13. INTERACTIVE BOOKING MODAL DIALOG
+       ========================================================================= -->
+  <div id="booking-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+        <div>
+          <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">EXPEDITION RESERVATION</span>
+          <h3 class="font-display text-3xl text-white uppercase">RESERVE YOUR SPOT</h3>
+        </div>
+        <button id="modal-close-btn" class="p-2 text-gray-400 hover:text-white" aria-label="Close modal">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <form id="booking-form" class="space-y-4">
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Select Expedition</label>
+          <select id="modal-tour-select" class="form-input-dark">
+            <option value="enduro-thin-air">Enduro Thin Air (Lower Mustang, 10 Days)</option>
+            <option value="everest-express">Everest Express (Khumbu, 9 Days)</option>
+            <option value="mustang-e-motion">Mustang E-Motion (Upper Mustang E-MTB, 12 Days)</option>
+            <option value="moto-mustang">Moto Mustang (Dual-Sport Enduro, 8 Days)</option>
+            <option value="himalayan-enduro">The Himalayan Enduro Race 2026</option>
+            <option value="g-mtb-skills">G MTB Skills Coaching Clinic</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Preferred Date</label>
+            <input type="text" id="modal-date-input" placeholder="e.g. 12 Apr 2026 or Flexible" class="form-input-dark" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Number of Riders</label>
+            <select id="form-riders" class="form-input-dark">
+              <option value="1">1 Rider (Solo)</option>
+              <option value="2">2 Riders</option>
+              <option value="3-5">3 - 5 Riders (Small Group)</option>
+              <option value="6+">6+ Riders (Custom Private Tour)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Your Name</label>
+            <input type="text" id="form-name" required placeholder="e.g. Sarah Jenkins" class="form-input-dark" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Email Address</label>
+            <input type="email" id="form-email" required placeholder="sarah@example.com" class="form-input-dark" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
+          <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
+            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+              <input type="radio" name="bike-type" value="rental" checked class="accent-[#FFC700]" />
+              <span>Rent Enduro / E-MTB Rig</span>
+            </label>
+            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+              <input type="radio" name="bike-type" value="byob" class="accent-[#FFC700]" />
+              <span>Bringing My Own Bike</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-4 flex items-center gap-4">
+          <button type="submit" class="btn-tactical btn-primary flex-1 py-3.5">
+            Confirm & Chat on WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Initialize Lucide Icons & Custom Scripts -->
+  <script src="js/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
