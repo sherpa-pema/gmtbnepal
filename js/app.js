@@ -3,7 +3,25 @@
  * High-octane interactive controls, video triggers, modal dialogues, and responsive logic.
  */
 
+// Prevent browser from executing jarring animated scroll restorations or jumping to anchors on page refresh
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+// Clear any anchor hash from the URL on load/refresh so the browser does not jump down to a section
+if (window.location.hash) {
+  history.replaceState(null, null, window.location.pathname + window.location.search);
+}
+
+// Force top position immediately
+window.scrollTo(0, 0);
+
+window.addEventListener("pageshow", () => {
+  window.scrollTo(0, 0);
+});
+
 document.addEventListener("DOMContentLoaded", () => {
+  window.scrollTo(0, 0);
   initHeroVideo();
   initStickyNav();
   initMobileMenu();
@@ -14,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTestimonialSlider();
   initScheduleFilters();
   initScrollChevron();
+  initSmoothScrollLinks();
 });
 
 /* 0. Hero Background Video Smooth Handler */
@@ -85,6 +104,7 @@ function initStickyNav() {
 function initMobileMenu() {
   const toggleBtn = document.getElementById("mobile-menu-toggle");
   const drawer = document.getElementById("mobile-drawer");
+  const backdrop = document.getElementById("mobile-drawer-backdrop");
   const closeBtn = document.getElementById("mobile-drawer-close");
   const drawerLinks = document.querySelectorAll(".mobile-drawer-link");
 
@@ -92,17 +112,41 @@ function initMobileMenu() {
 
   const openDrawer = () => {
     drawer.classList.remove("translate-x-full");
+    if (backdrop) {
+      backdrop.classList.remove("opacity-0", "pointer-events-none");
+      backdrop.classList.add("opacity-100", "pointer-events-auto");
+    }
     document.body.style.overflow = "hidden";
   };
 
   const closeDrawer = () => {
     drawer.classList.add("translate-x-full");
-    document.body.style.overflow = "";
+    if (backdrop) {
+      backdrop.classList.add("opacity-0", "pointer-events-none");
+      backdrop.classList.remove("opacity-100", "pointer-events-auto");
+    }
+    // Only restore scroll if booking modal is not open
+    const modal = document.getElementById("booking-modal");
+    if (!modal || !modal.classList.contains("open")) {
+      document.body.style.overflow = "";
+    }
   };
 
   toggleBtn.addEventListener("click", openDrawer);
   if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+  if (backdrop) backdrop.addEventListener("click", closeDrawer);
   drawerLinks.forEach(link => link.addEventListener("click", closeDrawer));
+
+  // If user clicks a modal button inside drawer, close the drawer first
+  const drawerModalTriggers = drawer.querySelectorAll("[data-open-modal]");
+  drawerModalTriggers.forEach(btn => btn.addEventListener("click", closeDrawer));
+
+  // Escape key handler
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !drawer.classList.contains("translate-x-full")) {
+      closeDrawer();
+    }
+  });
 }
 
 /* 3. Viewport Scrollspy Reveals */
@@ -379,6 +423,27 @@ function initScrollChevron() {
       target.scrollIntoView({ behavior: "smooth" });
     } else {
       window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+    }
+  });
+}
+
+/* 10. Smooth Scrolling for In-Page Anchor Links */
+function initSmoothScrollLinks() {
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    const targetId = link.getAttribute("href");
+    if (!targetId || targetId === "#" || targetId.startsWith("#booking-modal")) return;
+
+    try {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } catch (err) {
+      // Ignore invalid selectors
     }
   });
 }

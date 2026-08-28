@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,7 +48,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Design System Styles -->
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=2.0" />
 </head>
 <body class="bg-[#0D0D0D] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
 
@@ -100,15 +100,18 @@
     </div>
   </header>
 
+  <!-- Mobile Slide-In Drawer Backdrop -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1040] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
   <!-- Mobile Slide-In Drawer -->
-  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-[#121212] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out">
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#121212] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
     <div>
       <div class="flex items-center justify-between pb-6 border-b border-white/10">
         <div class="flex items-center space-x-3">
           <img src="assets/gnarly-logo.png" alt="GNARLY MTB Logo" class="w-8 h-8 object-contain rounded-full" />
           <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
         </div>
-        <button id="mobile-drawer-close" class="p-2 text-gray-400 hover:text-white">
+        <button id="mobile-drawer-close" class="p-2 text-gray-400 hover:text-[#FFC700] hover:bg-white/5 rounded-lg transition-colors cursor-pointer focus:outline-none" aria-label="Close Menu">
           <i data-lucide="x" class="w-6 h-6"></i>
         </button>
       </div>
@@ -154,9 +157,9 @@
       <!-- Gradient overlay inside video to smoothly blend into the dark background below -->
       <div class="hero-overlay"></div>
 
-      <!-- Title overlapping the bottom edge of the video -->
-      <div class="absolute bottom-0 left-0 w-full px-4 sm:px-6 translate-y-1/2 z-30 text-center">
-        <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white uppercase leading-[0.9] tracking-tight drop-shadow-2xl">
+      <!-- Title overlapping only the bottom 90% to 100% of the video -->
+      <div class="hero-title-container px-4 sm:px-6 pointer-events-none">
+        <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white uppercase leading-[0.9] tracking-tight drop-shadow-2xl pointer-events-auto">
           EARTH’S HIGHEST <br />
           <span class="text-[#FFC700] italic font-normal">PLAYGROUND</span>
         </h1>
@@ -164,7 +167,7 @@
     </div>
 
     <!-- Texts and buttons below the video -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center pt-24 pb-16 z-20 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center pt-36 sm:pt-40 md:pt-48 pb-16 z-20 relative">
       <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#1a1a1a] border border-[#FFC700]/30 mb-8">
         <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
         <span class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700]">

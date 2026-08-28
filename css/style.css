@@ -44,7 +44,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: var(--bg-canvas);
   color: var(--text-secondary);
   font-family: var(--font-body);
@@ -106,6 +105,15 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
+/* Mobile Drawer & Overlay */
+#mobile-drawer-backdrop {
+  z-index: 1040;
+}
+
+#mobile-drawer {
+  z-index: 1050;
+}
+
 /* Hero Section Styles */
 .hero-video-bg {
   position: absolute;
@@ -123,9 +131,35 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  /* Dark gradient fading in at the bottom to blend with the text section below */
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 60%, rgba(13,13,13,1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(13, 13, 13, 0) 0%,
+    rgba(13, 13, 13, 0.005) 20%,
+    rgba(13, 13, 13, 0.02) 35%,
+    rgba(13, 13, 13, 0.05) 45%,
+    rgba(13, 13, 13, 0.10) 55%,
+    rgba(13, 13, 13, 0.17) 64%,
+    rgba(13, 13, 13, 0.28) 72%,
+    rgba(13, 13, 13, 0.42) 79%,
+    rgba(13, 13, 13, 0.58) 85%,
+    rgba(13, 13, 13, 0.74) 91%,
+    rgba(13, 13, 13, 0.88) 95%,
+    rgba(13, 13, 13, 0.96) 98%,
+    rgba(13, 13, 13, 1) 100%
+  );
   z-index: 2;
+  pointer-events: none;
+}
+
+/* Hero Title Overlap (Overlaps only the bottom 90% to 100% of the video) */
+.hero-title-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(82%);
+  z-index: 30;
+  text-align: center;
 }
 
 
