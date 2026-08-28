@@ -95,14 +95,14 @@ body {
 
 .navbar-transparent {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
-  border-bottom: 1px solid transparent;
+  border-bottom: none;
 }
 
 .navbar-scrolled {
   background-color: var(--bg-frosted-nav);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
