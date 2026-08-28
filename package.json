@@ -5,8 +5,7 @@
   "description": "High-octane expedition and mountain biking tour frontend for Gnarly MTB Nepal",
   "scripts": {
     "dev": "npx serve . -l 3000",
-    "start": "npx serve . -l 3000",
-    "build": "echo \"Ready for Vercel deployment\""
+    "start": "npx serve . -l 3000"
   },
   "keywords": [
     "mountain-biking",
