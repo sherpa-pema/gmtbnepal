@@ -59,11 +59,17 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         
-        <!-- Logo & Wordmark -->
-        <a href="#" class="flex items-center space-x-3 group">
+        <!-- Left: Seal Icon -->
+        <a href="#" class="flex items-center group z-10">
           <img src="assets/gnarly-logo.png" alt="GNARLY MTB Seal" class="w-10 h-10 object-contain rounded-full group-hover:scale-105 transition-transform duration-200 shadow-md" />
-          <img src="assets/gnarly-brand-text.png" alt="Gnarly MTB Nepal" class="h-9 sm:h-11 w-auto object-contain group-hover:brightness-110 transition-all duration-200" />
         </a>
+
+        <!-- Center: Wordmark Brand Image (Centered & increased by 2px) -->
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto">
+          <a href="#" class="group">
+            <img src="assets/gnarly-brand-text.png" alt="Gnarly MTB Nepal" class="h-[38px] sm:h-[46px] w-auto object-contain group-hover:scale-105 group-hover:brightness-110 transition-all duration-200" />
+          </a>
+        </div>
 
         <!-- Desktop Navigation Links -->
         <nav class="hidden lg:flex items-center space-x-8">
