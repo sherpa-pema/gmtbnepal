@@ -20,20 +20,27 @@ window.addEventListener("pageshow", () => {
   window.scrollTo(0, 0);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+function initAll() {
   window.scrollTo(0, 0);
   initHeroVideo();
   initStickyNav();
   initMobileMenu();
   initScrollspy();
   initVideoHover();
+  initTourSlideshows();
   initAccordions();
   initBookingModal();
   initTestimonialSlider();
   initScheduleFilters();
   initScrollChevron();
   initSmoothScrollLinks();
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initAll);
+} else {
+  initAll();
+}
 
 /* 0. Hero Background Video Smooth Handler */
 function initHeroVideo() {
@@ -188,6 +195,84 @@ function initVideoHover() {
   });
 }
 
+/* 4b. Automated Tour Card Image Slideshow */
+function initTourSlideshows() {
+  const slideshows = document.querySelectorAll(".tour-slideshow");
+  if (!slideshows.length) return;
+
+  slideshows.forEach((slideshow) => {
+    if (slideshow.dataset.initialized === "true") return;
+    slideshow.dataset.initialized = "true";
+
+    const slides = Array.from(slideshow.querySelectorAll(".tour-slide-img"));
+    const dots = Array.from(slideshow.querySelectorAll(".indicator-dot"));
+    if (slides.length <= 1) return;
+
+    let currentIndex = 0;
+    const intervalMs = parseInt(slideshow.getAttribute("data-interval"), 10) || 2000;
+
+    // Initialize initial active states
+    slides.forEach((slide, i) => {
+      if (i === 0) {
+        slide.classList.add("active");
+        slide.style.opacity = "1";
+        slide.style.zIndex = "2";
+      } else {
+        slide.classList.remove("active");
+        slide.style.opacity = "0";
+        slide.style.zIndex = "1";
+      }
+    });
+
+    if (dots.length) {
+      dots.forEach((dot, i) => {
+        if (i === 0) {
+          dot.classList.add("active");
+          dot.style.backgroundColor = "#FFC700";
+          dot.style.borderColor = "#FFC700";
+          dot.style.transform = "scale(1.25)";
+        } else {
+          dot.classList.remove("active");
+          dot.style.backgroundColor = "rgba(255, 255, 255, 0.4)";
+          dot.style.borderColor = "rgba(255, 255, 255, 0.2)";
+          dot.style.transform = "scale(1)";
+        }
+      });
+    }
+
+    const nextSlide = () => {
+      const prevIndex = currentIndex;
+      currentIndex = (currentIndex + 1) % slides.length;
+
+      // Outgoing slide
+      const prevSlide = slides[prevIndex];
+      prevSlide.classList.remove("active");
+      prevSlide.style.opacity = "0";
+      prevSlide.style.zIndex = "1";
+      if (dots[prevIndex]) {
+        dots[prevIndex].classList.remove("active");
+        dots[prevIndex].style.backgroundColor = "rgba(255, 255, 255, 0.4)";
+        dots[prevIndex].style.borderColor = "rgba(255, 255, 255, 0.2)";
+        dots[prevIndex].style.transform = "scale(1)";
+      }
+
+      // Incoming slide
+      const currentSlide = slides[currentIndex];
+      currentSlide.classList.add("active");
+      currentSlide.style.opacity = "1";
+      currentSlide.style.zIndex = "2";
+      if (dots[currentIndex]) {
+        dots[currentIndex].classList.add("active");
+        dots[currentIndex].style.backgroundColor = "#FFC700";
+        dots[currentIndex].style.borderColor = "#FFC700";
+        dots[currentIndex].style.transform = "scale(1.25)";
+      }
+    };
+
+    setInterval(nextSlide, intervalMs);
+  });
+}
+
 /* 5. Collapsible Accordions */
 function initAccordions() {
   const accordionItems = document.querySelectorAll(".accordion-item");
@@ -322,17 +407,18 @@ function initBookingModal() {
       e.preventDefault();
       const name = document.getElementById("form-name")?.value || "";
       const email = document.getElementById("form-email")?.value || "";
-      const tour = tourSelect ? tourSelect.options[tourSelect.selectedIndex]?.text : "Expedition";
+      const phone = document.getElementById("form-phone")?.value || "";
+      const tour = tourSelect ? tourSelect.options[tourSelect.selectedIndex]?.text : "Tour";
       const date = dateInput?.value || "Flexible";
       const riders = document.getElementById("form-riders")?.value || "1";
 
-      // Form validation & direct WhatsApp or email redirect
-      const message = `Namaste Gnarly MTB! I would like to book the ${tour} for ${riders} rider(s) on ${date}. My name is ${name} (${email}).`;
+      // Form validation & direct WhatsApp message redirect
+      const message = `Namaste Gnarly MTB! I would like to book the ${tour} for ${riders} rider(s) on ${date}.\n\nName: ${name}\nEmail: ${email}\nWhatsApp: ${phone}`;
       const waUrl = `https://wa.me/9779803661496?text=${encodeURIComponent(message)}`;
 
       window.open(waUrl, "_blank");
       closeModal();
-      alert("Thank you! Opening WhatsApp to finalize your expedition details with Shyam & the Gnarly crew.");
+      alert("Thank you! Opening WhatsApp to finalize your tour details with Shyam & the Gnarly crew.");
     });
   }
 }

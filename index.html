@@ -48,7 +48,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Design System Styles -->
-  <link rel="stylesheet" href="css/style.css?v=2.3" />
+  <link rel="stylesheet" href="css/style.css?v=3.0" />
 </head>
 <body class="bg-[#0D0D0D] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
 
@@ -296,18 +296,299 @@
           </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center gap-4">
+        <div class="flex flex-col sm:flex-row items-center gap-4 mb-8">
           <a href="#tours" class="btn-tactical btn-primary w-full sm:w-auto px-8 py-4 text-base">
-            Explore Expeditions
+            Explore Tours
           </a>
           <a href="#enduro-race" class="btn-tactical btn-outline w-full sm:w-auto px-8 py-4 text-base">
             The Himalayan Enduro
           </a>
         </div>
+
+        <!-- 4 Flagship Tours Grid -->
+        <div id="tours" class="space-y-8">
+          
+          <!-- Tour Card 1: Enduro Thin Air -->
+          <div class="tour-card reveal-init">
+            <div class="tour-media-box relative w-full overflow-hidden bg-black aspect-[16/10]">
+              <!-- 4-Image Automated Looping Slideshow (2s interval) -->
+              <div class="tour-slideshow absolute inset-0 w-full h-full overflow-hidden" data-interval="2000">
+                <img 
+                  src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Sample 1: Mustang Desert Ridge Singletrack" 
+                  class="tour-slide-img active absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 1; z-index: 2;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Sample 2: Downhill Mountain Biker Action" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Sample 3: Deep Himalayan Canyon & Valley" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Sample 4: High Mountain Peak Panorama" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+
+                <!-- Slideshow Progression Indicators -->
+                <div class="slideshow-indicators absolute bottom-3.5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 pointer-events-none">
+                  <span class="indicator-dot active w-2 h-2 rounded-full bg-[#FFC700] scale-125 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                </div>
+              </div>
+
+              <!-- Badges -->
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+                <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
+                  10 DAYS • LOWER MUSTANG
+                </span>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
+                <span>Singletrack & High Scree</span>
+                <span class="text-[#FFC700]">Spring & Autumn</span>
+              </div>
+              <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
+                ENDURO THIN AIR
+              </h3>
+              <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
+                The legendary Mustang singletrack adventure. Ride Lubra Pass, Smooth Criminal, and Chasing Capra. Drop 1,400m vert through ancient canyons with stopovers in Marpha for homemade apple pie.
+              </p>
+              <div class="flex items-center gap-4">
+                <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air" class="btn-tactical btn-primary flex-1">
+                  Book Tour
+                </a>
+                <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tour Card 2: Everest Express -->
+          <div class="tour-card reveal-init delay-100">
+            <div class="tour-media-box relative w-full overflow-hidden bg-black aspect-[16/10]">
+              <!-- 4-Image Automated Looping Slideshow (2s interval) -->
+              <div class="tour-slideshow absolute inset-0 w-full h-full overflow-hidden" data-interval="2000">
+                <img 
+                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Everest Express Khumbu Mountain Singletrack" 
+                  class="tour-slide-img active absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 1; z-index: 2;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Alpine Downhill Rider on Khumbu Ridge" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Solukhumbu High Valley Singletrack" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Himalayan Mountain Range under Everest" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+
+                <!-- Slideshow Progression Indicators -->
+                <div class="slideshow-indicators absolute bottom-3.5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 pointer-events-none">
+                  <span class="indicator-dot active w-2 h-2 rounded-full bg-[#FFC700] scale-125 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                </div>
+              </div>
+
+              <!-- Badges -->
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+                <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
+                  9 DAYS • SOLUKHUMBU
+                </span>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
+                <span>Alpine Ridge & Rocky Steps</span>
+                <span class="text-[#FFC700]">Spring & Autumn</span>
+              </div>
+              <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
+                EVEREST EXPRESS
+              </h3>
+              <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
+                A fast-paced MTB adventure through the Khumbu heartland. Ride thrilling singletrack directly under Mount Everest, Ama Dablam, and Lhotse, surrounded by Sherpa monasteries and prayer flags.
+              </p>
+              <div class="flex items-center gap-4">
+                <a href="#booking-modal" data-open-modal data-tour="everest-express" class="btn-tactical btn-primary flex-1">
+                  Book Tour
+                </a>
+                <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tour Card 3: Mustang E-Motion -->
+          <div id="emtb" class="tour-card reveal-init delay-200">
+            <div class="tour-media-box relative w-full overflow-hidden bg-black aspect-[16/10]">
+              <!-- 4-Image Automated Looping Slideshow (2s interval) -->
+              <div class="tour-slideshow absolute inset-0 w-full h-full overflow-hidden" data-interval="2000">
+                <img 
+                  src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Mustang E-Motion Upper Mustang Trail" 
+                  class="tour-slide-img active absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 1; z-index: 2;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Upper Mustang Red Canyon Pass" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Lo Manthang Sky Caves Route" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80" 
+                  alt="High Altitude Plateau Views" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+
+                <!-- Slideshow Progression Indicators -->
+                <div class="slideshow-indicators absolute bottom-3.5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 pointer-events-none">
+                  <span class="indicator-dot active w-2 h-2 rounded-full bg-[#FFC700] scale-125 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                </div>
+              </div>
+
+              <!-- Badges -->
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+                <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
+                  12 DAYS • UPPER MUSTANG
+                </span>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
+                <span>High-Torque Canyons</span>
+                <span class="text-[#FFC700]">Spring, Summer, Autumn</span>
+              </div>
+              <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
+                MUSTANG E-MOTION (E-MTB)
+              </h3>
+              <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
+                Conquer high-altitude passes and dramatic red-rock canyons with electric assist. Ride into the ancient walled kingdom of Lo Manthang and explore thousand-year-old cliffside sky caves with zero elevation dread.
+              </p>
+              <div class="flex items-center gap-4">
+                <a href="#booking-modal" data-open-modal data-tour="mustang-e-motion" class="btn-tactical btn-primary flex-1">
+                  Book Tour
+                </a>
+                <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tour Card 4: Moto Mustang -->
+          <div class="tour-card reveal-init delay-300">
+            <div class="tour-media-box relative w-full overflow-hidden bg-black aspect-[16/10]">
+              <!-- 4-Image Automated Looping Slideshow (2s interval) -->
+              <div class="tour-slideshow absolute inset-0 w-full h-full overflow-hidden" data-interval="2000">
+                <img 
+                  src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Moto Mustang Enduro Dual-Sport Rider" 
+                  class="tour-slide-img active absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 1; z-index: 2;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Dual Sport Motorcycle on Dirt Riverbed" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Mustang Valley Dirt Gorge Crossing" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Himalayan Mountain Pass Route" 
+                  class="tour-slide-img absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                  style="opacity: 0; z-index: 1;"
+                />
+
+                <!-- Slideshow Progression Indicators -->
+                <div class="slideshow-indicators absolute bottom-3.5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 pointer-events-none">
+                  <span class="indicator-dot active w-2 h-2 rounded-full bg-[#FFC700] scale-125 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                  <span class="indicator-dot w-2 h-2 rounded-full bg-white/50 shadow-md transition-all duration-300"></span>
+                </div>
+              </div>
+
+              <!-- Badges -->
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+                <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
+                  8 DAYS • MOTO EXPEDITION
+                </span>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
+                <span>Riverbeds & Dirt Passes</span>
+                <span class="text-[#FFC700]">Spring, Summer, Autumn</span>
+              </div>
+              <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
+                MOTO MUSTANG
+              </h3>
+              <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
+                For riders who love high-octane throttle therapy. Tackle rocky river crossings, vast Tibetan plateaus, and dramatic gorge passes on fully supported dual-sport enduro motorcycles with backup mechanics.
+              </p>
+              <div class="flex items-center gap-4">
+                <a href="#booking-modal" data-open-modal data-tour="moto-mustang" class="btn-tactical btn-primary flex-1">
+                  Book Tour
+                </a>
+                <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <!-- Right Column: Accordion Features -->
-      <div class="lg:col-span-6 reveal-init delay-200">
+      <div class="lg:col-span-6 reveal-init delay-200 lg:sticky lg:top-28 self-start">
         <div class="space-y-4">
           
           <!-- Accordion 1 -->
@@ -381,209 +662,6 @@
       </div>
     </div>
   </div>
-
-  <!-- =========================================================================
-       5. EXPEDITION TOURS CATALOG (Video-on-Hover Cards)
-       ========================================================================= -->
-  <section id="tours" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal-init">
-      <div>
-        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#1a1a1a] border border-[#FFC700]/30 mb-4">
-          <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
-          <span class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700]">
-            2026/2027 EXPEDITION SEASON OPEN
-          </span>
-        </div>
-        <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
-          FLAGSHIP EXPEDITIONS
-        </div>
-        <h2 class="font-display text-4xl sm:text-6xl text-white uppercase tracking-tight">
-          FIND YOUR PERFECT <span class="text-[#FFC700]">HOLIDAY</span>
-        </h2>
-      </div>
-      <p class="font-body text-gray-400 max-w-md text-sm mt-4 md:mt-0">
-        From the high desert trails of Mustang to the colossal shadows of Mount Everest. Fully guided, fully supported.
-      </p>
-    </div>
-
-    <!-- Tour Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-      
-      <!-- Tour Card 1: Enduro Thin Air -->
-      <div class="tour-card reveal-init">
-        <div class="tour-media-box">
-          <img 
-            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80" 
-            alt="Enduro Thin Air Mustang" 
-            class="tour-poster-img" 
-          />
-          <video class="tour-video-preview" muted loop playsinline preload="none">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-extreme-mountain-biking-in-the-forest-42172-large.mp4" type="video/mp4" />
-          </video>
-          <!-- Badges -->
-          <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-            <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
-              10 DAYS • LOWER MUSTANG
-            </span>
-            <span class="bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 font-heading text-xs uppercase tracking-wider text-white">
-              DESCENT: 4,200M → 2,800M
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 sm:p-8">
-          <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
-            <span>Singletrack & High Scree</span>
-            <span class="text-[#FFC700]">Spring & Autumn</span>
-          </div>
-          <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
-            ENDURO THIN AIR
-          </h3>
-          <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
-            The legendary Mustang singletrack adventure. Ride Lubra Pass, Smooth Criminal, and Chasing Capra. Drop 1,400m vert through ancient canyons with stopovers in Marpha for homemade apple pie.
-          </p>
-          <div class="flex items-center gap-4">
-            <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air" class="btn-tactical btn-primary flex-1">
-              Book Expedition
-            </a>
-            <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
-              <i data-lucide="calendar" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tour Card 2: Everest Express -->
-      <div class="tour-card reveal-init delay-100">
-        <div class="tour-media-box">
-          <img 
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80" 
-            alt="Everest Express Mountain Biking" 
-            class="tour-poster-img" 
-          />
-          <video class="tour-video-preview" muted loop playsinline preload="none">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-cyclist-riding-on-a-mountain-trail-42171-large.mp4" type="video/mp4" />
-          </video>
-          <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-            <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
-              9 DAYS • SOLUKHUMBU
-            </span>
-            <span class="bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 font-heading text-xs uppercase tracking-wider text-white">
-              ELEVATION: 3,900M
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 sm:p-8">
-          <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
-            <span>Alpine Ridge & Rocky Steps</span>
-            <span class="text-[#FFC700]">Spring & Autumn</span>
-          </div>
-          <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
-            EVEREST EXPRESS
-          </h3>
-          <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
-            A fast-paced MTB adventure through the Khumbu heartland. Ride thrilling singletrack directly under Mount Everest, Ama Dablam, and Lhotse, surrounded by Sherpa monasteries and prayer flags.
-          </p>
-          <div class="flex items-center gap-4">
-            <a href="#booking-modal" data-open-modal data-tour="everest-express" class="btn-tactical btn-primary flex-1">
-              Book Expedition
-            </a>
-            <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
-              <i data-lucide="calendar" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tour Card 3: Mustang E-Motion -->
-      <div id="emtb" class="tour-card reveal-init delay-200">
-        <div class="tour-media-box">
-          <img 
-            src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=1000&q=80" 
-            alt="Mustang E-Motion E-MTB" 
-            class="tour-poster-img" 
-          />
-          <video class="tour-video-preview" muted loop playsinline preload="none">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-cyclist-riding-on-a-mountain-trail-42171-large.mp4" type="video/mp4" />
-          </video>
-          <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-            <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
-              12 DAYS • UPPER MUSTANG
-            </span>
-            <span class="bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 font-heading text-xs uppercase tracking-wider text-white">
-              E-BIKE ASSIST • 85NM
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 sm:p-8">
-          <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
-            <span>High-Torque Canyons</span>
-            <span class="text-[#FFC700]">Spring, Summer, Autumn</span>
-          </div>
-          <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
-            MUSTANG E-MOTION (E-MTB)
-          </h3>
-          <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
-            Conquer high-altitude passes and dramatic red-rock canyons with electric assist. Ride into the ancient walled kingdom of Lo Manthang and explore thousand-year-old cliffside sky caves with zero elevation dread.
-          </p>
-          <div class="flex items-center gap-4">
-            <a href="#booking-modal" data-open-modal data-tour="mustang-e-motion" class="btn-tactical btn-primary flex-1">
-              Book Expedition
-            </a>
-            <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
-              <i data-lucide="calendar" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tour Card 4: Moto Mustang -->
-      <div class="tour-card reveal-init delay-300">
-        <div class="tour-media-box">
-          <img 
-            src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=80" 
-            alt="Moto Mustang Dual Sport" 
-            class="tour-poster-img" 
-          />
-          <video class="tour-video-preview" muted loop playsinline preload="none">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-extreme-mountain-biking-in-the-forest-42172-large.mp4" type="video/mp4" />
-          </video>
-          <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-            <span class="bg-black/80 backdrop-blur-md border border-[#FFC700]/40 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wider text-[#FFC700]">
-              8 DAYS • MOTO EXPEDITION
-            </span>
-            <span class="bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 font-heading text-xs uppercase tracking-wider text-white">
-              DUAL-SPORT & DIRT
-            </span>
-          </div>
-        </div>
-
-        <div class="p-6 sm:p-8">
-          <div class="flex items-center justify-between text-xs font-heading uppercase tracking-wider text-gray-400 mb-2">
-            <span>Riverbeds & Dirt Passes</span>
-            <span class="text-[#FFC700]">Spring, Summer, Autumn</span>
-          </div>
-          <h3 class="font-display text-3xl text-white uppercase tracking-wide hover:text-[#FFC700] transition-colors mb-3">
-            MOTO MUSTANG
-          </h3>
-          <p class="font-body text-sm text-gray-300 leading-relaxed mb-6">
-            For riders who love high-octane throttle therapy. Tackle rocky river crossings, vast Tibetan plateaus, and dramatic gorge passes on fully supported dual-sport enduro motorcycles with backup mechanics.
-          </p>
-          <div class="flex items-center gap-4">
-            <a href="#booking-modal" data-open-modal data-tour="moto-mustang" class="btn-tactical btn-primary flex-1">
-              Book Expedition
-            </a>
-            <a href="#schedule" class="btn-tactical btn-outline px-4" title="View Dates">
-              <i data-lucide="calendar" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- =========================================================================
        6. SIGNATURE SPOTLIGHT: THE HIMALAYAN ENDURO
@@ -1175,14 +1253,12 @@
 
       <form id="booking-form" class="space-y-4">
         <div>
-          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Select Expedition</label>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Select Tour</label>
           <select id="modal-tour-select" class="form-input-dark">
             <option value="enduro-thin-air">Enduro Thin Air (Lower Mustang, 10 Days)</option>
             <option value="everest-express">Everest Express (Khumbu, 9 Days)</option>
             <option value="mustang-e-motion">Mustang E-Motion (Upper Mustang E-MTB, 12 Days)</option>
             <option value="moto-mustang">Moto Mustang (Dual-Sport Enduro, 8 Days)</option>
-            <option value="himalayan-enduro">The Himalayan Enduro Race 2026</option>
-            <option value="g-mtb-skills">G MTB Skills Coaching Clinic</option>
           </select>
         </div>
 
@@ -1214,6 +1290,11 @@
         </div>
 
         <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">WhatsApp Number</label>
+          <input type="tel" id="form-phone" required placeholder="e.g. +1 555 123 4567 (with country code)" class="form-input-dark" />
+        </div>
+
+        <div>
           <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
           <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
             <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
@@ -1237,7 +1318,7 @@
   </div>
 
   <!-- Initialize Lucide Icons & Custom Scripts -->
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=3.0"></script>
   <script>
     lucide.createIcons();
   </script>

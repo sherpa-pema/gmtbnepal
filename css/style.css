@@ -291,6 +291,68 @@ body {
   opacity: 1;
 }
 
+/* Tour Card Automated Slideshow */
+.tour-slideshow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tour-slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 1;
+  transform: scale(1);
+  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+  pointer-events: none;
+}
+
+.tour-slide-img.active {
+  opacity: 1 !important;
+  z-index: 2 !important;
+  transform: scale(1.01);
+  pointer-events: auto;
+}
+
+.tour-card:hover .tour-slide-img.active {
+  transform: scale(1.05);
+}
+
+/* Slideshow Indicators */
+.slideshow-indicators {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.slideshow-indicators .indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 0 1px rgba(0, 0, 0, 0.9);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slideshow-indicators .indicator-dot.active {
+  width: 8px !important;
+  background-color: #FFC700 !important;
+  box-shadow: 0 0 8px rgba(255, 199, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.8) !important;
+  transform: scale(1.25);
+}
+
 /* Interactive Schedule Grid */
 .schedule-table-wrap {
   position: relative;
