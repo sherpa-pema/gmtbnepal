@@ -3,25 +3,28 @@
  * High-octane interactive controls, video triggers, modal dialogues, and responsive logic.
  */
 
-// Prevent browser from executing jarring animated scroll restorations or jumping to anchors on page refresh
+// Prevent browser from executing jarring animated scroll restorations
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
-// Clear any anchor hash from the URL on load/refresh so the browser does not jump down to a section
-if (window.location.hash) {
-  history.replaceState(null, null, window.location.pathname + window.location.search);
+function handleInitialScroll() {
+  const hash = window.location.hash;
+  if (hash && hash !== "#" && !hash.startsWith("#booking-modal")) {
+    try {
+      const targetElement = document.querySelector(hash);
+      if (targetElement) {
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 150);
+        return;
+      }
+    } catch (e) {}
+  }
+  window.scrollTo(0, 0);
 }
 
-// Force top position immediately
-window.scrollTo(0, 0);
-
-window.addEventListener("pageshow", () => {
-  window.scrollTo(0, 0);
-});
-
 function initAll() {
-  window.scrollTo(0, 0);
   initHeroVideo();
   initStickyNav();
   initMobileMenu();
@@ -34,6 +37,7 @@ function initAll() {
   initScheduleFilters();
   initScrollChevron();
   initSmoothScrollLinks();
+  handleInitialScroll();
 }
 
 if (document.readyState === "loading") {

@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G MTB Skills Clinic | PMBIA Certified Mountain Bike Coaching Nepal</title>
+  <meta name="description" content="Level up your mountain biking with PMBIA-certified coaching in Nepal. 1-on-1 and small group skills clinics covering braking mechanics, body-bike separation, cornering, steep drops, and rock gardens." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: "#FFC700",
+              hover: "#E5B300",
+              dark: "#CCA000",
+            },
+            canvas: "#0D0D0D",
+            surface: {
+              DEFAULT: "#141414",
+              secondary: "#1A1A1A",
+              elevated: "#242424",
+            }
+          },
+          fontFamily: {
+            display: ["Anton", "sans-serif"],
+            heading: ["Oswald", "sans-serif"],
+            body: ["Roboto", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Design System Styles -->
+  <link rel="stylesheet" href="css/style.css?v=3.0" />
+</head>
+<body class="bg-[#0D0D0D] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
+
+  <!-- =========================================================================
+       1. NAVIGATION HEADER (Sticky & Frosted)
+       ========================================================================= -->
+  <header id="main-navbar" class="navbar-fixed navbar-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Left: Seal Icon -->
+        <a href="index.html" class="flex items-center group z-10" title="GNARLY MTB Home">
+          <img src="assets/gnarly-logo.png" alt="GNARLY MTB Seal" class="w-10 h-10 object-contain rounded-full group-hover:scale-105 transition-transform duration-200 shadow-md" />
+        </a>
+
+        <!-- Center: Wordmark Brand Image -->
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto">
+          <a href="index.html" class="group">
+            <img src="assets/gnarly-brand-text.png" alt="Gnarly MTB Nepal" class="h-[38px] sm:h-[46px] w-auto object-contain group-hover:scale-105 group-hover:brightness-110 transition-all duration-200" />
+          </a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a href="index.html#tours" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Tours</a>
+          <a href="index.html#emtb" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">E-MTB</a>
+          <a href="skills-clinic.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-[#FFC700] border-b-2 border-[#FFC700] pb-0.5">Skills Clinic</a>
+          <a href="gallery.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Gallery</a>
+          <a href="index.html#reviews" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Reviews</a>
+          <a href="index.html#about" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">About</a>
+        </nav>
+
+        <!-- Right Action Cluster -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <a href="https://wa.me/9779803661496" target="_blank" class="p-2.5 rounded border border-white/20 text-white hover:text-[#FFC700] hover:border-[#FFC700] transition-colors duration-200" title="WhatsApp Us">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+          </a>
+          <a href="#booking-modal" data-open-modal data-tour="g-mtb-skills" class="btn-tactical btn-primary">
+            Book Clinic
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded text-[#D6463B] hover:text-white transition-colors focus:outline-none" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-In Drawer Backdrop -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1040] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- Mobile Slide-In Drawer -->
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#121212] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-white/10">
+        <div class="flex items-center space-x-3">
+          <img src="assets/gnarly-logo.png" alt="GNARLY MTB Logo" class="w-8 h-8 object-contain rounded-full" />
+          <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
+        </div>
+        <button id="mobile-drawer-close" class="p-2 text-gray-400 hover:text-[#FFC700] hover:bg-white/5 rounded-lg transition-colors cursor-pointer focus:outline-none" aria-label="Close Menu">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <nav class="mt-8 flex flex-col space-y-5">
+        <a href="index.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Home</a>
+        <a href="index.html#tours" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Tours & Itineraries</a>
+        <a href="index.html#emtb" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Mustang E-Motion</a>
+        <a href="skills-clinic.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-[#FFC700] font-bold">G MTB Skills Clinic</a>
+        <a href="gallery.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Expedition Gallery</a>
+        <a href="index.html#reviews" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Rider Reviews</a>
+        <a href="index.html#about" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">About & Guides</a>
+        <a href="#clinic-booking" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Contact & Booking</a>
+      </nav>
+    </div>
+    <div class="pt-6 border-t border-white/10 flex flex-col space-y-3">
+      <a href="#booking-modal" data-open-modal data-tour="g-mtb-skills" class="btn-tactical btn-primary w-full text-center">Book Skills Clinic</a>
+      <a href="tel:+9779803661496" class="btn-tactical btn-outline w-full text-center">+977 980 366 1496</a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. HERO SECTION: G MTB SKILLS CLINIC
+       ========================================================================= -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-white/10 bg-[#090909]">
+    <!-- Background Image with Dark Vignette Gradient -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=2000&q=80" 
+        alt="Mountain Biker Technical Skills" 
+        class="w-full h-full object-cover opacity-25 filter grayscale contrast-125" 
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/80 to-[#0D0D0D]/40"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        
+        <!-- Tactical Badge -->
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-sm bg-[#FFC700]/10 border border-[#FFC700]/30 text-[#FFC700] font-heading text-xs uppercase tracking-[0.2em] mb-6">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>PMBIA CERTIFIED COACHING ACADEMY</span>
+        </div>
+
+        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl text-white uppercase leading-[0.95] mb-6 tracking-tight">
+          MASTER THE TRAIL. <br />
+          <span class="text-[#FFC700]">G MTB SKILLS CLINIC</span>
+        </h1>
+
+        <p class="font-body text-gray-300 text-lg sm:text-xl leading-relaxed mb-8">
+          Unlock speed, balance, and complete confidence on the world's rawest terrain. Whether you're breaking bad habits or conquering 4,000m Himalayan scree chutes, our certified coaching delivers systematic progression that sticks.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
+          <a href="#booking-modal" data-open-modal data-tour="g-mtb-skills" class="btn-tactical btn-primary px-8 py-4 text-base text-center">
+            Book a Clinic Session
+          </a>
+          <a href="#curriculum" class="btn-tactical btn-outline px-8 py-4 text-base text-center">
+            Explore Progression Levels
+          </a>
+        </div>
+
+        <!-- Quick Metrics Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-white/10">
+          <div>
+            <div class="font-display text-3xl sm:text-4xl text-[#FFC700]">1:4</div>
+            <div class="font-heading text-xs uppercase tracking-wider text-gray-400 mt-1">Max Coach Ratio</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl sm:text-4xl text-white">PMBIA</div>
+            <div class="font-heading text-xs uppercase tracking-wider text-gray-400 mt-1">Certified Coaches</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl sm:text-4xl text-[#FFC700]">3 TIERS</div>
+            <div class="font-heading text-xs uppercase tracking-wider text-gray-400 mt-1">Beginner to Pro</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl sm:text-4xl text-white">SLOW-MO</div>
+            <div class="font-heading text-xs uppercase tracking-wider text-gray-400 mt-1">Video Telemetry</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. COACHING METHODOLOGY & SCIENCE
+       ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal-init">
+      <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+        THE G MTB METHOD
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl text-white uppercase tracking-tight">
+        SCIENCE-BACKED <span class="text-[#FFC700]">TRAIL MASTERY</span>
+      </h2>
+      <p class="font-body text-gray-400 text-sm sm:text-base mt-4">
+        We don’t just tell you to "lean back" or "ride faster." We deconstruct modern mountain bike physics, bio-mechanics, and spatial perception into digestible drills that build lasting muscle memory.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Feature 1 -->
+      <div class="bg-[#141414] border border-white/10 p-6 rounded-sm hover:border-[#FFC700]/50 transition-all duration-300 reveal-init">
+        <div class="w-12 h-12 rounded bg-[#FFC700]/10 border border-[#FFC700]/30 text-[#FFC700] flex items-center justify-center mb-5">
+          <i data-lucide="activity" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-heading text-lg font-bold uppercase text-white tracking-wider mb-2">Bike-Body Separation</h3>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">
+          Master lateral lean angles, hip hinge mobility, and range of movement so your bike moves freely beneath you without unsettling your center of gravity.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="bg-[#141414] border border-white/10 p-6 rounded-sm hover:border-[#FFC700]/50 transition-all duration-300 reveal-init delay-100">
+        <div class="w-12 h-12 rounded bg-[#FFC700]/10 border border-[#FFC700]/30 text-[#FFC700] flex items-center justify-center mb-5">
+          <i data-lucide="video" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-heading text-lg font-bold uppercase text-white tracking-wider mb-2">Slow-Mo Video Telemetry</h3>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">
+          Watch high-frame-rate video playback of your riding immediately trailside. Isolate micro-movements, eye-scan habits, and braking points in real time.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="bg-[#141414] border border-white/10 p-6 rounded-sm hover:border-[#FFC700]/50 transition-all duration-300 reveal-init delay-200">
+        <div class="w-12 h-12 rounded bg-[#FFC700]/10 border border-[#FFC700]/30 text-[#FFC700] flex items-center justify-center mb-5">
+          <i data-lucide="sliders" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-heading text-lg font-bold uppercase text-white tracking-wider mb-2">Cockpit & Sag Tuning</h3>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">
+          We start every clinic dialing in your suspension rebound, compression, tire pressures, brake lever reach, and cockpit ergonomics for maximum traction and zero arm pump.
+        </p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="bg-[#141414] border border-white/10 p-6 rounded-sm hover:border-[#FFC700]/50 transition-all duration-300 reveal-init delay-300">
+        <div class="w-12 h-12 rounded bg-[#FFC700]/10 border border-[#FFC700]/30 text-[#FFC700] flex items-center justify-center mb-5">
+          <i data-lucide="mountain" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-heading text-lg font-bold uppercase text-white tracking-wider mb-2">Alpine Specific Skills</h3>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">
+          Prepare for Mustang & Everest terrain: loose high-altitude scree drift, tight alpine switchbacks, steep rock gardens, and high-altitude breathing cadences.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. CLINIC PROGRESSION TIERS & CURRICULUM
+       ========================================================================= -->
+  <section id="curriculum" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal-init">
+      <div>
+        <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+          CLINIC CURRICULUM
+        </div>
+        <h2 class="font-display text-4xl sm:text-6xl text-white uppercase tracking-tight">
+          CHOOSE YOUR <span class="text-[#FFC700]">PROGRESSION</span>
+        </h2>
+      </div>
+      <p class="font-body text-gray-400 text-sm max-w-md mt-4 md:mt-0">
+        From foundation fundamentals to high-altitude downhill drops, every module is structured to deliver noticeable breakthroughs in a single session.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Tier 1 -->
+      <div class="bg-[#141414] border border-white/10 rounded-sm overflow-hidden flex flex-col justify-between hover:border-[#FFC700] transition-all duration-300 reveal-init">
+        <div>
+          <!-- Header Banner -->
+          <div class="p-6 border-b border-white/10 bg-[#1A1A1A]">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">MODULE 01</span>
+              <span class="text-[11px] font-heading uppercase px-2.5 py-0.5 rounded bg-white/10 text-gray-300">1 Day • Foundation</span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl text-white uppercase">FOUNDATION & BALANCE</h3>
+            <p class="font-body text-xs text-gray-400 mt-1">For beginners & trail riders looking to unlearn bad habits and build effortless control.</p>
+          </div>
+
+          <!-- Body Content -->
+          <div class="p-6 space-y-4">
+            <h4 class="font-heading text-xs font-bold uppercase tracking-wider text-gray-400">Core Syllabus Covered:</h4>
+            <ul class="space-y-3 font-body text-xs text-gray-300">
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Neutral vs. Ready Position:</strong> Dynamic base of support over bottom bracket.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>1-Finger Braking Modulation:</strong> Preventing wheel lock-up & modulating front/rear bias.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Vision & Line Choice:</strong> Looking through turns rather than fixating on obstacles.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Steep Climbs & Safe Dismounts:</strong> Traction management on loose technical pinches.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0">
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <div>
+              <span class="font-heading text-xs text-gray-400 uppercase">Terrain</span>
+              <div class="font-heading text-sm text-white font-bold uppercase">Hattiban Pine Trails</div>
+            </div>
+            <a href="#booking-modal" data-open-modal data-tour="g-mtb-skills" class="btn-tactical btn-outline text-xs px-4 py-2">
+              Book Level 1
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="bg-[#141414] border-2 border-[#FFC700] rounded-sm overflow-hidden flex flex-col justify-between shadow-[0_0_30px_rgba(255,199,0,0.15)] reveal-init delay-100">
+        <div>
+          <!-- Header Banner -->
+          <div class="p-6 border-b border-[#FFC700]/30 bg-[#1E1A10]">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">MODULE 02 • MOST POPULAR</span>
+              <span class="text-[11px] font-heading uppercase px-2.5 py-0.5 rounded bg-[#FFC700] text-black font-bold">1-2 Days • Flow</span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl text-white uppercase">FLOW & CORNERING MASTERY</h3>
+            <p class="font-body text-xs text-gray-300 mt-1">For intermediate riders craving speed, cornering grip, and fluidity through rough sections.</p>
+          </div>
+
+          <!-- Body Content -->
+          <div class="p-6 space-y-4">
+            <h4 class="font-heading text-xs font-bold uppercase tracking-wider text-gray-400">Core Syllabus Covered:</h4>
+            <ul class="space-y-3 font-body text-xs text-gray-300">
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>High-Speed Berm Pumping:</strong> Generating exit speed through berm compression.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Flat Turn Traction & Counter-Steer:</strong> Foot pressure, outside pedal weighting & hip angulation.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Wheel Lifts & Bunny Hops:</strong> Unweighting over logs, roots, and trail ditches.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Braking Point Optimization:</strong> Scrubbing speed before the turn, not in it.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0">
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <div>
+              <span class="font-heading text-xs text-gray-400 uppercase">Terrain</span>
+              <div class="font-heading text-sm text-white font-bold uppercase">Nagarkot & Hattiban Flow</div>
+            </div>
+            <a href="#booking-modal" data-open-modal data-tour="g-mtb-skills" class="btn-tactical btn-primary text-xs px-4 py-2">
+              Book Level 2
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="bg-[#141414] border border-white/10 rounded-sm overflow-hidden flex flex-col justify-between hover:border-[#FFC700] transition-all duration-300 reveal-init delay-200">
+        <div>
+          <!-- Header Banner -->
+          <div class="p-6 border-b border-white/10 bg-[#1A1A1A]">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">MODULE 03</span>
+              <span class="text-[11px] font-heading uppercase px-2.5 py-0.5 rounded bg-white/10 text-gray-300">2-3 Days • Technical</span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl text-white uppercase">HIGH-ALTITUDE TECHNICAL & DROPS</h3>
+            <p class="font-body text-xs text-gray-400 mt-1">For enduro shredders preparing for big Himalayan expeditions or multi-stage races.</p>
+          </div>
+
+          <!-- Body Content -->
+          <div class="p-6 space-y-4">
+            <h4 class="font-heading text-xs font-bold uppercase tracking-wider text-gray-400">Core Syllabus Covered:</h4>
+            <ul class="space-y-3 font-body text-xs text-gray-300">
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Steep Scree Switchbacks:</strong> Rear brake drift, nose pivots & pivot maneuvers.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Drop Progression:</strong> Roll-downs, flat drops, step-downs, and matching landing angles.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>Rock Garden Commitment:</strong> Maintaining line momentum through chaotic boulder fields.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#FFC700] flex-shrink-0 mt-0.5"></i>
+                <span><strong>High-Altitude Pacing & Arm Pump:</strong> Tactical energy conservation over 1,500m descents.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0">
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <div>
+              <span class="font-heading text-xs text-gray-400 uppercase">Terrain</span>
+              <div class="font-heading text-sm text-white font-bold uppercase">Phulchowki & Nagarkot Steeps</div>
+            </div>
+            <a href="#booking-modal" data-open-modal data-tour="g-mtb-skills" class="btn-tactical btn-outline text-xs px-4 py-2">
+              Book Level 3
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Private 1-on-1 VIP Banner -->
+    <div class="mt-12 bg-gradient-to-r from-[#181818] via-[#1F1A10] to-[#181818] border border-[#FFC700]/40 rounded-sm p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 reveal-init">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center space-x-2 text-[#FFC700] font-heading text-xs font-bold uppercase tracking-widest mb-2">
+          <i data-lucide="award" class="w-4 h-4"></i>
+          <span>BESPOKE COACHING INTENSIVE</span>
+        </div>
+        <h3 class="font-display text-3xl sm:text-4xl text-white uppercase mb-2">
+          PRIVATE 1-ON-1 VIP MASTERCLASS
+        </h3>
+        <p class="font-body text-sm text-gray-300 leading-relaxed">
+          Work exclusively with Head Coach Shyam G Limbu. Includes full 4x4 private trail shuttle, personalized high-speed video breakdown, customized suspension tuning, and 100% focused coaching tailored strictly to your riding goals.
+        </p>
+      </div>
+      <div class="flex-shrink-0 flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+        <a href="#booking-modal" data-open-modal data-tour="g-mtb-skills" class="btn-tactical btn-primary px-8 py-4 text-center">
+          Inquire Private VIP
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. HEAD COACH SPOTLIGHT: SHYAM G LIMBU
+       ========================================================================= -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Coach Image -->
+      <div class="lg:col-span-5 reveal-init">
+        <div class="relative rounded-sm overflow-hidden border border-white/15 aspect-[4/5] bg-black group shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80" 
+            alt="Head Coach Shyam G Limbu" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent flex items-end p-8">
+            <div>
+              <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">HEAD COACH & FOUNDER</span>
+              <h3 class="font-display text-3xl sm:text-4xl text-white uppercase">SHYAM G LIMBU</h3>
+              <p class="font-body text-xs text-gray-300 mt-1">PMBIA Certified Coach • Nepal Enduro Pioneer • 15+ Yrs Guiding</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coach Bio & Credentials -->
+      <div class="lg:col-span-7 space-y-6 reveal-init delay-100">
+        <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700]">
+          MEET YOUR INSTRUCTOR
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl text-white uppercase leading-[1.05]">
+          TRAIN WITH NEPAL’S <br />
+          <span class="text-[#FFC700]">ENDURO PIONEER</span>
+        </h2>
+        <p class="font-body text-gray-300 text-base leading-relaxed">
+          Shyam G Limbu is one of the foundational figures of competitive mountain biking and high-altitude enduro in the Himalayas. With over 15 years scouting first-descents across Lower & Upper Mustang, Everest Khumbu, and Annapurna, Shyam brings international PMBIA coaching certification directly to Himalayan trails.
+        </p>
+        <p class="font-body text-gray-400 text-sm leading-relaxed">
+          "My coaching philosophy is simple: master the fundamentals until they are unconscious, then use biomechanical efficiency to ride faster and safer on steep natural terrain. Whether you're an absolute beginner or racing enduro, you leave every clinic a transformed rider."
+        </p>
+
+        <!-- Credentials Checklist -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-[#FFC700]/20 text-[#FFC700] flex items-center justify-center flex-shrink-0">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-200">PMBIA Certified Instructor</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-[#FFC700]/20 text-[#FFC700] flex items-center justify-center flex-shrink-0">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-200">Wilderness First Responder (WFR)</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-[#FFC700]/20 text-[#FFC700] flex items-center justify-center flex-shrink-0">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-200">Organizer of Himalayan Enduro</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-[#FFC700]/20 text-[#FFC700] flex items-center justify-center flex-shrink-0">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-200">Over 500+ Riders Coached</span>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <a href="https://wa.me/9779803661496?text=Hi%20Shyam,%20I'm%20interested%20in%20a%20G%20MTB%20Skills%20Clinic%20session." target="_blank" class="btn-tactical btn-primary inline-flex items-center space-x-2">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            <span>Chat Directly with Shyam on WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. WHAT'S INCLUDED IN EVERY CLINIC
+       ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal-init">
+      <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+        FULL PACKAGE DETAILS
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl text-white uppercase tracking-tight">
+        WHAT IS <span class="text-[#FFC700]">INCLUDED</span>
+      </h2>
+      <p class="font-body text-gray-400 text-sm mt-4">
+        Every clinic is structured as an all-inclusive training day with full trail logistics, coaching analysis, and safety backup.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <div class="p-6 bg-[#141414] border border-white/10 rounded-sm reveal-init">
+        <div class="w-10 h-10 rounded bg-[#FFC700]/10 text-[#FFC700] flex items-center justify-center mb-4">
+          <i data-lucide="award" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider mb-2">PMBIA Certified Coaching</h4>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">Small group instruction (maximum 4 riders per coach) or 1-on-1 private attention to ensure continuous personalized feedback.</p>
+      </div>
+
+      <div class="p-6 bg-[#141414] border border-white/10 rounded-sm reveal-init delay-100">
+        <div class="w-10 h-10 rounded bg-[#FFC700]/10 text-[#FFC700] flex items-center justify-center mb-4">
+          <i data-lucide="truck" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider mb-2">4x4 Trail Shuttle Support</h4>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">Dedicated 4x4 pickup trucks for trail center uplifts so your energy is 100% focused on descending skill drills instead of exhausted road climbing.</p>
+      </div>
+
+      <div class="p-6 bg-[#141414] border border-white/10 rounded-sm reveal-init delay-200">
+        <div class="w-10 h-10 rounded bg-[#FFC700]/10 text-[#FFC700] flex items-center justify-center mb-4">
+          <i data-lucide="video" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider mb-2">Slow-Mo Video Breakdown</h4>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">Trailside tablet video reviews highlighting frame-by-frame body positioning, brake release points, and bike lean progression.</p>
+      </div>
+
+      <div class="p-6 bg-[#141414] border border-white/10 rounded-sm reveal-init">
+        <div class="w-10 h-10 rounded bg-[#FFC700]/10 text-[#FFC700] flex items-center justify-center mb-4">
+          <i data-lucide="wrench" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider mb-2">Bike Setup & Sag Tuning</h4>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">Pre-session suspension tuning, tire pressure optimization, cockpit adjustments, and trailside mechanic backup.</p>
+      </div>
+
+      <div class="p-6 bg-[#141414] border border-white/10 rounded-sm reveal-init delay-100">
+        <div class="w-10 h-10 rounded bg-[#FFC700]/10 text-[#FFC700] flex items-center justify-center mb-4">
+          <i data-lucide="utensils" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider mb-2">Hot Trail Lunch & Hydration</h4>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">Energizing trailside lunch, fresh Himalayan coffee/tea, electrolyte hydration packs, and snacks to keep your stamina sharp.</p>
+      </div>
+
+      <div class="p-6 bg-[#141414] border border-white/10 rounded-sm reveal-init delay-200">
+        <div class="w-10 h-10 rounded bg-[#FFC700]/10 text-[#FFC700] flex items-center justify-center mb-4">
+          <i data-lucide="shield" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-heading text-base font-bold uppercase text-white tracking-wider mb-2">First Aid & Trail Safety Backup</h4>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">Wilderness First Responder certified guides, comprehensive trauma kit, satellite communications, and emergency vehicle on standby.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. KATHMANDU VALLEY TRAIL CENTERS
+       ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal-init">
+      <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+        TRAINING GROUNDS
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl text-white uppercase tracking-tight">
+        KATHMANDU VALLEY <span class="text-[#FFC700]">TRAIL HUBS</span>
+      </h2>
+      <p class="font-body text-gray-400 text-sm mt-4">
+        We conduct clinics on purpose-selected terrain networks around Kathmandu to match every skill milestone.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Location 1 -->
+      <div class="bg-[#141414] border border-white/10 rounded-sm overflow-hidden group reveal-init">
+        <div class="aspect-[16/10] overflow-hidden relative">
+          <img 
+            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" 
+            alt="Hattiban Forest Trails" 
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+          />
+          <div class="absolute top-3 left-3 bg-black/80 px-2.5 py-1 text-[11px] font-heading font-bold text-[#FFC700] uppercase tracking-wider rounded">
+            Beginner & Flow
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-bold uppercase text-white mb-2">Hattiban Pine Forest</h3>
+          <p class="font-body text-xs text-gray-400 leading-relaxed mb-4">
+            Pine needle loam, progressive switchbacks, natural pump rollers, and controlled root sections ideal for Level 1 & Level 2 foundation work.
+          </p>
+          <div class="text-[11px] font-heading uppercase text-gray-300">
+            Elevation: <strong>1,850m</strong> • Shuttled Runs: <strong>4 - 6 / day</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location 2 -->
+      <div class="bg-[#141414] border border-white/10 rounded-sm overflow-hidden group reveal-init delay-100">
+        <div class="aspect-[16/10] overflow-hidden relative">
+          <img 
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" 
+            alt="Nagarkot Ridge Trails" 
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+          />
+          <div class="absolute top-3 left-3 bg-black/80 px-2.5 py-1 text-[11px] font-heading font-bold text-[#FFC700] uppercase tracking-wider rounded">
+            All Levels & Speed
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-bold uppercase text-white mb-2">Nagarkot Ridge Singletrack</h3>
+          <p class="font-body text-xs text-gray-400 leading-relaxed mb-4">
+            High-speed ridge trails, bermed turns, rock gardens, and sweeping Himalayan panorama. The ultimate testing ground for high-speed cornering and braking.
+          </p>
+          <div class="text-[11px] font-heading uppercase text-gray-300">
+            Elevation: <strong>2,175m</strong> • Shuttled Runs: <strong>3 - 5 / day</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location 3 -->
+      <div class="bg-[#141414] border border-white/10 rounded-sm overflow-hidden group reveal-init delay-200">
+        <div class="aspect-[16/10] overflow-hidden relative">
+          <img 
+            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" 
+            alt="Phulchowki Downhill" 
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+          />
+          <div class="absolute top-3 left-3 bg-black/80 px-2.5 py-1 text-[11px] font-heading font-bold text-[#FFC700] uppercase tracking-wider rounded">
+            Advanced & Steeps
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-bold uppercase text-white mb-2">Phulchowki Mountain Downhill</h3>
+          <p class="font-body text-xs text-gray-400 leading-relaxed mb-4">
+            Kathmandu valley's highest peak (2,765m). Raw alpine drops, steep rock chutes, tight technical switchbacks, and 1,300m vertical descents for Level 3 riders.
+          </p>
+          <div class="text-[11px] font-heading uppercase text-gray-300">
+            Elevation: <strong>2,765m</strong> • Vertical Drop: <strong>1,300m / run</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. FREQUENTLY ASKED QUESTIONS (Accordion)
+       ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto border-b border-white/10">
+    <div class="text-center mb-12 reveal-init">
+      <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+        COMMON QUESTIONS
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl text-white uppercase tracking-tight">
+        SKILLS CLINIC <span class="text-[#FFC700]">FAQ</span>
+      </h2>
+    </div>
+
+    <div class="space-y-4 reveal-init">
+      
+      <!-- FAQ 1 -->
+      <div class="accordion-item active bg-[#141414] border border-white/10 rounded-sm">
+        <button class="accordion-trigger w-full p-5 text-left flex items-center justify-between font-heading text-base sm:text-lg uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
+          <span>What type of bike do I need? Can I rent one from Gnarly?</span>
+          <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-[#FFC700] transition-transform duration-200"></i>
+        </button>
+        <div class="accordion-content px-5 pb-5 text-xs sm:text-sm font-body text-gray-300 leading-relaxed">
+          You can bring your own mountain bike (trail, enduro, downhill, or e-MTB). Alternatively, you can rent a pro-spec full-suspension enduro rig directly from Gnarly’s fleet (Commencal / Santa Cruz / Specialized) with full setup included.
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="accordion-item bg-[#141414] border border-white/10 rounded-sm">
+        <button class="accordion-trigger w-full p-5 text-left flex items-center justify-between font-heading text-base sm:text-lg uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
+          <span>What protective gear is required?</span>
+          <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-[#FFC700] transition-transform duration-200"></i>
+        </button>
+        <div class="accordion-content px-5 pb-5 text-xs sm:text-sm font-body text-gray-300 leading-relaxed">
+          A certified helmet (full-face recommended for Level 2 & 3), knee pads, full-finger gloves, and eye protection are mandatory. Elbow pads and back protectors are strongly encouraged. We have rental protection packs available upon request.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="accordion-item bg-[#141414] border border-white/10 rounded-sm">
+        <button class="accordion-trigger w-full p-5 text-left flex items-center justify-between font-heading text-base sm:text-lg uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
+          <span>I'm a beginner who gets nervous on steep trails. Is this right for me?</span>
+          <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-[#FFC700] transition-transform duration-200"></i>
+        </button>
+        <div class="accordion-content px-5 pb-5 text-xs sm:text-sm font-body text-gray-300 leading-relaxed">
+          Absolutely! Level 1 is specifically designed to build confidence in a controlled, supportive environment. We eliminate fear by teaching you exactly what your bike is doing and how balanced body position keeps you totally in control without white-knuckling.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="accordion-item bg-[#141414] border border-white/10 rounded-sm">
+        <button class="accordion-trigger w-full p-5 text-left flex items-center justify-between font-heading text-base sm:text-lg uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
+          <span>What is the group size policy?</span>
+          <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-[#FFC700] transition-transform duration-200"></i>
+        </button>
+        <div class="accordion-content px-5 pb-5 text-xs sm:text-sm font-body text-gray-300 leading-relaxed">
+          We strictly cap our group clinics at a maximum 1:4 coach-to-rider ratio. This guarantees every rider gets abundant individual analysis, personalized feedback, and zero waiting around.
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="accordion-item bg-[#141414] border border-white/10 rounded-sm">
+        <button class="accordion-trigger w-full p-5 text-left flex items-center justify-between font-heading text-base sm:text-lg uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
+          <span>Can I book a custom clinic before heading out on a Mustang tour?</span>
+          <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-[#FFC700] transition-transform duration-200"></i>
+        </button>
+        <div class="accordion-content px-5 pb-5 text-xs sm:text-sm font-body text-gray-300 leading-relaxed">
+          Yes! Many international riders schedule a 1-day or 2-day warmup clinic in Kathmandu prior to departing for Lower Mustang or Everest. It dials in your bike setup, acclimatizes your handling, and ensures you make the absolute most of your expedition.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. LEAD INTAKE / INQUIRY & CONTACT SECTION
+       ========================================================================= -->
+  <section id="clinic-booking" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Left Column: Contact info & Quick Connect -->
+      <div class="lg:col-span-5 reveal-init">
+        <div class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[#FFC700] mb-2">
+          RESERVE YOUR CLINIC
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl text-white uppercase leading-[1.05] mb-6">
+          READY TO SHRED WITH <br />
+          <span class="text-[#FFC700]">ZERO HESITATION?</span>
+        </h2>
+        <p class="font-body text-gray-300 text-sm sm:text-base leading-relaxed mb-8">
+          Send us your riding background, preferred dates, and specific goals. Head Coach Shyam and our operations crew will tailor a coaching program that matches your level.
+        </p>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center space-x-3 text-sm">
+            <div class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-[#FFC700]">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+            </div>
+            <span class="text-gray-300">Gnarly MTB HQ, Jhamsikhel, Lalitpur, Nepal</span>
+          </div>
+          <div class="flex items-center space-x-3 text-sm">
+            <div class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-[#FFC700]">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+            </div>
+            <a href="tel:+9779803661496" class="text-gray-300 hover:text-[#FFC700]">+977 980 366 1496 (Call / WhatsApp)</a>
+          </div>
+          <div class="flex items-center space-x-3 text-sm">
+            <div class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-[#FFC700]">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+            </div>
+            <span class="text-gray-300">info@gnarlybikers.com</span>
+          </div>
+        </div>
+
+        <div class="p-6 bg-[#141414] border border-[#FFC700]/30 rounded-sm">
+          <div class="flex items-center space-x-3 mb-2">
+            <i data-lucide="zap" class="w-5 h-5 text-[#FFC700]"></i>
+            <span class="font-heading text-sm font-bold uppercase tracking-wider text-white">Instant WhatsApp Booking</span>
+          </div>
+          <p class="font-body text-xs text-gray-400 mb-4">Chat directly with Head Coach Shyam for date availability and custom group pricing.</p>
+          <a href="https://wa.me/9779803661496?text=Hello%20Gnarly%20MTB!%20I%20would%20like%20to%20inquire%20about%20a%20G%20MTB%20Skills%20Clinic." target="_blank" class="btn-tactical btn-primary w-full text-center flex items-center justify-center space-x-2">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Clinic Inquiry Form -->
+      <div class="lg:col-span-7 reveal-init delay-100">
+        <div class="bg-[#141414] border border-white/10 p-6 sm:p-8 rounded-sm">
+          <h3 class="font-heading text-xl font-bold uppercase tracking-wider text-white mb-6">
+            G MTB Skills Clinic Intake Form
+          </h3>
+
+          <form onsubmit="event.preventDefault(); const n=this.querySelector('input[type=text]').value; const e=this.querySelector('input[type=email]').value; const p=this.querySelector('input[type=tel]').value; const mod=this.querySelector('select').value; const msg=`Namaste Gnarly MTB! Skills Clinic Inquiry for ${mod}.\nName: ${n}\nEmail: ${e}\nWhatsApp: ${p}`; window.open(`https://wa.me/9779803661496?text=${encodeURIComponent(msg)}`, '_blank'); alert('Thank you! Redirecting to WhatsApp to coordinate your session.');" class="space-y-4">
+            <div>
+              <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Full Name</label>
+              <input type="text" required placeholder="e.g. Alex Henderson" class="form-input-dark" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Email Address</label>
+                <input type="email" required placeholder="alex@example.com" class="form-input-dark" />
+              </div>
+              <div>
+                <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">WhatsApp / Phone</label>
+                <input type="tel" required placeholder="+1 555 019 283" class="form-input-dark" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Clinic Level / Focus</label>
+                <select class="form-input-dark">
+                  <option>Level 1: Foundation & Balance (1 Day)</option>
+                  <option>Level 2: Flow & Cornering Mastery (1-2 Days)</option>
+                  <option>Level 3: High-Altitude Technical & Drops (2-3 Days)</option>
+                  <option>Private 1-on-1 VIP Masterclass</option>
+                  <option>Pre-Expedition Warmup Clinic</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
+                <select class="form-input-dark">
+                  <option>I will bring my own bike</option>
+                  <option>I need to rent an Enduro Bike</option>
+                  <option>I need to rent an E-MTB</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Your Riding Experience & Goals</label>
+              <textarea rows="4" placeholder="Tell us about how long you've been riding, preferred trails, and specific skills you want to unlock (e.g. berms, drops, steep scree)..." class="form-input-dark"></textarea>
+            </div>
+            <button type="submit" class="btn-tactical btn-primary w-full py-4 text-base">
+              Submit Clinic Inquiry
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       10. TACTICAL FOOTER
+       ========================================================================= -->
+  <footer class="bg-[#080808] border-t border-white/10 pt-16 pb-12 text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        
+        <!-- Col 1: Brand -->
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="assets/gnarly-logo.png" alt="GNARLY MTB Logo" class="w-8 h-8 object-contain rounded-full" />
+            <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
+          </div>
+          <p class="font-body text-xs text-gray-400 leading-relaxed mb-6">
+            Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours, E-MTB expeditions, and PMBIA-certified skills clinics.
+          </p>
+          <div class="flex items-center space-x-3">
+            <a href="https://www.facebook.com/gnarlymtb" target="_blank" class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#FFC700] hover:border-[#FFC700] transition-colors">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="https://www.instagram.com/gnarlymtb" target="_blank" class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#FFC700] hover:border-[#FFC700] transition-colors">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="https://www.youtube.com" target="_blank" class="w-8 h-8 rounded bg-[#141414] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#FFC700] hover:border-[#FFC700] transition-colors">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Tours -->
+        <div>
+          <h4 class="font-heading text-sm font-bold uppercase tracking-widest text-white mb-4">Expeditions</h4>
+          <ul class="space-y-2.5 font-body text-xs">
+            <li><a href="index.html#tours" class="hover:text-[#FFC700] transition-colors">Enduro Thin Air (Mustang)</a></li>
+            <li><a href="index.html#tours" class="hover:text-[#FFC700] transition-colors">Everest Express (Khumbu)</a></li>
+            <li><a href="index.html#emtb" class="hover:text-[#FFC700] transition-colors">Mustang E-Motion (E-MTB)</a></li>
+            <li><a href="index.html#tours" class="hover:text-[#FFC700] transition-colors">Moto Mustang Dual-Sport</a></li>
+            <li><a href="skills-clinic.html" class="text-[#FFC700] font-bold">G MTB Skills Academy</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Quick Links -->
+        <div>
+          <h4 class="font-heading text-sm font-bold uppercase tracking-widest text-white mb-4">Company & Info</h4>
+          <ul class="space-y-2.5 font-body text-xs">
+            <li><a href="gallery.html" class="hover:text-[#FFC700] transition-colors">Expedition Gallery (270+ Shots)</a></li>
+            <li><a href="index.html#about" class="hover:text-[#FFC700] transition-colors">Meet Guide Shyam G Limbu</a></li>
+            <li><a href="index.html#reviews" class="hover:text-[#FFC700] transition-colors">Past Rider Testimonials</a></li>
+            <li><a href="index.html#contact" class="hover:text-[#FFC700] transition-colors">Lalitpur Office & Contact</a></li>
+            <li><a href="index.html" class="hover:text-[#FFC700] transition-colors">Expedition Homepage</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div>
+          <h4 class="font-heading text-sm font-bold uppercase tracking-widest text-white mb-4">Dispatch & Alerts</h4>
+          <p class="font-body text-xs text-gray-400 mb-4">Subscribe for race registration alerts and early bird coaching dates.</p>
+          <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to Gnarly MTB Nepal Dispatches!');" class="flex flex-col space-y-2">
+            <input type="email" required placeholder="Enter your email" class="form-input-dark text-xs py-2.5" />
+            <button type="submit" class="btn-tactical btn-primary py-2.5 text-xs">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Micro-footer -->
+      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] font-heading tracking-widest uppercase text-gray-400">
+        <div>Copyright © 2026 GNARLY MTB Nepal (GNARLY PVT. LTD.). All Rights Reserved.</div>
+        <div class="mt-2 sm:mt-0 flex space-x-4">
+          <a href="#" class="hover:text-[#FFC700]">Privacy Policy</a>
+          <span>•</span>
+          <a href="#" class="hover:text-[#FFC700]">Terms & Conditions</a>
+          <span>•</span>
+          <a href="#" class="hover:text-[#FFC700]">Safety Protocols</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       11. INTERACTIVE BOOKING MODAL DIALOG
+       ========================================================================= -->
+  <div id="booking-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+        <div>
+          <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">SKILLS CLINIC RESERVATION</span>
+          <h3 class="font-display text-3xl text-white uppercase">RESERVE YOUR CLINIC</h3>
+        </div>
+        <button id="modal-close-btn" class="p-2 text-gray-400 hover:text-white" aria-label="Close modal">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <form id="booking-form" class="space-y-4">
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Select Program / Clinic</label>
+          <select id="modal-tour-select" class="form-input-dark">
+            <option value="g-mtb-skills" selected>G MTB Skills Coaching (Kathmandu & Trail Centers)</option>
+            <option value="enduro-thin-air">Enduro Thin Air (Lower Mustang, 10 Days)</option>
+            <option value="everest-express">Everest Express (Khumbu, 9 Days)</option>
+            <option value="mustang-e-motion">Mustang E-Motion (Upper Mustang E-MTB, 12 Days)</option>
+            <option value="moto-mustang">Moto Mustang (Dual-Sport Enduro, 8 Days)</option>
+            <option value="himalayan-enduro">The Himalayan Enduro Race</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Preferred Date</label>
+            <input type="text" id="modal-date-input" placeholder="e.g. Weekend Session or Flexible" class="form-input-dark" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Number of Riders</label>
+            <select id="form-riders" class="form-input-dark">
+              <option value="1">1 Rider (Solo / 1-on-1)</option>
+              <option value="2">2 Riders</option>
+              <option value="3-4">3 - 4 Riders (Small Group Max)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Your Name</label>
+            <input type="text" id="form-name" required placeholder="e.g. Sarah Jenkins" class="form-input-dark" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Email Address</label>
+            <input type="email" id="form-email" required placeholder="sarah@example.com" class="form-input-dark" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">WhatsApp Number</label>
+          <input type="tel" id="form-phone" required placeholder="e.g. +1 555 123 4567 (with country code)" class="form-input-dark" />
+        </div>
+
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
+          <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
+            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+              <input type="radio" name="bike-type" value="byob" checked class="accent-[#FFC700]" />
+              <span>Bringing My Own Bike</span>
+            </label>
+            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+              <input type="radio" name="bike-type" value="rental" class="accent-[#FFC700]" />
+              <span>Rent Enduro Rig</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-4 flex items-center gap-4">
+          <button type="submit" class="btn-tactical btn-primary flex-1 py-3.5">
+            Confirm & Chat on WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Initialize Lucide Icons & Custom Scripts -->
+  <script src="js/app.js?v=3.0"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

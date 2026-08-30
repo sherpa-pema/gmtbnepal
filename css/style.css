@@ -535,3 +535,209 @@ body {
   border-color: var(--brand);
   box-shadow: 0 0 0 2px var(--brand-glow);
 }
+
+/* ==========================================================================
+   Gallery Grid & Interactive Lightbox Viewer
+   ========================================================================== */
+.gallery-grid {
+  column-count: 1;
+  column-gap: 16px;
+}
+@media (min-width: 640px) {
+  .gallery-grid {
+    column-count: 2;
+  }
+}
+@media (min-width: 1024px) {
+  .gallery-grid {
+    column-count: 3;
+  }
+}
+@media (min-width: 1280px) {
+  .gallery-grid {
+    column-count: 4;
+  }
+}
+
+.gallery-grid-standard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.gallery-card {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  background-color: var(--bg-surface-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.gallery-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 199, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+.gallery-card:hover img {
+  transform: scale(1.04);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  pointer-events: none;
+}
+.gallery-card:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Tactical Filter Pill Buttons */
+.gallery-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 2px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface-primary);
+  color: var(--text-secondary);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.gallery-filter-btn:hover {
+  border-color: var(--brand);
+  color: #FFFFFF;
+  background-color: var(--bg-surface-secondary);
+}
+.gallery-filter-btn.active {
+  background-color: var(--brand);
+  border-color: var(--brand);
+  color: #000000;
+  box-shadow: 0 0 15px rgba(255, 199, 0, 0.3);
+}
+.gallery-filter-btn .count-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: inherit;
+}
+.gallery-filter-btn.active .count-badge {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #000000;
+}
+
+/* Lightbox Modal */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 2100;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.lightbox-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-header {
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(13, 13, 13, 0.8);
+}
+
+.lightbox-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.lightbox-image-wrap {
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+.lightbox-nav-btn:hover {
+  background: var(--brand);
+  color: #000000;
+  border-color: var(--brand);
+}
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+
+.lightbox-footer {
+  padding: 14px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(13, 13, 13, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
