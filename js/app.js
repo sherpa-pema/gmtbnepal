@@ -17,11 +17,9 @@ function handleInitialScroll() {
         setTimeout(() => {
           targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
         }, 150);
-        return;
       }
     } catch (e) {}
   }
-  window.scrollTo(0, 0);
 }
 
 function initAll() {
@@ -174,7 +172,7 @@ function initScrollspy() {
         }
       });
     },
-    { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
+    { threshold: 0.01, rootMargin: "0px 0px 80px 0px" }
   );
 
   elements.forEach((el) => observer.observe(el));
@@ -429,6 +427,7 @@ function initBookingModal() {
 
 /* 7. Testimonial Slider */
 function initTestimonialSlider() {
+  const track = document.querySelector(".testimonial-track");
   const slides = document.querySelectorAll(".testimonial-slide");
   const dots = document.querySelectorAll(".testimonial-dot");
   if (!slides.length) return;
@@ -436,10 +435,27 @@ function initTestimonialSlider() {
   let current = 0;
   let timer;
 
+  // Lock minimum height to the tallest slide to guarantee zero layout shifts
+  const updateTrackHeight = () => {
+    if (!track) return;
+    let maxHeight = 0;
+    slides.forEach((slide) => {
+      const h = slide.offsetHeight || slide.scrollHeight;
+      if (h > maxHeight) maxHeight = h;
+    });
+    if (maxHeight > 0) {
+      track.style.minHeight = maxHeight + "px";
+    }
+  };
+
   const showSlide = (index) => {
     slides.forEach((s, i) => {
-      s.classList.toggle("hidden", i !== index);
-      s.classList.toggle("block", i === index);
+      s.classList.remove("hidden");
+      if (i === index) {
+        s.classList.add("active");
+      } else {
+        s.classList.remove("active");
+      }
     });
     dots.forEach((d, i) => {
       if (i === index) {
@@ -467,8 +483,13 @@ function initTestimonialSlider() {
   };
 
   const startAuto = () => {
+    clearInterval(timer);
     timer = setInterval(nextSlide, 6500);
   };
+
+  updateTrackHeight();
+  window.addEventListener("resize", updateTrackHeight, { passive: true });
+  window.addEventListener("load", updateTrackHeight, { passive: true });
 
   showSlide(0);
   startAuto();
