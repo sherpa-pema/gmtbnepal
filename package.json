@@ -2,7 +2,7 @@
   "name": "gnarly-mtb-nepal",
   "version": "1.0.0",
   "private": true,
-  "description": "High-octane expedition and mountain biking tour frontend for Gnarly MTB Nepal",
+  "description": "High-octane tour and mountain biking tour frontend for Gnarly MTB Nepal",
   "scripts": {
     "dev": "npx serve . -l 3000",
     "start": "npx serve . -l 3000"

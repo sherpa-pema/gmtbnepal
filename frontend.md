@@ -1,6 +1,6 @@
 # Frontend UI & Design System Specification
 
-A high-performance, dark-first visual identity and design system engineered for high-octane expeditions, rugged adventure tours, and premium outdoor experiences.
+A high-performance, dark-first visual identity and design system engineered for high-octane tours, rugged adventure tours, and premium outdoor experiences.
 
 ---
 
@@ -8,8 +8,8 @@ A high-performance, dark-first visual identity and design system engineered for 
 
 ### 1.1 Aesthetic Identity: *"Rugged Editorial & High-Octane Cinematic"*
 * **Dark-First Canvas**: Deep, obsidian-black and dark charcoal tones establish an immersive, cinema-grade atmosphere that makes high-resolution photography and video pop.
-* **High-Voltage Accent**: A single electric golden amber (`#FFC700`) acts as the high-visibility focal accent—reminiscent of expedition gear, caution trail markings, and tactical instruments.
-* **Industrial Condensed Typography**: High-impact, tall headline typefaces paired with tracked uppercase subheadings deliver an editorial, expedition-poster energy.
+* **High-Voltage Accent**: A single electric golden amber (`#FFC700`) acts as the high-visibility focal accent—reminiscent of tour gear, caution trail markings, and tactical instruments.
+* **Industrial Condensed Typography**: High-impact, tall headline typefaces paired with tracked uppercase subheadings deliver an editorial, tour-poster energy.
 * **Atmospheric Motion & Layering**: Subtle viewport scale-ups, continuous horizontal ticker marquees, parallax background shifts, and video-on-hover card interactions bring life without sacrificing performance.
 * **Tactical Hairline Borders**: Subtle low-opacity borders (`rgba(255, 255, 255, 0.08)`) and frosted glass surfaces (`backdrop-filter: blur(1px)` to `blur(12px)`) provide structure and depth without visual clutter.
 
@@ -77,7 +77,7 @@ A high-performance, dark-first visual identity and design system engineered for 
 
 ### 4.1 Container Widths
 * **Fluid Expanded (`.container-expand`)**: `100%` width with `20px` mobile / `40px` desktop gutter.
-* **Extra Large Display (`.container-xlarge`)**: Max-width `1440px` (standard for full-bleed expedition galleries and trip grids).
+* **Extra Large Display (`.container-xlarge`)**: Max-width `1440px` (standard for full-bleed tour galleries and trip grids).
 * **Standard Container (`.container`)**: Max-width `1200px` (used for editorial stories, blog posts, and forms).
 * **Narrow / Modal Container (`.container-small`)**: Max-width `780px` (dialogs, booking forms, focused content).
 
@@ -192,7 +192,7 @@ All major sections and card grids execute scrollspy entrance animations when ent
 
 ---
 
-### 6.3 Expedition / Tour Card Component
+### 6.3 Tour / Tour Card Component
 The centerpiece component used to display trips, tours, and experiences.
 
 * **Card Surface**: `#141414` base background, `1px solid rgba(255, 255, 255, 0.08)`, `overflow: hidden`, `border-radius: 4px`.
@@ -369,7 +369,7 @@ A high-conversion schedule table designed to format trip dates cleanly across al
 * **Card Container**: `#161616` background with subtle quote mark watermark in background.
 * **Star Ratings**: 5 gold stars (`#FFC700`).
 * **Quote Body**: Italicized Roboto `15px`, `#E5E7EB`.
-* **Author Info**: Author Name (Oswald Bold) + Country / Expedition Year tag (`#9CA3AF`).
+* **Author Info**: Author Name (Oswald Bold) + Country / Tour Year tag (`#9CA3AF`).
 * **Dot Navigation**:
   * Inactive Dots: White circle (`width: 8px; height: 8px; border-radius: 50%; opacity: 0.4;`).
   * Active Dot: `#FFC700` (`opacity: 1; transform: scale(1.25);`).
@@ -392,7 +392,7 @@ A high-conversion schedule table designed to format trip dates cleanly across al
 * **Top Border**: `1px solid rgba(255, 255, 255, 0.08)`.
 * **Structure**: 4-column responsive layout:
   * Column 1: Brand Logo + Mission Statement + Social Icon Cluster.
-  * Column 2: Expedition Routes / Main Categories.
+  * Column 2: Tour Routes / Main Categories.
   * Column 3: Rider Resources & Guides.
   * Column 4: Newsletter Subscription Box (Dark input field with inline `#FFC700` submit button).
 * **Bottom Sub-footer**: Legal copyright, terms, privacy links formatted in ultra-compact uppercase font (`8px - 10px`, line-height `1.4`).
@@ -405,7 +405,7 @@ A high-conversion schedule table designed to format trip dates cleanly across al
 ┌──────────────────────────────────────────────────────────────┐
 │  Desktop (> 1024px)                                          │
 │  - Full multi-column grids (3-4 cols)                        │
-│  - Hover video autoplay on expedition cards                  │
+│  - Hover video autoplay on tour cards                  │
 │  - Expanded departure date tables with separate Start/End    │
 │  - Sticky frosted header with full horizontal navigation     │
 ├──────────────────────────────────────────────────────────────┤
@@ -503,7 +503,7 @@ module.exports = {
     <!-- Static Cover Poster Image -->
     <img 
       src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80" 
-      alt="Expedition Route" 
+      alt="Tour Route" 
       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 group-hover:opacity-0"
     />
     
@@ -522,7 +522,7 @@ module.exports = {
 
     <!-- Top Badge -->
     <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-sm border border-white/10 px-3 py-1 text-[11px] font-heading font-bold uppercase tracking-widest text-[#FFC700]">
-      12 Days Expedition
+      12 Days Tour
     </div>
   </div>
 
@@ -540,7 +540,7 @@ module.exports = {
       href="#" 
       class="w-full inline-flex items-center justify-center py-3 border border-white text-white font-heading font-semibold text-sm uppercase tracking-widest transition-all duration-200 hover:bg-white hover:text-black"
     >
-      View Expedition
+      View Tour
     </a>
   </div>
 </div>
@@ -554,13 +554,13 @@ module.exports = {
 <div class="w-full bg-[#0D0D0D] border-y border-white/10 py-3 overflow-hidden select-none">
   <div class="flex w-max animate-marquee">
     <div class="flex items-center space-x-8 text-2xl md:text-3xl font-heading font-bold uppercase text-[#FFC700] tracking-wider whitespace-nowrap">
-      <span>❖ Guided High Altitude Expeditions</span>
+      <span>❖ Guided High Altitude Tours</span>
       <span>❖ Hand-Crafted Routes for True Adventurers</span>
       <span>❖ Fully Supported Crew & Remote Logistics</span>
       <span>❖ Ride the Legend</span>
     </div>
     <div class="flex items-center space-x-8 text-2xl md:text-3xl font-heading font-bold uppercase text-[#FFC700] tracking-wider whitespace-nowrap ml-8">
-      <span>❖ Guided High Altitude Expeditions</span>
+      <span>❖ Guided High Altitude Tours</span>
       <span>❖ Hand-Crafted Routes for True Adventurers</span>
       <span>❖ Fully Supported Crew & Remote Logistics</span>
       <span>❖ Ride the Legend</span>

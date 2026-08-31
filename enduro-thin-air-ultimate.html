@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENDURO THIN AIR “Ultimate” MTB Tour | GNARLY MTB NEPAL (12 Days Mustang)</title>
+  <meta name="description" content="12 Days / 11 Nights of high-altitude Himalayan mountain biking in Upper & Lower Mustang. Ride Lubra Pass, Black Yak, Lo Free Ride Heaven, D'Epic, and Smooth Criminal with full shuttle support." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: "#FFC700",
+              hover: "#E5B300",
+              dark: "#CCA000",
+            },
+            canvas: "#0D0D0D",
+            surface: {
+              DEFAULT: "#141414",
+              secondary: "#1A1A1A",
+              elevated: "#242424",
+            }
+          },
+          fontFamily: {
+            display: ["Anton", "sans-serif"],
+            heading: ["Oswald", "sans-serif"],
+            body: ["Roboto", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Design System Styles -->
+  <link rel="stylesheet" href="css/style.css?v=3.5" />
+</head>
+<body class="bg-[#0D0D0D] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
+
+  <!-- =========================================================================
+       1. NAVIGATION HEADER (Sticky & Frosted)
+       ========================================================================= -->
+  <header id="main-navbar" class="navbar-fixed navbar-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Left: Seal Icon -->
+        <a href="index.html" class="flex items-center group z-10" title="GNARLY MTB Home">
+          <img src="assets/gnarly-logo.png" alt="GNARLY MTB Seal" class="w-10 h-10 object-contain rounded-full group-hover:scale-105 transition-transform duration-200 shadow-md" />
+        </a>
+
+        <!-- Center: Wordmark Brand Image -->
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto">
+          <a href="index.html" class="group">
+            <img src="assets/gnarly-brand-text.png" alt="Gnarly MTB Nepal" class="h-[38px] sm:h-[46px] w-auto object-contain group-hover:scale-105 group-hover:brightness-110 transition-all duration-200" />
+          </a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a href="index.html#tours" class="font-heading text-sm font-semibold uppercase tracking-widest text-[#FFC700] border-b-2 border-[#FFC700] pb-0.5">Tours</a>
+          <a href="skills-clinic.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Skills Clinic</a>
+          <a href="gallery.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Gallery</a>
+          <a href="faq.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">FAQ</a>
+          <a href="index.html#reviews" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Reviews</a>
+          <a href="index.html#about" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">About</a>
+        </nav>
+
+        <!-- Right Action Cluster -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <a href="https://wa.me/9779803661496" target="_blank" class="p-2.5 rounded border border-white/20 text-white hover:text-[#FFC700] hover:border-[#FFC700] transition-colors duration-200" title="WhatsApp Us">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+          </a>
+          <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air-ultimate" class="btn-tactical btn-primary">
+            Book Tour
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded text-[#D6463B] hover:text-white transition-colors focus:outline-none" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-In Drawer Backdrop -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1040] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- Mobile Slide-In Drawer -->
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#121212] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-white/10">
+        <div class="flex items-center space-x-3">
+          <img src="assets/gnarly-logo.png" alt="GNARLY MTB Logo" class="w-8 h-8 object-contain rounded-full" />
+          <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
+        </div>
+        <button id="mobile-drawer-close" class="p-2 text-gray-400 hover:text-[#FFC700] hover:bg-white/5 rounded-lg transition-colors cursor-pointer focus:outline-none" aria-label="Close Menu">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <nav class="mt-8 flex flex-col space-y-5">
+        <a href="index.html#tours" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Tours</a>
+        <a href="gallery.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Tour Gallery</a>
+        <a href="index.html#events" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Events</a>
+        <a href="index.html#crew" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">The Crew</a>
+        <a href="index.html#reviews" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Reviews</a>
+        <a href="faq.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">FAQ</a>
+        <a href="index.html#contact" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Contact Us</a>
+      </nav>
+    </div>
+    <div class="pt-6 border-t border-white/10 flex flex-col space-y-3">
+      <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air-ultimate" class="btn-tactical btn-primary w-full text-center">Book Tour</a>
+      <a href="tel:+9779803661496" class="btn-tactical btn-outline w-full text-center">+977 980 366 1496</a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. HERO SECTION: ENDURO THIN AIR “ULTIMATE”
+       ========================================================================= -->
+  <section class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden border-b border-white/10 bg-[#090909]">
+    <!-- Background Image with Tactical Dark Vignette -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=2000&q=80" 
+        alt="Mustang Valley High Altitude Singletrack" 
+        class="w-full h-full object-cover opacity-35 filter contrast-125 saturate-110" 
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/75 to-[#0D0D0D]/40"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb Bar -->
+      <div class="flex items-center space-x-2 text-xs font-heading uppercase tracking-widest text-gray-400 mb-6">
+        <a href="index.html" class="hover:text-[#FFC700] transition-colors">Home</a>
+        <span class="text-gray-600">/</span>
+        <a href="index.html#tours" class="hover:text-[#FFC700] transition-colors">Tours</a>
+        <span class="text-gray-600">/</span>
+        <span class="text-[#FFC700]">Enduro Thin Air Ultimate</span>
+      </div>
+
+      <div class="max-w-5xl">
+        <!-- Title -->
+        <h1 class="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white uppercase leading-[0.95] mb-6 tracking-tight">
+          ENDURO THIN AIR <span class="text-[#FFC700]">ULTIMATE</span>
+        </h1>
+
+        <!-- Tour Overview Text -->
+        <p class="font-body text-gray-200 text-lg sm:text-xl leading-relaxed mb-8 max-w-3xl">
+          ENDURO THIN AIR “Ultimate” MTB Tour takes you deep into Mustang valley, where rugged trails meet high-altitude adventure. Experience raw Himalayan landscapes, local culture, and endless descents. This is more than a tour — it’s mountain biking at the edge of the sky.
+        </p>
+
+        <!-- CTA Cluster -->
+        <div class="mb-12">
+          <a href="#departures" class="btn-tactical btn-primary px-8 py-4 text-base text-center inline-block">
+            View Departures & Book
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Tactical Quick-Specs Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 pt-8 border-t border-white/10">
+        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+          <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
+            <i data-lucide="clock" class="w-4 h-4"></i>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Duration</span>
+          </div>
+          <div class="font-display text-xl text-white">11N / 12D</div>
+          <div class="text-[11px] text-gray-400 font-body">11 Nights / 12 Days</div>
+        </div>
+
+        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+          <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
+            <i data-lucide="sun" class="w-4 h-4"></i>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Season</span>
+          </div>
+          <div class="font-display text-xl text-white">SPRING & AUTUMN</div>
+          <div class="text-[11px] text-gray-400 font-body">Mar-May & Oct-Nov</div>
+        </div>
+
+        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+          <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
+            <i data-lucide="gauge" class="w-4 h-4"></i>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Skill / Fitness</span>
+          </div>
+          <div class="font-display text-xl text-[#FFC700]">GOOD LEVEL</div>
+          <div class="text-[11px] text-gray-400 font-body">Confident on Singletrack</div>
+        </div>
+
+        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+          <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
+            <i data-lucide="bike" class="w-4 h-4"></i>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Riding Style</span>
+          </div>
+          <div class="font-display text-xl text-white">ALL MOUNTAIN / ENDURO</div>
+          <div class="text-[11px] text-gray-400 font-body">Shuttle Support Avail.</div>
+        </div>
+
+        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+          <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
+            <i data-lucide="users" class="w-4 h-4"></i>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Group Size</span>
+          </div>
+          <div class="font-display text-xl text-white">04 - 08 PAX</div>
+          <div class="text-[11px] text-gray-400 font-body">Small Group Focus</div>
+        </div>
+
+        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+          <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
+            <i data-lucide="mountain" class="w-4 h-4"></i>
+            <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Peak Elevation</span>
+          </div>
+          <div class="font-display text-xl text-[#FFC700]">4,200 METERS</div>
+          <div class="text-[11px] text-gray-400 font-body">Lo Free Ride & Thin Air</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. TRIP ITINERARY (DAYS 01 TO 12 DETAILED ACCORDION & TIMELINE)
+       ========================================================================= -->
+  <section id="itinerary" class="py-16 md:py-24 bg-[#090909] border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <div class="inline-flex items-center space-x-2 text-[#FFC700] font-heading text-xs uppercase tracking-[0.2em] mb-2">
+          <i data-lucide="map" class="w-4 h-4"></i>
+          <span>11 NIGHTS 12 DAYS DETAILED SCHEDULE</span>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-tight">
+          COMPLETE <span class="text-[#FFC700]">TRIP ITINERARY</span>
+        </h2>
+      </div>
+
+      <!-- Itinerary List (12 Days Cards) -->
+      <div class="space-y-4">
+
+        <!-- DAY 01 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 01
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  International Arrival & Tour Briefing
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3 text-[#FFC700]"></i> Kathmandu (Thamel)</span>
+                  <span>•</span>
+                  <span>Welcome Dinner & Bike Build</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Upon arrival in Nepal, you’ll be greeted and transferred to Thamel, Kathmandu, where you’ll settle in, assemble your bikes with assistance from our master mechanic, and join a welcome dinner and comprehensive trip briefing to prepare for the adventure ahead.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 02 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 02
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Fly to Pokhara. Stupa DH + Lakeside Rides
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1"><i data-lucide="plane" class="w-3 h-3 text-[#FFC700]"></i> Flight KTM -> PKR</span>
+                  <span>•</span>
+                  <span>Stupa Downhill & Lake Trail Flow</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              A short flight from Kathmandu brings you to Pokhara, where you will head directly to the trails for the exciting and flowy Stupa DH ride, followed by an all-mountain ride around the lake. Enjoy a relaxing massage and explore the lakeside city while preparing for the Mustang adventure.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 03 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 03
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Drive to Lete. Warm Up Ride & TiTi Lake
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1"><i data-lucide="mountain" class="w-3 h-3 text-[#FFC700]"></i> Dhaulagiri & Annapurna Views</span>
+                  <span>•</span>
+                  <span>Overnight in Lete / Kalopani</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              A scenic five-hour drive from Pokhara to Kalopani will be followed by a three-hour acclimatization ride through pine forests and around TiTi Lake, surrounded by the magnificent Dhaulagiri and Annapurna ranges. The day concludes in Lete, ready for the adventures ahead.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 04 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 04
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  All Mountain Ride + Black Yak @ 3,750m + Yarsa @ 3,650m
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1 text-[#FFC700] font-mono font-bold"><i data-lucide="gauge" class="w-3 h-3"></i> 3,750m Peak</span>
+                  <span>•</span>
+                  <span>Kali Gandaki Gorge & Marpha to Kagbeni</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Ride from Kalopani to Marpha along the Kali Gandaki River through pine forests and Tukche, followed by the steep and technical Black Yak and scenic Yarsa trails. After the ride, transfer to Kagbeni for an overnight stay.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 05 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 05
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Perro Loco + Lubracation + Signature Lubra Trail @ 3,900m
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1 text-[#FFC700] font-mono font-bold"><i data-lucide="gauge" class="w-3 h-3"></i> 3,900m Peak</span>
+                  <span>•</span>
+                  <span>Lubra Pass Scree Chute to Jomsom</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Begin with the warm-up trails of Perro Loco and Lubracation before tackling the spectacular Signature Lubra Trail, featuring technical singletrack and extraordinary Mustang scenery. After returning to Thini Village, a shuttle to the apple farm sets up an exhilarating final descent before an evening of rest in Jomsom.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 06 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 06
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Enduro Thin Air @ 4,200m + Chasing Capra + Drive to Ghilling
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1 text-[#FFC700] font-mono font-bold"><i data-lucide="gauge" class="w-3 h-3"></i> 4,200m Summit</span>
+                  <span>•</span>
+                  <span>Enter Forbidden Kingdom of Upper Mustang</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Ascend to 4,200m, one of the highest points of the journey, before descending toward Muktinath on a rocky yet flowing trail with breathtaking mountain views. Continue with the Chasing Capra trail into Upper Mustang before driving to Ghilling for the night.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 07 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 07
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Ghami DH + Charang DH + Lo Free Ride “Heaven” @ 4,200m
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1 text-[#FFC700] font-mono font-bold"><i data-lucide="gauge" class="w-3 h-3"></i> 4,200m Peak</span>
+                  <span>•</span>
+                  <span>Walled Capital of Lo Manthang</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Discover some of Ghami’s finest trails, combined with a visit to one of Mustang’s oldest monasteries, before continuing through the spectacular trails toward Lo Manthang. Enjoy an unforgettable free-ride experience before relaxing and exploring Lo Manthang in the afternoon.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 08 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 08
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  D’Epic @ 4,100m + Kali Canyon + Coffee Break DH + Drive to Jomsom
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1 text-[#FFC700] font-mono font-bold"><i data-lucide="gauge" class="w-3 h-3"></i> 4,100m Peak</span>
+                  <span>•</span>
+                  <span>Canyon Singletrack & Return to Jomsom</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Experience one of the highlights of the tour with an epic ride combining D’Epic, Kali Canyon, and the smooth Coffee Break downhill. After completing the day’s trails, drive back to Jomsom for an evening of relaxation.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 09 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 09
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Smooth Criminal + Rebel’s Hideout @ 3,700m
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1 text-[#FFC700] font-mono font-bold"><i data-lucide="gauge" class="w-3 h-3"></i> 3,700m Peak</span>
+                  <span>•</span>
+                  <span>Horse Ride to Paradise & Gravity Flow</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Ride the exciting Smooth Criminal trail, combining technical sections with excellent flow, before continuing toward Thini Village. Transfer to the start of Rebel’s Hideout, followed by a horse ride to Paradise and an equally exhilarating downhill before settling in at Jomsom.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 10 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 10
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Ride to Beni + Drive to Pokhara
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1"><i data-lucide="activity" class="w-3 h-3 text-[#FFC700]"></i> Scenic Cooldown Descent</span>
+                  <span>•</span>
+                  <span>Lakeside Pokhara Celebration</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Enjoy a relaxed and scenic cooldown ride to Beni before driving back to Pokhara. The afternoon is free for rest and leisure, followed by an evening celebration in the lakeside city.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 11 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 11
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Return to Kathmandu + Bike Packing + Farewell Dinner
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1"><i data-lucide="plane" class="w-3 h-3 text-[#FFC700]"></i> Flight PKR -> KTM</span>
+                  <span>•</span>
+                  <span>Tour Farewell Banquet</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              Fly back to Kathmandu and spend the day packing bikes and preparing for departure, followed by a farewell dinner to celebrate the journey and shared experiences.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 12 -->
+        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+          <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
+            <div class="flex items-start sm:items-center space-x-4">
+              <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
+                DAY 12
+              </span>
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FFC700] transition-colors">
+                  Official Departure
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400 font-body mt-1">
+                  <span class="flex items-center gap-1"><i data-lucide="check" class="w-3 h-3 text-[#FFC700]"></i> International Airport Transfer</span>
+                  <span>•</span>
+                  <span>End of Tour</span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-icon ml-2 text-gray-400 group-hover:text-[#FFC700] transition-transform duration-300">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </button>
+          <div class="accordion-content pt-4 border-t border-white/5 mt-4">
+            <p class="font-body text-sm text-gray-300 leading-relaxed">
+              After breakfast, transfer to the airport for your onward flight, marking the conclusion of the Nepal mountain biking adventure.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. TOUR DEPARTURES & LIVE AVAILABILITY
+       ========================================================================= -->
+  <section id="departures" class="py-16 md:py-24 bg-[#0D0D0D] border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-10">
+        <div class="inline-flex items-center space-x-2 text-[#FFC700] font-heading text-xs uppercase tracking-[0.2em] mb-2">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>GUARANTEED TOUR DATES</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl text-white uppercase tracking-tight">
+          TOUR <span class="text-[#FFC700]">DEPARTURES</span>
+        </h2>
+      </div>
+
+      <!-- Tactical Departure Table -->
+      <div class="schedule-table-wrap bg-[#141414] border border-white/10 rounded-sm p-4 sm:p-8">
+        
+        <!-- Table Header (Desktop) -->
+        <div class="schedule-header-row hidden lg:grid grid-cols-12 gap-4 pb-4 border-b border-white/10 font-heading text-xs uppercase tracking-widest text-[#FFC700]">
+          <div class="col-span-4">Departure Dates</div>
+          <div class="col-span-3">Season & Conditions</div>
+          <div class="col-span-3">Availability Status</div>
+          <div class="col-span-2 text-right">Action</div>
+        </div>
+
+        <!-- Row 1: 08-19 October 2026 (2 Spots) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 border-b border-white/10 items-center">
+          <div class="lg:col-span-4">
+            <div class="flex items-center space-x-2 text-xs font-heading uppercase text-gray-400 lg:hidden mb-1">
+              <span>Date</span>
+            </div>
+            <div class="font-display text-2xl text-white tracking-wide">08 - 19 OCTOBER 2026</div>
+            <div class="text-xs text-gray-400 font-body">Autumn Prime Mustang Season • 11N / 12D</div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="flex items-center space-x-2 text-xs font-heading uppercase text-gray-400 lg:hidden mb-1">
+              <span>Season</span>
+            </div>
+            <div class="font-heading text-sm text-gray-200 uppercase">Autumn Prime</div>
+            <div class="text-xs text-gray-400 font-body">Crystal clear skies, dry trails</div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="flex items-center space-x-2 text-xs font-heading uppercase text-gray-400 lg:hidden mb-1">
+              <span>Status</span>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FFC700]/15 border border-[#FFC700]/50 text-[#FFC700] font-heading text-xs uppercase tracking-wider rounded-sm font-bold">
+              <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
+              2 SPOTS AVAILABLE
+            </span>
+          </div>
+
+          <div class="lg:col-span-2 lg:text-right pt-2 lg:pt-0">
+            <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air-ultimate" data-date="08-19 October 2026" class="btn-tactical btn-primary w-full lg:w-auto py-2.5 px-5 text-xs text-center">
+              Book Spot
+            </a>
+          </div>
+        </div>
+
+        <!-- Row 2: 12-23 November 2026 (SOLD OUT) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 border-b border-white/10 items-center opacity-60">
+          <div class="lg:col-span-4">
+            <div class="font-display text-2xl text-white tracking-wide">12 - 23 NOVEMBER 2026</div>
+            <div class="text-xs text-gray-400 font-body">Late Autumn High Alpine • 11N / 12D</div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="font-heading text-sm text-gray-300 uppercase">Late Autumn</div>
+            <div class="text-xs text-gray-400 font-body">Crisp mountain temperatures</div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/20 text-gray-400 font-heading text-xs uppercase tracking-wider rounded-sm">
+              <i data-lucide="lock" class="w-3 h-3"></i>
+              SOLD OUT
+            </span>
+          </div>
+
+          <div class="lg:col-span-2 lg:text-right pt-2 lg:pt-0">
+            <button disabled class="btn-tactical btn-sold-out w-full lg:w-auto py-2.5 px-5 text-xs">
+              Sold Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 3: March 20 - 09 APRIL 2027 (SOLD OUT) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 border-b border-white/10 items-center opacity-60">
+          <div class="lg:col-span-4">
+            <div class="font-display text-2xl text-white tracking-wide">20 MARCH - 09 APRIL 2027</div>
+            <div class="text-xs text-gray-400 font-body">Early Spring Season • 11N / 12D</div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="font-heading text-sm text-gray-300 uppercase">Spring Early Run</div>
+            <div class="text-xs text-gray-400 font-body">Fresh rhododendron bloom</div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/20 text-gray-400 font-heading text-xs uppercase tracking-wider rounded-sm">
+              <i data-lucide="lock" class="w-3 h-3"></i>
+              SOLD OUT
+            </span>
+          </div>
+
+          <div class="lg:col-span-2 lg:text-right pt-2 lg:pt-0">
+            <button disabled class="btn-tactical btn-sold-out w-full lg:w-auto py-2.5 px-5 text-xs">
+              Sold Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 4: April 20 - 01 May 2027 (5 Spots) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 items-center">
+          <div class="lg:col-span-4">
+            <div class="flex items-center space-x-2 text-xs font-heading uppercase text-gray-400 lg:hidden mb-1">
+              <span>Date</span>
+            </div>
+            <div class="font-display text-2xl text-white tracking-wide">20 APRIL - 01 MAY 2027</div>
+            <div class="text-xs text-gray-400 font-body">Spring Peak Season • 11N / 12D</div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="flex items-center space-x-2 text-xs font-heading uppercase text-gray-400 lg:hidden mb-1">
+              <span>Season</span>
+            </div>
+            <div class="font-heading text-sm text-gray-200 uppercase">Spring Peak</div>
+            <div class="text-xs text-gray-400 font-body">Warm valley riding & long daylight</div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="flex items-center space-x-2 text-xs font-heading uppercase text-gray-400 lg:hidden mb-1">
+              <span>Status</span>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FFC700]/15 border border-[#FFC700]/50 text-[#FFC700] font-heading text-xs uppercase tracking-wider rounded-sm font-bold">
+              <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
+              5 SPOTS AVAILABLE
+            </span>
+          </div>
+
+          <div class="lg:col-span-2 lg:text-right pt-2 lg:pt-0">
+            <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air-ultimate" data-date="April 20-01 May 2027" class="btn-tactical btn-primary w-full lg:w-auto py-2.5 px-5 text-xs text-center">
+              Book Spot
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Custom Group & Private Booking Banner -->
+      <div class="mt-8 p-6 sm:p-8 bg-[#141414] border border-[#FFC700]/30 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div>
+          <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
+            <i data-lucide="users" class="w-5 h-5"></i>
+            <span class="font-heading text-sm font-bold uppercase tracking-wider">Custom Dates & Private Groups (4-8 Pax)</span>
+          </div>
+          <p class="font-body text-xs sm:text-sm text-gray-300">
+            Have a private crew of riders? We can organize dedicated private charters with custom dates, dedicated 4x4 support, and tailored trail pacing.
+          </p>
+        </div>
+        <a href="https://wa.me/9779803661496?text=Hello%20Gnarly%20MTB!%20I%20would%20like%20to%20inquire%20about%20a%20custom%20private%20charter%20for%20Enduro%20Thin%20Air%20Ultimate." target="_blank" class="btn-tactical btn-outline whitespace-nowrap text-xs sm:text-sm">
+          Inquire Private Tour
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. TOUR INCLUSIONS
+       ========================================================================= -->
+  <section class="py-16 md:py-24 bg-[#090909] border-b border-white/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- What's Included Card -->
+      <div class="bg-[#121212] border border-white/10 p-6 sm:p-8 rounded-sm space-y-6">
+        <div class="flex items-center space-x-3 text-[#FFC700]">
+          <i data-lucide="package-check" class="w-6 h-6"></i>
+          <h3 class="font-display text-2xl sm:text-3xl text-white uppercase">WHAT’S INCLUDED</h3>
+        </div>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-body text-gray-300">
+          <li class="flex items-start space-x-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
+            <span><strong>Domestic Flights</strong>: Return flights Kathmandu – Pokhara – Kathmandu including bike baggage allocation.</span>
+          </li>
+          <li class="flex items-start space-x-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
+            <span><strong>4x4 Shuttle & Support Fleet</strong>: Shuttle transfers where accessible throughout the tour for riders and luggage.</span>
+          </li>
+          <li class="flex items-start space-x-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
+            <span><strong>Permits & Special Access</strong>: Annapurna Conservation Area Project (ACAP), TIMS card, and Upper Mustang Special Restricted Area Permits.</span>
+          </li>
+          <li class="flex items-start space-x-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
+            <span><strong>Expert Guided Leadership</strong>: PMBIA-certified Nepali lead guides, sweep guides, and trail mechanics with first aid and oxygen.</span>
+          </li>
+          <li class="flex items-start space-x-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
+            <span><strong>Accommodations</strong>: Premium boutique hotels in Kathmandu and Pokhara, plus comfortable, authentic Himalayan lodges throughout Mustang.</span>
+          </li>
+          <li class="flex items-start space-x-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
+            <span><strong>Celebratory Dinners</strong>: Traditional welcome dinner in Thamel and farewell victory feast with the full team.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. PHOTO GALLERY TEASER (MUSTANG TRAIL MOMENTS)
+       ========================================================================= -->
+  <section class="py-16 bg-[#0D0D0D] border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <div class="text-[#FFC700] font-heading text-xs uppercase tracking-widest font-bold mb-1">TOUR MOMENTS</div>
+          <h2 class="font-display text-3xl sm:text-4xl text-white uppercase">MUSTANG VALLEY IN PICTURES</h2>
+        </div>
+        <a href="gallery.html" class="hidden sm:inline-flex items-center space-x-2 text-xs font-heading uppercase tracking-widest text-[#FFC700] hover:text-white transition-colors">
+          <span>View Full 270+ Photo Gallery</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <div class="relative aspect-square overflow-hidden rounded-sm group bg-black">
+          <img 
+            src="https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1000&q=80" 
+            alt="Enduro Thin Air Ultimate Lo Manthang Traverse" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+          />
+        </div>
+        <div class="relative aspect-square overflow-hidden rounded-sm group bg-black">
+          <img 
+            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80" 
+            alt="Mustang Desert Ridge Singletrack Descent" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+          />
+        </div>
+        <div class="relative aspect-square overflow-hidden rounded-sm group bg-black">
+          <img 
+            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80" 
+            alt="High Alpine Scree & Rocky Enduro Ride" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+          />
+        </div>
+        <div class="relative aspect-square overflow-hidden rounded-sm group bg-black">
+          <img 
+            src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=1000&q=80" 
+            alt="Upper Mustang Canyon Pass and Sky Caves" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+          />
+        </div>
+      </div>
+
+      <div class="mt-6 text-center sm:hidden">
+        <a href="gallery.html" class="inline-flex items-center space-x-2 text-xs font-heading uppercase tracking-widest text-[#FFC700]">
+          <span>View Full Photo Gallery</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. TACTICAL FOOTER
+       ========================================================================= -->
+  <footer class="bg-[#080808] border-t border-white/10 pt-10 sm:pt-12 pb-8 sm:pb-10 text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center text-center max-w-md mx-auto mb-8">
+        <div class="flex items-center space-x-3 mb-3">
+          <img src="assets/gnarly-logo.png" alt="GNARLY MTB Logo" class="w-8 h-8 object-contain rounded-full" />
+          <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
+        </div>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">
+          Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours, E-MTB tours, and skills clinics.
+        </p>
+      </div>
+
+      <!-- Bottom Micro-footer -->
+      <div class="pt-6 border-t border-white/10 text-center text-[11px] font-heading tracking-widest uppercase text-gray-400">
+        <div>Copyright © 2026 GNARLY MTB Nepal (GNARLY PVT. LTD.). All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       8. INTERACTIVE BOOKING MODAL DIALOG
+       ========================================================================= -->
+  <div id="booking-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+        <div>
+          <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">TOUR RESERVATION</span>
+          <h3 class="font-display text-3xl text-white uppercase">BOOK ENDURO THIN AIR</h3>
+        </div>
+        <button id="modal-close-btn" class="p-2 text-gray-400 hover:text-white" aria-label="Close modal">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <form id="booking-form" class="space-y-4">
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Selected Tour</label>
+          <select id="modal-tour-select" class="form-input-dark">
+            <option value="enduro-thin-air-ultimate" selected>Enduro Thin Air : Ultimate (Upper & Lower Mustang, 12 Days)</option>
+            <option value="everest-express">Everest Express (Khumbu & Phaplu, 10 Days)</option>
+            <option value="mustang-e-motion">Mustang E-Motion (E-MTB, 12 Days)</option>
+            <option value="moto-mustang">Himalayan Moto Holidays “Hello Moto” (Dual-Sport Enduro, 11 Days)</option>
+            <option value="himalayan-enduro">The Himalayan Enduro Race</option>
+            <option value="g-mtb-skills">G MTB Skills Coaching Academy</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Preferred Departure Date</label>
+            <input type="text" id="modal-date-input" placeholder="e.g. 08-19 October 2026 or April 20-01 May 2027" class="form-input-dark" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Number of Riders</label>
+            <select id="form-riders" class="form-input-dark">
+              <option value="1">1 Rider (Solo)</option>
+              <option value="2">2 Riders</option>
+              <option value="3-4">3 - 4 Riders</option>
+              <option value="5-8">5 - 8 Riders (Full Private Group)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Your Full Name</label>
+            <input type="text" id="form-name" required placeholder="e.g. Marcus Vance" class="form-input-dark" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Email Address</label>
+            <input type="email" id="form-email" required placeholder="marcus@example.com" class="form-input-dark" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">WhatsApp Number (with Country Code)</label>
+          <input type="tel" id="form-phone" required placeholder="e.g. +1 555 019 2831" class="form-input-dark" />
+        </div>
+
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
+          <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
+            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+              <input type="radio" name="bike-type" value="byob" checked class="accent-[#FFC700]" />
+              <span>Bringing My Own Bike</span>
+            </label>
+            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+              <input type="radio" name="bike-type" value="rental" class="accent-[#FFC700]" />
+              <span>Rent Enduro Rig</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-4 flex items-center gap-4">
+          <button type="submit" class="btn-tactical btn-primary flex-1 py-3.5">
+            Confirm & Chat on WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Initialize Lucide Icons & Custom Scripts -->
+  <script src="js/app.js?v=3.5"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -32,9 +32,11 @@ function initAll() {
   initAccordions();
   initBookingModal();
   initTestimonialSlider();
+  initCrewCarousel();
   initScheduleFilters();
   initScrollChevron();
   initSmoothScrollLinks();
+  initFaqFeatures();
   handleInitialScroll();
 }
 
@@ -309,28 +311,28 @@ const TOURS_DATABASE = {
     elevation: "4,200m -> 2,800m Descent",
     terrain: "Singletrack, Big Mountain Scree, Ancient Trade Paths",
     season: "Spring & Autumn",
-    description: "The signature Lower Mustang singletrack expedition dropping from high alpine desert into ancient pine forests and river gorges. Featuring Lubra Pass, Smooth Criminal, and Marpha.",
+    description: "The signature Lower Mustang singletrack tour dropping from high alpine desert into ancient pine forests and river gorges. Featuring Lubra Pass, Smooth Criminal, and Marpha.",
     highlights: ["Shuttle-supported descents", "Marpha apple orchards & local culture", "Chasing Capra & Black Yak Trail (3500m+)"]
   },
   "everest-express": {
     title: "EVEREST EXPRESS",
     region: "Solukhumbu / Khumbu, Nepal",
-    duration: "9 Days",
-    elevation: "Up to 3,900m Peak Elevation",
-    terrain: "Alpine Ridge Singletracks, Rocky Steps, Forest Flow",
+    duration: "09 Nights 10 Days",
+    elevation: "Up to 4,050m Peak Elevation (Pikey Peak)",
+    terrain: "Alpine Ridge Singletracks, 16+ Ratnange Lines, High Forest Flow",
     season: "Spring & Autumn",
-    description: "A fast-paced high-altitude expedition directly under Mount Everest, Ama Dablam, and Lhotse with rich Sherpa cultural hospitality.",
-    highlights: ["Panoramic 8,000m peak views", "Ancient monastery visits", "Epic alpine ridge descents"]
+    description: "A fast-paced high-altitude MTB adventure through the heart of the Khumbu region beneath the world's highest peaks, with scenic heli flight and Sherpa hospitality.",
+    highlights: ["1-hour Heli flight to Phaplu", "16+ Handcrafted Ratnange singletrack lines", "Pikey Peak 4,050m sunrise & epic descent"]
   },
   "enduro-thin-air-ultimate": {
     title: "ENDURO THIN AIR : ULTIMATE",
     region: "Upper & Lower Mustang, Nepal",
-    duration: "14 Days",
-    elevation: "4,600m Peak -> 5,000m+ Total Descent",
+    duration: "11 Nights 12 Days",
+    elevation: "4,200m Peak -> 5,000m+ Total Descent",
     terrain: "High Alpine Singletrack, Scree Chutes, Ancient Cliff Trails",
     season: "Spring & Autumn",
-    description: "The pinnacle Himalayan enduro expedition traversing Upper and Lower Mustang. From the ancient walled kingdom of Lo Manthang down through the dramatic Kali Gandaki gorge.",
-    highlights: ["Full traverse of Lo Manthang & Lubra Pass", "5,000m+ epic vertical descent", "Supported 4x4 shuttle & luggage transfers"]
+    description: "The pinnacle Himalayan enduro tour traversing Upper and Lower Mustang. From the ancient walled kingdom of Lo Manthang down through the dramatic Kali Gandaki gorge.",
+    highlights: ["Signature Lubra Trail & Lo Free Ride Heaven", "4,200m Thin Air summit & 5,000m+ descent", "Supported 4x4 shuttle & luggage transfers"]
   },
   "mustang-e-motion": {
     title: "MUSTANG E-MOTION (E-MTB)",
@@ -343,14 +345,24 @@ const TOURS_DATABASE = {
     highlights: ["Premium full-suspension E-MTB fleet", "Exploration of forbidden kingdom Lo Manthang", "Supported battery recharge logistics"]
   },
   "moto-mustang": {
-    title: "MOTO MUSTANG",
-    region: "Mustang Valley, Nepal",
-    duration: "8 Days",
-    elevation: "High Alpine River Crossings",
-    terrain: "Broken tarmac, river beds, scree, dirt trails",
-    season: "Spring, Summer, Autumn",
-    description: "High-octane dual-sport and enduro motorcycle adventure tackling remote riverbeds, high-altitude desert plateaus, and suspension bridges.",
-    highlights: ["Fully equipped enduro bikes", "Mechanic & 4x4 support vehicle", "Authentic Himalayan lodge stays"]
+    title: "HIMALAYAN MOTO HOLIDAYS “HELLO MOTO”",
+    region: "Kathmandu, Pokhara & Mustang Valley",
+    duration: "10 Nights 11 Days",
+    elevation: "3,700m (Rebel's Hideout & Lo Manthang)",
+    terrain: "On and off road, riverbeds, mountain passes & scenic highways",
+    season: "Spring (Mar-May) & Autumn (Oct-Dec)",
+    description: "An unforgettable journey through Nepal, from Kathmandu and Pokhara to the stunning landscapes of the remote Mustang region.",
+    highlights: ["Honda CRF & CF Moto fleet", "Ancient walled kingdom Lo Manthang", "Support 4x4 & mobile mechanic crew"]
+  },
+  "hello-moto": {
+    title: "HIMALAYAN MOTO HOLIDAYS “HELLO MOTO”",
+    region: "Kathmandu, Pokhara & Mustang Valley",
+    duration: "10 Nights 11 Days",
+    elevation: "3,700m (Rebel's Hideout & Lo Manthang)",
+    terrain: "On and off road, riverbeds, mountain passes & scenic highways",
+    season: "Spring (Mar-May) & Autumn (Oct-Dec)",
+    description: "An unforgettable journey through Nepal, from Kathmandu and Pokhara to the stunning landscapes of the remote Mustang region.",
+    highlights: ["Honda CRF & CF Moto fleet", "Ancient walled kingdom Lo Manthang", "Support 4x4 & mobile mechanic crew"]
   },
   "himalayan-enduro": {
     title: "THE HIMALAYAN ENDURO RACE",
@@ -439,50 +451,55 @@ function initBookingModal() {
 function initTestimonialSlider() {
   const track = document.querySelector(".testimonial-track");
   const slides = document.querySelectorAll(".testimonial-slide");
-  const dots = document.querySelectorAll(".testimonial-dot");
-  if (!slides.length) return;
+  const prevBtns = document.querySelectorAll(".testimonial-prev-btn, #testimonial-prev-btn");
+  const nextBtns = document.querySelectorAll(".testimonial-next-btn, #testimonial-next-btn");
+  const sliderFrame = track ? track.closest(".bg-\\[\\#141414\\]") || track.parentElement : null;
+  const container = track ? track.parentElement : null;
+  if (!track || !slides.length) return;
 
   let current = 0;
   let timer;
 
-  // Lock minimum height to the tallest slide to guarantee zero layout shifts
-  const updateTrackHeight = () => {
-    if (!track) return;
-    let maxHeight = 0;
-    slides.forEach((slide) => {
-      const h = slide.offsetHeight || slide.scrollHeight;
-      if (h > maxHeight) maxHeight = h;
-    });
-    if (maxHeight > 0) {
-      track.style.minHeight = maxHeight + "px";
+  const updateSlideHeight = (index) => {
+    if (!container || !slides[index]) return;
+    const targetSlide = slides[index];
+    const h = targetSlide.offsetHeight || targetSlide.scrollHeight;
+    if (h > 0) {
+      container.style.minHeight = h + "px";
     }
   };
 
   const showSlide = (index) => {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+
     slides.forEach((s, i) => {
-      s.classList.remove("hidden");
       if (i === index) {
         s.classList.add("active");
       } else {
         s.classList.remove("active");
       }
     });
-    dots.forEach((d, i) => {
-      if (i === index) {
-        d.classList.add("bg-[#FFC700]", "w-8");
-        d.classList.remove("bg-white/40", "w-3");
-      } else {
-        d.classList.remove("bg-[#FFC700]", "w-8");
-        d.classList.add("bg-white/40", "w-3");
-      }
-    });
+
+    track.style.transform = `translateX(-${index * 100}%)`;
     current = index;
+    updateSlideHeight(index);
   };
 
-  dots.forEach((dot, idx) => {
-    dot.addEventListener("click", () => {
+  prevBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
       clearInterval(timer);
-      showSlide(idx);
+      showSlide(current - 1);
+      startAuto();
+    });
+  });
+
+  nextBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      clearInterval(timer);
+      showSlide(current + 1);
       startAuto();
     });
   });
@@ -494,15 +511,193 @@ function initTestimonialSlider() {
 
   const startAuto = () => {
     clearInterval(timer);
-    timer = setInterval(nextSlide, 6500);
+    timer = setInterval(nextSlide, 7000);
   };
 
-  updateTrackHeight();
-  window.addEventListener("resize", updateTrackHeight, { passive: true });
-  window.addEventListener("load", updateTrackHeight, { passive: true });
+  // Pause on hover
+  if (sliderFrame) {
+    sliderFrame.addEventListener("mouseenter", () => clearInterval(timer));
+    sliderFrame.addEventListener("mouseleave", () => startAuto());
+
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    sliderFrame.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    sliderFrame.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const swipeDistance = touchEndX - touchStartX;
+      if (Math.abs(swipeDistance) > 40) {
+        clearInterval(timer);
+        if (swipeDistance < 0) {
+          // Swiped left -> next slide
+          showSlide(current + 1);
+        } else {
+          // Swiped right -> prev slide
+          showSlide(current - 1);
+        }
+        startAuto();
+      }
+    }, { passive: true });
+  }
+
+  window.addEventListener("resize", () => updateSlideHeight(current), { passive: true });
+  window.addEventListener("load", () => updateSlideHeight(current), { passive: true });
 
   showSlide(0);
   startAuto();
+}
+
+/* 7.1 Meet The Crew Carousel & Horizontal Scroll */
+function initCrewCarousel() {
+  const track = document.getElementById("crew-scroll-track");
+  const prevBtn = document.getElementById("crew-prev-btn");
+  const nextBtn = document.getElementById("crew-next-btn");
+  const dots = document.querySelectorAll(".crew-dot");
+  if (!track) return;
+
+  const cards = track.querySelectorAll(".crew-card");
+  if (!cards.length) return;
+
+  let currentIndex = 0;
+
+  function getActiveIndex() {
+    const scrollLeft = track.scrollLeft;
+    let activeIdx = 0;
+    let minDistance = Infinity;
+    cards.forEach((card, idx) => {
+      const cardOffset = card.offsetLeft - track.offsetLeft;
+      const distance = Math.abs(cardOffset - scrollLeft);
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIdx = idx;
+      }
+    });
+    return activeIdx;
+  }
+
+  function updateDots(index) {
+    currentIndex = index;
+    dots.forEach((dot, idx) => {
+      if (idx === currentIndex) {
+        dot.classList.add("bg-[#FFC700]", "w-8");
+        dot.classList.remove("bg-white/40", "w-2.5");
+      } else {
+        dot.classList.remove("bg-[#FFC700]", "w-8");
+        dot.classList.add("bg-white/40", "w-2.5");
+      }
+    });
+  }
+
+  function scrollToIndex(index) {
+    if (index < 0) index = cards.length - 1;
+    if (index >= cards.length) index = 0;
+
+    currentIndex = index;
+    const targetCard = cards[index];
+    if (targetCard) {
+      const targetLeft = targetCard.offsetLeft - track.offsetLeft;
+      track.scrollTo({
+        left: targetLeft,
+        behavior: "smooth"
+      });
+    }
+    updateDots(index);
+  }
+
+  const prevBtns = document.querySelectorAll(".crew-prev-btn, #crew-prev-btn");
+  const nextBtns = document.querySelectorAll(".crew-next-btn, #crew-next-btn");
+
+  prevBtns.forEach((btn) => {
+    btn.removeAttribute("disabled");
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const current = getActiveIndex();
+      let target = current - 1;
+      if (target < 0) target = cards.length - 1;
+      scrollToIndex(target);
+    });
+  });
+
+  nextBtns.forEach((btn) => {
+    btn.removeAttribute("disabled");
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const current = getActiveIndex();
+      let target = current + 1;
+      if (target >= cards.length) target = 0;
+      scrollToIndex(target);
+    });
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", function (e) {
+      e.preventDefault();
+      const idx = parseInt(dot.getAttribute("data-index") || "0", 10);
+      scrollToIndex(idx);
+    });
+  });
+
+  // Track scroll listener
+  let scrollTimeout;
+  track.addEventListener("scroll", () => {
+    if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+    scrollTimeout = requestAnimationFrame(() => {
+      const activeIdx = getActiveIndex();
+      updateDots(activeIdx);
+    });
+  }, { passive: true });
+
+  // Mouse Drag support
+  let isDown = false;
+  let startX = 0;
+  let scrollStart = 0;
+  let hasDragged = false;
+
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    hasDragged = false;
+    track.classList.add("is-dragging");
+    startX = e.pageX - track.offsetLeft;
+    scrollStart = track.scrollLeft;
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (isDown) {
+      isDown = false;
+      track.classList.remove("is-dragging");
+      if (hasDragged) {
+        const activeIdx = getActiveIndex();
+        scrollToIndex(activeIdx);
+      }
+    }
+  });
+
+  track.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.3;
+    if (Math.abs(walk) > 8) {
+      hasDragged = true;
+    }
+    track.scrollLeft = scrollStart - walk;
+  });
+
+  track.addEventListener("click", (e) => {
+    if (hasDragged) {
+      e.preventDefault();
+      e.stopPropagation();
+      hasDragged = false;
+    }
+  }, true);
+
+  updateDots(0);
 }
 
 /* 8. Schedule Filter Tabs */
@@ -568,3 +763,84 @@ function initSmoothScrollLinks() {
     }
   });
 }
+
+/* 11. FAQ Search, Category Filtering & Expand/Collapse */
+function initFaqFeatures() {
+  const faqItems = document.querySelectorAll(".faq-item");
+  const searchInput = document.getElementById("faq-search-input");
+  const filterBtns = document.querySelectorAll(".faq-filter-btn");
+  const expandAllBtn = document.getElementById("faq-expand-all");
+  const collapseAllBtn = document.getElementById("faq-collapse-all");
+  const noResultsMsg = document.getElementById("faq-no-results");
+
+  if (!faqItems.length) return;
+
+  let currentCategory = "all";
+  let currentSearch = "";
+
+  const applyFilters = () => {
+    let visibleCount = 0;
+    faqItems.forEach((item) => {
+      const category = item.getAttribute("data-category") || "";
+      const text = item.textContent.toLowerCase();
+
+      const matchesCategory = currentCategory === "all" || category.includes(currentCategory);
+      const matchesSearch = !currentSearch || text.includes(currentSearch);
+
+      if (matchesCategory && matchesSearch) {
+        item.style.display = "";
+        visibleCount++;
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    if (noResultsMsg) {
+      if (visibleCount === 0) {
+        noResultsMsg.classList.remove("hidden");
+      } else {
+        noResultsMsg.classList.add("hidden");
+      }
+    }
+  };
+
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      currentSearch = e.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => {
+        b.classList.remove("bg-[#FFC700]", "text-black");
+        b.classList.add("bg-[#141414]", "text-gray-300");
+      });
+      btn.classList.add("bg-[#FFC700]", "text-black");
+      btn.classList.remove("bg-[#141414]", "text-gray-300");
+
+      currentCategory = btn.getAttribute("data-category") || "all";
+      applyFilters();
+    });
+  });
+
+  if (expandAllBtn) {
+    expandAllBtn.addEventListener("click", () => {
+      faqItems.forEach((item) => {
+        if (item.style.display !== "none") {
+          item.classList.add("active");
+        }
+      });
+    });
+  }
+
+  if (collapseAllBtn) {
+    collapseAllBtn.addEventListener("click", () => {
+      faqItems.forEach((item) => {
+        item.classList.remove("active");
+      });
+    });
+  }
+}
+
