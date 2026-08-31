@@ -322,6 +322,16 @@ const TOURS_DATABASE = {
     description: "A fast-paced high-altitude expedition directly under Mount Everest, Ama Dablam, and Lhotse with rich Sherpa cultural hospitality.",
     highlights: ["Panoramic 8,000m peak views", "Ancient monastery visits", "Epic alpine ridge descents"]
   },
+  "enduro-thin-air-ultimate": {
+    title: "ENDURO THIN AIR : ULTIMATE",
+    region: "Upper & Lower Mustang, Nepal",
+    duration: "14 Days",
+    elevation: "4,600m Peak -> 5,000m+ Total Descent",
+    terrain: "High Alpine Singletrack, Scree Chutes, Ancient Cliff Trails",
+    season: "Spring & Autumn",
+    description: "The pinnacle Himalayan enduro expedition traversing Upper and Lower Mustang. From the ancient walled kingdom of Lo Manthang down through the dramatic Kali Gandaki gorge.",
+    highlights: ["Full traverse of Lo Manthang & Lubra Pass", "5,000m+ epic vertical descent", "Supported 4x4 shuttle & luggage transfers"]
+  },
   "mustang-e-motion": {
     title: "MUSTANG E-MOTION (E-MTB)",
     region: "Upper Mustang & Lo Manthang",
