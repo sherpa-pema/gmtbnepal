@@ -27,11 +27,11 @@
               hover: "#E5B300",
               dark: "#CCA000",
             },
-            canvas: "#0D0D0D",
+            canvas: "#2A4E7A",
             surface: {
-              DEFAULT: "#141414",
-              secondary: "#1A1A1A",
-              elevated: "#242424",
+              DEFAULT: "#1E3A5F",
+              secondary: "#162E4D",
+              elevated: "#345C8C",
             }
           },
           fontFamily: {
@@ -50,7 +50,7 @@
   <!-- Custom Design System Styles -->
   <link rel="stylesheet" href="css/style.css?v=5.0" />
 </head>
-<body class="bg-[#0D0D0D] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
+<body class="bg-[#2A4E7A] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
 
   <!-- =========================================================================
        1. NAVIGATION HEADER (Sticky & Frosted)
@@ -74,7 +74,6 @@
         <!-- Desktop Navigation Links -->
         <nav class="hidden lg:flex items-center space-x-8">
           <a href="#tours" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Tours</a>
-          <a href="skills-clinic.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Skills Clinic</a>
           <a href="gallery.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Gallery</a>
           <a href="faq.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">FAQ</a>
           <a href="#reviews" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Reviews</a>
@@ -104,7 +103,7 @@
   <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1040] opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
   <!-- Mobile Slide-In Drawer -->
-  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#121212] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#1E3A5F] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
     <div>
       <div class="flex items-center justify-between pb-6 border-b border-white/10">
         <div class="flex items-center space-x-3">
@@ -134,7 +133,7 @@
   <!-- =========================================================================
        2. FULLSCREEN IMMERSIVE HERO SECTION
        ========================================================================= -->
-  <section class="relative w-full flex flex-col bg-[#0D0D0D]">
+  <section class="relative w-full flex flex-col bg-[#2A4E7A]">
     <!-- Video Wrapper (75vh height so full video can be seen better) -->
     <div class="relative w-full h-[75svh] min-h-[500px]">
       <video 
@@ -165,14 +164,26 @@
     </div>
 
     <!-- Texts and buttons below the video -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center pt-8 sm:pt-12 md:pt-16 pb-12 z-20 relative">
-      <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 mx-auto font-light leading-relaxed mb-6">
-        Imagine mountain biking amidst the mighty Himalayas. Drop 4,200m down to 2,800m on pristine singletracks, navigate ancient Buddhist trade paths, and shred with passionate local riders.
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center pt-8 sm:pt-12 md:pt-16 pb-12 z-20 relative space-y-4 sm:space-y-5">
+      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-[#FFC700] uppercase tracking-wide">
+        Welcome to GNARLY.
+      </h2>
+      
+      <p class="font-heading text-base sm:text-lg md:text-xl text-white font-medium tracking-wide">
+        Plan your perfect getaway and discover the places you’ve always dreamed of!
+      </p>
+
+      <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 mx-auto font-light leading-relaxed">
+        Are you ready to explore the Himalayas on two wheels like never before? Whether you are passionate about mountain biking or motorcycling, we take you deep into Nepal’s most breathtaking and exhilarating landscapes. We specialize in fully supported, customized adventures designed around your interests, riding style, and travel preferences. This is Nepal—where every trail, road, and mountain becomes part of an unforgettable journey.
+      </p>
+
+      <p class="font-heading text-sm sm:text-base md:text-lg uppercase tracking-widest text-[#FFC700] font-bold pt-1">
+        Discover the Himalayas on Two Wheels
       </p>
 
       <!-- Bouncing Scroll Down Chevron -->
-      <div id="hero-scroll-trigger" class="animate-bounce flex flex-col items-center justify-center group mx-auto cursor-pointer" title="Scroll to content">
-        <span class="font-heading text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-[#FFC700] mb-1 transition-colors">SCROLL</span>
+      <div id="hero-scroll-trigger" class="animate-bounce flex flex-col items-center justify-center group mx-auto cursor-pointer pt-2" title="Scroll to content">
+        <span class="font-heading text-[10px] uppercase tracking-widest text-gray-400 group-hover:text-[#FFC700] mb-1 transition-colors">SCROLL</span>
         <i data-lucide="chevrons-down" class="w-6 h-6 text-[#FFC700]"></i>
       </div>
     </div>
@@ -192,7 +203,7 @@
     <div class="max-w-4xl mx-auto">
         
         <!-- 4 Feature Highlights - Unified Section Container -->
-        <div class="bg-[#141414] rounded-sm mb-8 overflow-hidden">
+        <div class="bg-[#1E3A5F] rounded-sm mb-8 overflow-hidden">
           
           <!-- Feature 1: Trails for Every Skill Level -->
           <div class="flex items-center sm:items-stretch gap-4 sm:gap-6 p-4 sm:p-5 hover:bg-white/[0.02] transition-colors duration-300 group">
@@ -209,87 +220,87 @@
                 Trails for Every Skill Level
               </h3>
               <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                Access dedicated terrain matched precisely to your ability, from smooth green cruisers to technical double-black features.
+                From relaxed family rides to Enduro adventures, our carefully selected trails offer something for every rider, experience level, and riding style.
               </p>
             </div>
           </div>
 
-          <!-- Feature 2: Family & Kid-Focused -->
+          <!-- Feature 2: All-Mountain / Enduro -->
           <div class="flex items-center sm:items-stretch gap-4 sm:gap-6 p-4 sm:p-5 hover:bg-white/[0.02] transition-colors duration-300 group">
             <div class="flex-1 min-w-0 text-left flex flex-col justify-center">
               <h3 class="font-heading text-base sm:text-lg md:text-xl font-bold uppercase tracking-wider text-[#FFC700] mb-1.5 group-hover:text-white transition-colors">
-                Family &amp; Kid-Focused
+                All-Mountain / Enduro
               </h3>
               <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                Safe, low-gradient routes designed to build confidence and keep young riders engaged.
+                Experience high-speed flow trails, challenging sections, technical switchbacks, and scenic single tracks winding through pine forests and high-altitude mountain terrain.
               </p>
             </div>
             <div class="w-28 sm:w-36 md:w-44 shrink-0 self-stretch min-h-[120px] sm:min-h-[140px] rounded-sm overflow-hidden border border-white/10 group-hover:border-[#FFC700]/60 transition-colors">
               <img 
                 src="https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=600&q=80" 
-                alt="Family & Kid-Focused" 
+                alt="All-Mountain / Enduro" 
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                 loading="lazy"
               />
             </div>
           </div>
 
-          <!-- Feature 3: Pro-Grade Downhill -->
+          <!-- Feature 3: Family-Focused -->
           <div class="flex items-center sm:items-stretch gap-4 sm:gap-6 p-4 sm:p-5 hover:bg-white/[0.02] transition-colors duration-300 group">
             <div class="w-28 sm:w-36 md:w-44 shrink-0 self-stretch min-h-[120px] sm:min-h-[140px] rounded-sm overflow-hidden border border-white/10 group-hover:border-[#FFC700]/60 transition-colors">
               <img 
                 src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80" 
-                alt="Pro-Grade Downhill" 
+                alt="Family-Focused" 
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                 loading="lazy"
               />
             </div>
             <div class="flex-1 min-w-0 text-left flex flex-col justify-center">
               <h3 class="font-heading text-base sm:text-lg md:text-xl font-bold uppercase tracking-wider text-[#FFC700] mb-1.5 group-hover:text-white transition-colors">
-                Pro-Grade Downhill
+                Family-Focused
               </h3>
               <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                Direct access to high-speed flow, steep lines, rock gardens, and drops for advanced riders.
+                Enjoy safe and enjoyable routes designed to build confidence and keep younger riders engaged, while giving the entire family an opportunity to experience the Himalayas together.
               </p>
             </div>
           </div>
 
-          <!-- Feature 4: 100% Customizable -->
+          <!-- Feature 4: Customised Tours -->
           <div class="flex items-center sm:items-stretch gap-4 sm:gap-6 p-4 sm:p-5 hover:bg-white/[0.02] transition-colors duration-300 group">
             <div class="flex-1 min-w-0 text-left flex flex-col justify-center">
               <h3 class="font-heading text-base sm:text-lg md:text-xl font-bold uppercase tracking-wider text-[#FFC700] mb-1.5 group-hover:text-white transition-colors">
-                100% Customizable
+                Customised Tours
               </h3>
               <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                You set the pace, duration, terrain style, and rest stops—no rigid group schedules.
+                Every adventure is designed around you. Choose your preferred pace, riding style, duration, rest stops, and overall experience—without being restricted by rigid group schedules.
               </p>
             </div>
             <div class="w-28 sm:w-36 md:w-44 shrink-0 self-stretch min-h-[120px] sm:min-h-[140px] rounded-sm overflow-hidden border border-white/10 group-hover:border-[#FFC700]/60 transition-colors">
               <img 
                 src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" 
-                alt="100% Customizable" 
+                alt="Customised Tours" 
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                 loading="lazy"
               />
             </div>
           </div>
 
-          <!-- Feature 5: Full 4x4 Shuttle & Mechanical Support -->
+          <!-- Feature 5: Fully Supported -->
           <div class="flex items-center sm:items-stretch gap-4 sm:gap-6 p-4 sm:p-5 hover:bg-white/[0.02] transition-colors duration-300 group">
             <div class="w-28 sm:w-36 md:w-44 shrink-0 self-stretch min-h-[120px] sm:min-h-[140px] rounded-sm overflow-hidden border border-white/10 group-hover:border-[#FFC700]/60 transition-colors">
               <img 
                 src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80" 
-                alt="Full 4x4 Shuttle &amp; Mechanical Support" 
+                alt="Fully Supported" 
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                 loading="lazy"
               />
             </div>
             <div class="flex-1 min-w-0 text-left flex flex-col justify-center">
               <h3 class="font-heading text-base sm:text-lg md:text-xl font-bold uppercase tracking-wider text-[#FFC700] mb-1.5 group-hover:text-white transition-colors">
-                Full 4x4 Shuttle &amp; Mechanical Support
+                Fully Supported
               </h3>
               <p class="font-body text-base sm:text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                Maximize your descent time. Dedicated 4x4 support vehicles haul your gear and spare parts while providing trailside mechanical fixes.
+                Maximize your time on the trails with dedicated 4x4 support throughout the tour. Shuttle to the top, gentle push or pedal to trailhead, and make the most of every descent as you ride through some of the Himalayas’ most spectacular terrain.
               </p>
             </div>
           </div>
@@ -533,16 +544,13 @@
 
         </div>
 
-        <!-- Quick-Action Links (2x2 Grid) -->
-        <div id="events" class="mt-8 sm:mt-10 grid grid-cols-2 gap-3 sm:gap-4 max-w-xl mx-auto">
+        <!-- Quick-Action Links (3 Buttons Grid) -->
+        <div id="events" class="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
           <a href="gallery.html" class="btn-tactical btn-outline w-full text-center px-4 sm:px-6 py-3.5 sm:py-4 text-sm sm:text-base">
             GALLERY
           </a>
           <a href="faq.html" class="btn-tactical btn-outline w-full text-center px-4 sm:px-6 py-3.5 sm:py-4 text-sm sm:text-base">
             FAQ
-          </a>
-          <a href="skills-clinic.html" class="btn-tactical btn-outline w-full text-center px-4 sm:px-6 py-3.5 sm:py-4 text-sm sm:text-base">
-            G MTB SKILLS
           </a>
           <a href="#booking-modal" data-open-modal data-tour="himalayan-enduro" class="btn-tactical btn-outline w-full text-center px-4 sm:px-6 py-3.5 sm:py-4 text-sm sm:text-base">
             THE HIMALAYAN ENDURO
@@ -584,7 +592,7 @@
     </div>
 
     <!-- Testimonial Slider Frame -->
-    <div class="bg-[#141414] border border-white/10 rounded-sm p-6 sm:p-10 text-center relative reveal-init delay-100 overflow-hidden">
+    <div class="bg-[#1E3A5F] border border-white/10 rounded-sm p-6 sm:p-10 text-center relative reveal-init delay-100 overflow-hidden">
       
       <!-- Overlaid Navigation Arrows -->
       <button class="testimonial-prev-btn absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-[#FFC700] text-white hover:text-black border border-white/20 hover:border-[#FFC700] backdrop-blur-md flex items-center justify-center transition-all duration-200 shadow-2xl cursor-pointer" aria-label="Previous Testimonial" title="Previous Review">
@@ -1198,7 +1206,7 @@
     <div class="max-w-4xl mx-auto space-y-4 sm:space-y-5 reveal-init delay-100">
       <!-- Row 1: Direct Phone / WhatsApp and Email Inquiries side-by-side -->
       <div class="grid grid-cols-2 gap-3 sm:gap-5">
-        <a href="https://wa.me/9779803661496" target="_blank" class="flex items-center gap-2.5 sm:gap-5 p-3.5 sm:p-6 bg-[#141414] border border-white/10 hover:border-[#FFC700] transition-colors rounded-sm group">
+        <a href="https://wa.me/9779803661496" target="_blank" class="flex items-center gap-2.5 sm:gap-5 p-3.5 sm:p-6 bg-[#1E3A5F] border border-white/10 hover:border-[#FFC700] transition-colors rounded-sm group">
           <div class="w-10 h-10 sm:w-14 sm:h-14 bg-[#FFC700] text-black rounded flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
             <i data-lucide="phone-call" class="w-5 h-5 sm:w-7 sm:h-7"></i>
           </div>
@@ -1208,7 +1216,7 @@
           </div>
         </a>
 
-        <a href="mailto:info@gnarlymtb.com" class="flex items-center gap-2.5 sm:gap-5 p-3.5 sm:p-6 bg-[#141414] border border-white/10 hover:border-[#FFC700] transition-colors rounded-sm group">
+        <a href="mailto:info@gnarlymtb.com" class="flex items-center gap-2.5 sm:gap-5 p-3.5 sm:p-6 bg-[#1E3A5F] border border-white/10 hover:border-[#FFC700] transition-colors rounded-sm group">
           <div class="w-10 h-10 sm:w-14 sm:h-14 bg-white/10 text-white rounded flex-shrink-0 flex items-center justify-center group-hover:text-[#FFC700] transition-colors">
             <i data-lucide="mail" class="w-5 h-5 sm:w-7 sm:h-7"></i>
           </div>
@@ -1220,7 +1228,7 @@
       </div>
 
       <!-- Row 2: Base Headquarters / Address -->
-      <div class="flex items-center gap-2.5 sm:gap-5 p-3.5 sm:p-6 bg-[#141414] border border-white/10 rounded-sm">
+      <div class="flex items-center gap-2.5 sm:gap-5 p-3.5 sm:p-6 bg-[#1E3A5F] border border-white/10 rounded-sm">
         <div class="w-10 h-10 sm:w-14 sm:h-14 bg-white/10 text-white rounded flex-shrink-0 flex items-center justify-center">
           <i data-lucide="map-pin" class="w-5 h-5 sm:w-7 sm:h-7"></i>
         </div>
@@ -1235,7 +1243,7 @@
   <!-- =========================================================================
        12. TACTICAL FOOTER
        ========================================================================= -->
-  <footer class="bg-[#080808] border-t border-white/10 pt-10 sm:pt-12 pb-8 sm:pb-10 text-gray-400">
+  <footer class="bg-[#162E4D] border-t border-white/10 pt-10 sm:pt-12 pb-8 sm:pb-10 text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col items-center text-center max-w-md mx-auto mb-8">
         <div class="flex items-center space-x-3 mb-3">
@@ -1243,7 +1251,7 @@
           <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
         </div>
         <p class="font-body text-xs text-gray-400 leading-relaxed">
-          Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours, E-MTB tours, and skills clinics.
+          Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours and E-MTB tours.
         </p>
       </div>
 
@@ -1277,7 +1285,6 @@
             <option value="everest-express">Everest Express (Khumbu & Phaplu, 10 Days)</option>
             <option value="moto-mustang">Himalayan Moto Holidays “Hello Moto” (Dual-Sport Enduro, 11 Days)</option>
             <option value="himalayan-enduro">The Himalayan Enduro Race</option>
-            <option value="g-mtb-skills">G MTB Skills Coaching (Kathmandu & Trail Centers)</option>
           </select>
         </div>
 
@@ -1316,11 +1323,11 @@
         <div>
           <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
           <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
-            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
               <input type="radio" name="bike-type" value="rental" checked class="accent-[#FFC700]" />
               <span>Rent Enduro / E-MTB Rig</span>
             </label>
-            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
               <input type="radio" name="bike-type" value="byob" class="accent-[#FFC700]" />
               <span>Bringing My Own Bike</span>
             </label>

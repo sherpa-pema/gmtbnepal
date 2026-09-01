@@ -373,16 +373,6 @@ const TOURS_DATABASE = {
     season: "Autumn 2026",
     description: "Nepal's premier international multi-stage mountain bike enduro race event. Race with global riders across raw Himalayan topography.",
     highlights: ["Chrono-timed stages", "International rider festival", "Full medical & marshal support"]
-  },
-  "g-mtb-skills": {
-    title: "G MTB SKILLS CLINICS",
-    region: "Kathmandu Valley & Trail Centers",
-    duration: "1 to 3 Days",
-    elevation: "Progression Trail Networks",
-    terrain: "Pumptrack, berms, switchbacks, steep rock gardens",
-    season: "Year-Round",
-    description: "Professional PMBIA-certified skills coaching. Master body positioning, braking control, high-speed cornering, and steep alpine terrain.",
-    highlights: ["1-on-1 and small group coaching", "Video analysis & feedback", "Beginner to advanced modules"]
   }
 };
 
@@ -453,7 +443,7 @@ function initTestimonialSlider() {
   const slides = document.querySelectorAll(".testimonial-slide");
   const prevBtns = document.querySelectorAll(".testimonial-prev-btn, #testimonial-prev-btn");
   const nextBtns = document.querySelectorAll(".testimonial-next-btn, #testimonial-next-btn");
-  const sliderFrame = track ? track.closest(".bg-\\[\\#141414\\]") || track.parentElement : null;
+  const sliderFrame = track ? track.closest(".bg-\\[\\#1E3A5F\\]") || track.closest(".bg-\\[\\#141414\\]") || track.parentElement : null;
   const container = track ? track.parentElement : null;
   if (!track || !slides.length) return;
 
@@ -815,10 +805,10 @@ function initFaqFeatures() {
     btn.addEventListener("click", () => {
       filterBtns.forEach((b) => {
         b.classList.remove("bg-[#FFC700]", "text-black");
-        b.classList.add("bg-[#141414]", "text-gray-300");
+        b.classList.add("bg-[#1E3A5F]", "text-gray-300");
       });
       btn.classList.add("bg-[#FFC700]", "text-black");
-      btn.classList.remove("bg-[#141414]", "text-gray-300");
+      btn.classList.remove("bg-[#1E3A5F]", "text-gray-300");
 
       currentCategory = btn.getAttribute("data-category") || "all";
       applyFilters();

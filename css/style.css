@@ -11,16 +11,16 @@
   --brand-glow: rgba(255, 199, 0, 0.25);
 
   /* Background Palette */
-  --bg-canvas: #0D0D0D;
-  --bg-surface-primary: #141414;
-  --bg-surface-secondary: #1A1A1A;
-  --bg-surface-elevated: #242424;
-  --bg-frosted-nav: rgba(0, 0, 0, 0.85);
+  --bg-canvas: #2A4E7A;
+  --bg-surface-primary: #1E3A5F;
+  --bg-surface-secondary: #162E4D;
+  --bg-surface-elevated: #345C8C;
+  --bg-frosted-nav: rgba(42, 78, 122, 0.85);
 
   /* Hairline Borders */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.15);
-  --border-strong: rgba(255, 255, 255, 0.25);
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-medium: rgba(255, 255, 255, 0.20);
+  --border-strong: rgba(255, 255, 255, 0.35);
   --border-brand: #FFC700;
 
   /* Typography Colors */
@@ -63,10 +63,10 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #162E4D;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: #345C8C;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -93,7 +93,7 @@ body {
 }
 
 .navbar-transparent {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(180deg, rgba(22, 46, 77, 0.7) 0%, rgba(42, 78, 122, 0) 100%);
   border-bottom: none;
 }
 
@@ -102,7 +102,7 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(10, 25, 45, 0.5);
 }
 
 /* Mobile Drawer & Overlay */
@@ -134,19 +134,19 @@ body {
   transform: translateY(8px);
   background: linear-gradient(
     180deg,
-    rgba(13, 13, 13, 0) 0%,
-    rgba(13, 13, 13, 0.005) 20%,
-    rgba(13, 13, 13, 0.02) 35%,
-    rgba(13, 13, 13, 0.05) 45%,
-    rgba(13, 13, 13, 0.10) 55%,
-    rgba(13, 13, 13, 0.17) 64%,
-    rgba(13, 13, 13, 0.28) 72%,
-    rgba(13, 13, 13, 0.42) 79%,
-    rgba(13, 13, 13, 0.58) 85%,
-    rgba(13, 13, 13, 0.74) 91%,
-    rgba(13, 13, 13, 0.88) 95%,
-    rgba(13, 13, 13, 0.96) 98%,
-    rgba(13, 13, 13, 1) 100%
+    rgba(42, 78, 122, 0) 0%,
+    rgba(42, 78, 122, 0.005) 20%,
+    rgba(42, 78, 122, 0.02) 35%,
+    rgba(42, 78, 122, 0.05) 45%,
+    rgba(42, 78, 122, 0.10) 55%,
+    rgba(42, 78, 122, 0.17) 64%,
+    rgba(42, 78, 122, 0.28) 72%,
+    rgba(42, 78, 122, 0.42) 79%,
+    rgba(42, 78, 122, 0.58) 85%,
+    rgba(42, 78, 122, 0.74) 91%,
+    rgba(42, 78, 122, 0.88) 95%,
+    rgba(42, 78, 122, 0.96) 98%,
+    rgba(42, 78, 122, 1) 100%
   );
   z-index: 2;
   pointer-events: none;
@@ -170,7 +170,7 @@ body {
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  background-color: #0A0A0A;
+  background-color: #1E3A5F;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
   padding: 14px 0;
@@ -613,7 +613,7 @@ body {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.88);
+  background-color: rgba(10, 25, 45, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 2000;
@@ -632,7 +632,7 @@ body {
 }
 
 .modal-dialog {
-  background-color: #161616;
+  background-color: #1E3A5F;
   border: 1px solid var(--border-medium);
   border-radius: 4px;
   width: 100%;
@@ -642,6 +642,7 @@ body {
   padding: 36px;
   transform: scale(0.94) translateY(20px);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 60px rgba(10, 25, 45, 0.6);
 }
 
 .modal-backdrop.open .modal-dialog {
@@ -651,7 +652,7 @@ body {
 /* Form Input Theming */
 .form-input-dark {
   width: 100%;
-  background-color: #101010;
+  background-color: #162E4D;
   border: 1px solid var(--border-medium);
   border-radius: 2px;
   padding: 12px 16px;
@@ -709,7 +710,7 @@ body {
 .gallery-card:hover {
   transform: translateY(-4px);
   border-color: rgba(255, 199, 0, 0.4);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 12px 30px rgba(10, 25, 45, 0.7);
 }
 
 .gallery-card img {
@@ -725,7 +726,7 @@ body {
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(10, 25, 45, 0.45);
   opacity: 0;
   transition: opacity 0.3s ease;
   display: flex;
@@ -785,7 +786,7 @@ body {
 .lightbox-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(5, 5, 5, 0.95);
+  background-color: rgba(16, 35, 60, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 2100;
@@ -807,7 +808,7 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(13, 13, 13, 0.8);
+  background: rgba(30, 58, 95, 0.85);
 }
 
 .lightbox-content {
@@ -833,7 +834,7 @@ body {
   max-height: 80vh;
   object-fit: contain;
   border-radius: 4px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 20px 60px rgba(10, 25, 45, 0.9);
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -844,7 +845,7 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 4px;
-  background: rgba(20, 20, 20, 0.7);
+  background: rgba(30, 58, 95, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #FFFFFF;
   display: flex;
@@ -865,7 +866,7 @@ body {
 .lightbox-footer {
   padding: 14px 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(13, 13, 13, 0.8);
+  background: rgba(30, 58, 95, 0.85);
   display: flex;
   align-items: center;
   justify-content: space-between;

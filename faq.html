@@ -27,11 +27,11 @@
               hover: "#E5B300",
               dark: "#CCA000",
             },
-            canvas: "#0D0D0D",
+            canvas: "#2A4E7A",
             surface: {
-              DEFAULT: "#141414",
-              secondary: "#1A1A1A",
-              elevated: "#242424",
+              DEFAULT: "#1E3A5F",
+              secondary: "#162E4D",
+              elevated: "#345C8C",
             }
           },
           fontFamily: {
@@ -48,9 +48,9 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Design System Styles -->
-  <link rel="stylesheet" href="css/style.css?v=3.4" />
+  <link rel="stylesheet" href="css/style.css?v=3.5" />
 </head>
-<body class="bg-[#0D0D0D] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
+<body class="bg-[#2A4E7A] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
 
   <!-- =========================================================================
        1. NAVIGATION HEADER (Sticky & Frosted)
@@ -74,7 +74,6 @@
         <!-- Desktop Navigation Links -->
         <nav class="hidden lg:flex items-center space-x-8">
           <a href="index.html#tours" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Tours</a>
-          <a href="skills-clinic.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Skills Clinic</a>
           <a href="gallery.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Gallery</a>
           <a href="faq.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-[#FFC700] border-b-2 border-[#FFC700] pb-0.5">FAQ</a>
           <a href="index.html#reviews" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Reviews</a>
@@ -86,7 +85,7 @@
           <a href="https://wa.me/9779803661496" target="_blank" class="p-2.5 rounded border border-white/20 text-white hover:text-[#FFC700] hover:border-[#FFC700] transition-colors duration-200" title="WhatsApp Us">
             <i data-lucide="message-circle" class="w-5 h-5"></i>
           </a>
-          <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air-ultimate" class="btn-tactical btn-primary">
+          <a href="#booking-modal" data-open-modal class="btn-tactical btn-primary">
             Book Tour
           </a>
         </div>
@@ -103,7 +102,7 @@
   <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1040] opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
   <!-- Mobile Slide-In Drawer -->
-  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#121212] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#1E3A5F] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
     <div>
       <div class="flex items-center justify-between pb-6 border-b border-white/10">
         <div class="flex items-center space-x-3">
@@ -133,7 +132,7 @@
   <!-- =========================================================================
        2. HERO SECTION: TOUR FAQ
        ========================================================================= -->
-  <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-white/10 bg-[#090909]">
+  <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-white/10 bg-[#2A4E7A]">
     <!-- Background Image with Tactical Dark Overlay -->
     <div class="absolute inset-0 z-0 opacity-25">
       <img 
@@ -141,7 +140,7 @@
         alt="Himalayan Mountain Biking Tour" 
         class="w-full h-full object-cover object-center filter grayscale contrast-125" 
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-[#090909]/90 via-[#0D0D0D]/95 to-[#0D0D0D]"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#2A4E7A]/90 via-[#2A4E7A]/95 to-[#2A4E7A]"></div>
     </div>
 
     <!-- Atmospheric Glows -->
@@ -165,7 +164,7 @@
 
       <!-- Key Intel Feature Badges -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto text-left">
-        <div class="p-3.5 sm:p-4 bg-[#141414]/90 border border-white/10 rounded-sm">
+        <div class="p-3.5 sm:p-4 bg-[#1E3A5F]/90 border border-white/10 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] font-heading font-bold text-xs uppercase mb-1">
             <i data-lucide="compass" class="w-4 h-4"></i>
             <span>Riding Style</span>
@@ -173,7 +172,7 @@
           <p class="font-body text-xs text-gray-400">Customized Enduro & Gravity Downhill routes</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 bg-[#141414]/90 border border-white/10 rounded-sm">
+        <div class="p-3.5 sm:p-4 bg-[#1E3A5F]/90 border border-white/10 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] font-heading font-bold text-xs uppercase mb-1">
             <i data-lucide="truck" class="w-4 h-4"></i>
             <span>Shuttle Support</span>
@@ -181,7 +180,7 @@
           <p class="font-body text-xs text-gray-400">4x4 vehicles & horse shuttles where accessible</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 bg-[#141414]/90 border border-white/10 rounded-sm">
+        <div class="p-3.5 sm:p-4 bg-[#1E3A5F]/90 border border-white/10 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] font-heading font-bold text-xs uppercase mb-1">
             <i data-lucide="mountain-snow" class="w-4 h-4"></i>
             <span>Altitude Acclimation</span>
@@ -189,7 +188,7 @@
           <p class="font-body text-xs text-gray-400">Gradual elevation protocols up to 4,200m+</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 bg-[#141414]/90 border border-white/10 rounded-sm">
+        <div class="p-3.5 sm:p-4 bg-[#1E3A5F]/90 border border-white/10 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] font-heading font-bold text-xs uppercase mb-1">
             <i data-lucide="users" class="w-4 h-4"></i>
             <span>Small Groups</span>
@@ -213,16 +212,16 @@
           type="text" 
           id="faq-search-input" 
           placeholder="Search questions (e.g. altitude, shuttles, family, flights, bikes)..." 
-          class="w-full pl-12 pr-4 py-3 bg-[#141414] border border-white/15 focus:border-[#FFC700] rounded-sm text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
+          class="w-full pl-12 pr-4 py-3 bg-[#1E3A5F] border border-white/15 focus:border-[#FFC700] rounded-sm text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
         />
       </div>
 
       <!-- Expand / Collapse All Controls -->
       <div class="flex items-center space-x-2 flex-shrink-0">
-        <button id="faq-expand-all" class="px-3.5 py-2.5 bg-[#1A1A1A] hover:bg-[#222] border border-white/10 hover:border-[#FFC700] rounded text-xs font-heading font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-colors cursor-pointer">
+        <button id="faq-expand-all" class="px-3.5 py-2.5 bg-[#1E3A5F] hover:bg-[#345C8C] border border-white/10 hover:border-[#FFC700] rounded text-xs font-heading font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-colors cursor-pointer">
           Expand All
         </button>
-        <button id="faq-collapse-all" class="px-3.5 py-2.5 bg-[#1A1A1A] hover:bg-[#222] border border-white/10 hover:border-[#FFC700] rounded text-xs font-heading font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-colors cursor-pointer">
+        <button id="faq-collapse-all" class="px-3.5 py-2.5 bg-[#1E3A5F] hover:bg-[#345C8C] border border-white/10 hover:border-[#FFC700] rounded text-xs font-heading font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-colors cursor-pointer">
           Collapse All
         </button>
       </div>
@@ -233,16 +232,16 @@
       <button class="faq-filter-btn px-4 py-2 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="all">
         All Questions (9)
       </button>
-      <button class="faq-filter-btn px-4 py-2 bg-[#141414] text-gray-300 hover:text-white border border-white/10 hover:border-[#FFC700] font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="trails">
+      <button class="faq-filter-btn px-4 py-2 bg-[#1E3A5F] text-gray-300 hover:text-white border border-white/10 hover:border-[#FFC700] font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="trails">
         Riding & Trails
       </button>
-      <button class="faq-filter-btn px-4 py-2 bg-[#141414] text-gray-300 hover:text-white border border-white/10 hover:border-[#FFC700] font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="logistics">
+      <button class="faq-filter-btn px-4 py-2 bg-[#1E3A5F] text-gray-300 hover:text-white border border-white/10 hover:border-[#FFC700] font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="logistics">
         Shuttles & Logistics
       </button>
-      <button class="faq-filter-btn px-4 py-2 bg-[#141414] text-gray-300 hover:text-white border border-white/10 hover:border-[#FFC700] font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="altitude">
+      <button class="faq-filter-btn px-4 py-2 bg-[#1E3A5F] text-gray-300 hover:text-white border border-white/10 hover:border-[#FFC700] font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="altitude">
         Altitude & Safety
       </button>
-      <button class="faq-filter-btn px-4 py-2 bg-[#141414] text-gray-300 hover:text-white border border-white/10 hover:border-[#FFC700] font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="custom">
+      <button class="faq-filter-btn px-4 py-2 bg-[#1E3A5F] text-gray-300 hover:text-white border border-white/10 hover:border-[#FFC700] font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap cursor-pointer" data-category="custom">
         Groups & Flexibility
       </button>
     </div>
@@ -254,7 +253,7 @@
   <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
     
     <!-- No Results Message -->
-    <div id="faq-no-results" class="hidden text-center py-16 px-4 bg-[#141414] border border-white/10 rounded-sm">
+    <div id="faq-no-results" class="hidden text-center py-16 px-4 bg-[#1E3A5F] border border-white/10 rounded-sm">
       <i data-lucide="help-circle" class="w-12 h-12 text-[#FFC700] mx-auto mb-4 opacity-70"></i>
       <h3 class="font-heading text-xl uppercase font-bold text-white mb-2">No Matching Questions Found</h3>
       <p class="font-body text-sm text-gray-400 max-w-md mx-auto mb-6">
@@ -270,7 +269,7 @@
     <div class="space-y-4 accordion-group">
       
       <!-- FAQ 1: Riding Style -->
-      <div class="faq-item accordion-item active bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="trails">
+      <div class="faq-item accordion-item active bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="trails">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">01</span>
@@ -289,7 +288,7 @@
       </div>
 
       <!-- FAQ 2: Shuttle Support -->
-      <div class="faq-item accordion-item bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="logistics">
+      <div class="faq-item accordion-item bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="logistics">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">02</span>
@@ -308,7 +307,7 @@
       </div>
 
       <!-- FAQ 3: Place to Place / Luggage -->
-      <div class="faq-item accordion-item bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="logistics">
+      <div class="faq-item accordion-item bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="logistics">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">03</span>
@@ -327,7 +326,7 @@
       </div>
 
       <!-- FAQ 4: XC vs Enduro -->
-      <div class="faq-item accordion-item bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="trails">
+      <div class="faq-item accordion-item bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="trails">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">04</span>
@@ -346,7 +345,7 @@
       </div>
 
       <!-- FAQ 5: Group Size -->
-      <div class="faq-item accordion-item bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="custom">
+      <div class="faq-item accordion-item bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="custom">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">05</span>
@@ -365,7 +364,7 @@
       </div>
 
       <!-- FAQ 6: Altitude -->
-      <div class="faq-item accordion-item bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="altitude">
+      <div class="faq-item accordion-item bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="altitude">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">06</span>
@@ -387,7 +386,7 @@
       </div>
 
       <!-- FAQ 7: Family Members -->
-      <div class="faq-item accordion-item bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="custom">
+      <div class="faq-item accordion-item bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="custom">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">07</span>
@@ -409,7 +408,7 @@
       </div>
 
       <!-- FAQ 8: Flexibility During Trip -->
-      <div class="faq-item accordion-item bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="custom">
+      <div class="faq-item accordion-item bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="custom">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">08</span>
@@ -431,7 +430,7 @@
       </div>
 
       <!-- FAQ 9: Flights & Motorbike Options -->
-      <div class="faq-item accordion-item bg-[#141414] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="logistics">
+      <div class="faq-item accordion-item bg-[#1E3A5F] border border-white/10 hover:border-white/20 transition-all rounded-sm" data-category="logistics">
         <button class="accordion-trigger w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading text-base sm:text-lg md:text-xl uppercase font-bold text-white hover:text-[#FFC700] transition-colors">
           <div class="flex items-start sm:items-center gap-3">
             <span class="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded bg-[#FFC700]/10 text-[#FFC700] text-xs font-mono font-bold border border-[#FFC700]/30 mt-0.5 sm:mt-0">09</span>
@@ -487,7 +486,7 @@
   <!-- =========================================================================
        6. TACTICAL FOOTER
        ========================================================================= -->
-  <footer class="bg-[#080808] border-t border-white/10 pt-10 sm:pt-12 pb-8 sm:pb-10 text-gray-400">
+  <footer class="bg-[#162E4D] border-t border-white/10 pt-10 sm:pt-12 pb-8 sm:pb-10 text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col items-center text-center max-w-md mx-auto mb-8">
         <div class="flex items-center space-x-3 mb-3">
@@ -495,7 +494,7 @@
           <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
         </div>
         <p class="font-body text-xs text-gray-400 leading-relaxed">
-          Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours, E-MTB tours, and skills clinics.
+          Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours and E-MTB tours.
         </p>
       </div>
 
@@ -529,7 +528,6 @@
             <option value="everest-express">Everest Express (Khumbu & Phaplu, 10 Days)</option>
             <option value="moto-mustang">Himalayan Moto Holidays “Hello Moto” (Dual-Sport Enduro, 11 Days)</option>
             <option value="himalayan-enduro">The Himalayan Enduro Race</option>
-            <option value="g-mtb-skills">G MTB Skills Coaching (Kathmandu & Trail Centers)</option>
           </select>
         </div>
 
@@ -568,11 +566,11 @@
         <div>
           <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
           <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
-            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
               <input type="radio" name="bike-type" value="rental" checked class="accent-[#FFC700]" />
               <span>Rent Enduro / E-MTB Rig</span>
             </label>
-            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
               <input type="radio" name="bike-type" value="byob" class="accent-[#FFC700]" />
               <span>Bringing My Own Bike</span>
             </label>

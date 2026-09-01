@@ -23,16 +23,16 @@ A high-performance, dark-first visual identity and design system engineered for 
 | :--- | :--- | :--- |
 | `--brand-primary` | `#FFC700` | Primary CTA buttons, active states, highlights, ticker text, key badges, breadcrumb active links. |
 | `--brand-primary-hover` | `#E5B300` / `#FFFFFF` | Button hover shifts, accented borders, active glow. |
-| `--bg-canvas` | `#0D0D0D` / `#000000` | Global background canvas, footer background, fullscreen overlays. |
-| `--bg-surface-primary` | `#141414` / `#161616` | Main section background, large content panels. |
-| `--bg-surface-secondary` | `#1A1A1A` / `#1F1F1F` | Cards, modal dialogs, secondary container blocks. |
-| `--bg-surface-elevated` | `#262626` | Card hover elevation, dropdown menus, subtle pills. |
-| `--bg-frosted-nav` | `rgba(0, 0, 0, 0.15)` | Sticky header backdrop with `backdrop-filter: blur(10px)`. |
-| `--border-subtle` | `rgba(255, 255, 255, 0.08)` | Card borders, table dividers, structural hairline rules. |
-| `--border-strong` | `rgba(255, 255, 255, 0.20)` | Button borders (ghost mode), active outlines. |
+| `--bg-canvas` | `#2A4E7A` | Global background canvas, hero background, section backdrops. |
+| `--bg-surface-primary` | `#1E3A5F` | Main section backgrounds, cards, modal dialogs, large content panels. |
+| `--bg-surface-secondary` | `#162E4D` | Form inputs, footers, secondary container blocks. |
+| `--bg-surface-elevated` | `#345C8C` | Card hover elevation, scrollbar thumbs, subtle pills. |
+| `--bg-frosted-nav` | `rgba(42, 78, 122, 0.85)` | Sticky header backdrop with `backdrop-filter: blur(10px)`. |
+| `--border-subtle` | `rgba(255, 255, 255, 0.12)` | Card borders, table dividers, structural hairline rules. |
+| `--border-strong` | `rgba(255, 255, 255, 0.25)` | Button borders (ghost mode), active outlines. |
 | `--text-primary` | `#FFFFFF` | Primary headlines, hero text, active button labels. |
-| `--text-secondary` | `#D1D5DB` (`#E5E7EB`) | Subheadings, body copy, itinerary descriptions. |
-| `--text-muted` | `#9CA3AF` / `#6B7280` | Metadata labels, specs, duration tags, fine print. |
+| `--text-secondary` | `#E2E8F0` / `#D1D5DB` | Subheadings, body copy, itinerary descriptions. |
+| `--text-muted` | `#94A3B8` / `#CBD5E1` | Metadata labels, specs, duration tags, fine print. |
 | `--text-accent` | `#FFC700` | Accented keywords, ratings, prices, category tags. |
 | `--state-disabled` | `rgba(255, 255, 255, 0.40)` | "Sold Out" state, disabled triggers. |
 

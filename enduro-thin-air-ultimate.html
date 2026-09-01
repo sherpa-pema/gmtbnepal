@@ -27,11 +27,11 @@
               hover: "#E5B300",
               dark: "#CCA000",
             },
-            canvas: "#0D0D0D",
+            canvas: "#2A4E7A",
             surface: {
-              DEFAULT: "#141414",
-              secondary: "#1A1A1A",
-              elevated: "#242424",
+              DEFAULT: "#1E3A5F",
+              secondary: "#162E4D",
+              elevated: "#345C8C",
             }
           },
           fontFamily: {
@@ -50,7 +50,7 @@
   <!-- Custom Design System Styles -->
   <link rel="stylesheet" href="css/style.css?v=3.5" />
 </head>
-<body class="bg-[#0D0D0D] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
+<body class="bg-[#2A4E7A] text-gray-200 antialiased selection:bg-[#FFC700] selection:text-black">
 
   <!-- =========================================================================
        1. NAVIGATION HEADER (Sticky & Frosted)
@@ -74,7 +74,6 @@
         <!-- Desktop Navigation Links -->
         <nav class="hidden lg:flex items-center space-x-8">
           <a href="index.html#tours" class="font-heading text-sm font-semibold uppercase tracking-widest text-[#FFC700] border-b-2 border-[#FFC700] pb-0.5">Tours</a>
-          <a href="skills-clinic.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Skills Clinic</a>
           <a href="gallery.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Gallery</a>
           <a href="faq.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">FAQ</a>
           <a href="index.html#reviews" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#FFC700] transition-colors duration-200">Reviews</a>
@@ -103,7 +102,7 @@
   <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1040] opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
   <!-- Mobile Slide-In Drawer -->
-  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#121212] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#1E3A5F] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
     <div>
       <div class="flex items-center justify-between pb-6 border-b border-white/10">
         <div class="flex items-center space-x-3">
@@ -115,7 +114,7 @@
         </button>
       </div>
       <nav class="mt-8 flex flex-col space-y-5">
-        <a href="index.html#tours" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Tours</a>
+        <a href="index.html#tours" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-[#FFC700] font-bold">Tours</a>
         <a href="gallery.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Tour Gallery</a>
         <a href="index.html#events" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">Events</a>
         <a href="index.html#crew" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#FFC700]">The Crew</a>
@@ -125,23 +124,23 @@
       </nav>
     </div>
     <div class="pt-6 border-t border-white/10 flex flex-col space-y-3">
-      <a href="#booking-modal" data-open-modal data-tour="enduro-thin-air-ultimate" class="btn-tactical btn-primary w-full text-center">Book Tour</a>
+      <a href="#booking-modal" data-open-modal class="btn-tactical btn-primary w-full text-center">Book Tour</a>
       <a href="tel:+9779803661496" class="btn-tactical btn-outline w-full text-center">+977 980 366 1496</a>
     </div>
   </div>
 
   <!-- =========================================================================
-       2. HERO SECTION: ENDURO THIN AIR “ULTIMATE”
+       2. HERO / TOUR OVERVIEW (Upper & Lower Mustang 12 Days)
        ========================================================================= -->
-  <section class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden border-b border-white/10 bg-[#090909]">
-    <!-- Background Image with Tactical Dark Vignette -->
+  <section class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden border-b border-white/10 bg-[#2A4E7A]">
+    <!-- Hero Background Image & Gradient -->
     <div class="absolute inset-0 z-0">
       <img 
-        src="https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=2000&q=80" 
-        alt="Mustang Valley High Altitude Singletrack" 
-        class="w-full h-full object-cover opacity-35 filter contrast-125 saturate-110" 
+        src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=80" 
+        alt="Upper Mustang Singletrack Himalayas" 
+        class="w-full h-full object-cover opacity-35 filter contrast-125"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/75 to-[#0D0D0D]/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#2A4E7A] via-[#2A4E7A]/75 to-[#2A4E7A]/40"></div>
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -177,7 +176,7 @@
 
       <!-- Tactical Quick-Specs Bar -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 pt-8 border-t border-white/10">
-        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+        <div class="bg-[#1E3A5F] border border-white/10 p-4 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
             <i data-lucide="clock" class="w-4 h-4"></i>
             <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Duration</span>
@@ -186,7 +185,7 @@
           <div class="text-[11px] text-gray-400 font-body">11 Nights / 12 Days</div>
         </div>
 
-        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+        <div class="bg-[#1E3A5F] border border-white/10 p-4 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
             <i data-lucide="sun" class="w-4 h-4"></i>
             <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Season</span>
@@ -195,7 +194,7 @@
           <div class="text-[11px] text-gray-400 font-body">Mar-May & Oct-Nov</div>
         </div>
 
-        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+        <div class="bg-[#1E3A5F] border border-white/10 p-4 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
             <i data-lucide="gauge" class="w-4 h-4"></i>
             <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Skill / Fitness</span>
@@ -204,7 +203,7 @@
           <div class="text-[11px] text-gray-400 font-body">Confident on Singletrack</div>
         </div>
 
-        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+        <div class="bg-[#1E3A5F] border border-white/10 p-4 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
             <i data-lucide="bike" class="w-4 h-4"></i>
             <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Riding Style</span>
@@ -213,7 +212,7 @@
           <div class="text-[11px] text-gray-400 font-body">Shuttle Support Avail.</div>
         </div>
 
-        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+        <div class="bg-[#1E3A5F] border border-white/10 p-4 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
             <i data-lucide="users" class="w-4 h-4"></i>
             <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Group Size</span>
@@ -222,7 +221,7 @@
           <div class="text-[11px] text-gray-400 font-body">Small Group Focus</div>
         </div>
 
-        <div class="bg-[#141414] border border-white/10 p-4 rounded-sm">
+        <div class="bg-[#1E3A5F] border border-white/10 p-4 rounded-sm">
           <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
             <i data-lucide="mountain" class="w-4 h-4"></i>
             <span class="font-heading text-xs uppercase tracking-wider text-gray-400">Peak Elevation</span>
@@ -238,7 +237,7 @@
   <!-- =========================================================================
        3. TRIP ITINERARY (DAYS 01 TO 12 DETAILED ACCORDION & TIMELINE)
        ========================================================================= -->
-  <section id="itinerary" class="py-16 md:py-24 bg-[#090909] border-b border-white/10">
+  <section id="itinerary" class="py-16 md:py-24 bg-[#2A4E7A] border-b border-white/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
@@ -256,7 +255,7 @@
       <div class="space-y-4">
 
         <!-- DAY 01 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -285,7 +284,7 @@
         </div>
 
         <!-- DAY 02 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -314,7 +313,7 @@
         </div>
 
         <!-- DAY 03 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -343,7 +342,7 @@
         </div>
 
         <!-- DAY 04 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -372,7 +371,7 @@
         </div>
 
         <!-- DAY 05 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -401,7 +400,7 @@
         </div>
 
         <!-- DAY 06 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -430,7 +429,7 @@
         </div>
 
         <!-- DAY 07 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -459,7 +458,7 @@
         </div>
 
         <!-- DAY 08 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -488,7 +487,7 @@
         </div>
 
         <!-- DAY 09 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -517,7 +516,7 @@
         </div>
 
         <!-- DAY 10 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -546,7 +545,7 @@
         </div>
 
         <!-- DAY 11 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -575,7 +574,7 @@
         </div>
 
         <!-- DAY 12 -->
-        <div class="accordion-item bg-[#121212] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
+        <div class="accordion-item bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-6 transition-all duration-200">
           <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none group">
             <div class="flex items-start sm:items-center space-x-4">
               <span class="px-3 py-1.5 bg-[#FFC700] text-black font-heading text-xs font-bold uppercase tracking-wider rounded-sm shrink-0">
@@ -611,7 +610,7 @@
   <!-- =========================================================================
        5. TOUR DEPARTURES & LIVE AVAILABILITY
        ========================================================================= -->
-  <section id="departures" class="py-16 md:py-24 bg-[#0D0D0D] border-b border-white/10">
+  <section id="departures" class="py-16 md:py-24 bg-[#2A4E7A] border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="mb-10">
@@ -625,7 +624,7 @@
       </div>
 
       <!-- Tactical Departure Table -->
-      <div class="schedule-table-wrap bg-[#141414] border border-white/10 rounded-sm p-4 sm:p-8">
+      <div class="schedule-table-wrap bg-[#1E3A5F] border border-white/10 rounded-sm p-4 sm:p-8">
         
         <!-- Table Header (Desktop) -->
         <div class="schedule-header-row hidden lg:grid grid-cols-12 gap-4 pb-4 border-b border-white/10 font-heading text-xs uppercase tracking-widest text-[#FFC700]">
@@ -760,7 +759,7 @@
       </div>
 
       <!-- Custom Group & Private Booking Banner -->
-      <div class="mt-8 p-6 sm:p-8 bg-[#141414] border border-[#FFC700]/30 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div class="mt-8 p-6 sm:p-8 bg-[#1E3A5F] border border-[#FFC700]/30 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div>
           <div class="flex items-center space-x-2 text-[#FFC700] mb-1">
             <i data-lucide="users" class="w-5 h-5"></i>
@@ -781,11 +780,11 @@
   <!-- =========================================================================
        5. TOUR INCLUSIONS
        ========================================================================= -->
-  <section class="py-16 md:py-24 bg-[#090909] border-b border-white/10">
+  <section class="py-16 md:py-24 bg-[#2A4E7A] border-b border-white/10">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- What's Included Card -->
-      <div class="bg-[#121212] border border-white/10 p-6 sm:p-8 rounded-sm space-y-6">
+      <div class="bg-[#1E3A5F] border border-white/10 p-6 sm:p-8 rounded-sm space-y-6">
         <div class="flex items-center space-x-3 text-[#FFC700]">
           <i data-lucide="package-check" class="w-6 h-6"></i>
           <h3 class="font-display text-2xl sm:text-3xl text-white uppercase">WHAT’S INCLUDED</h3>
@@ -794,27 +793,35 @@
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-body text-gray-300">
           <li class="flex items-start space-x-3">
             <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
-            <span><strong>Domestic Flights</strong>: Return flights Kathmandu – Pokhara – Kathmandu including bike baggage allocation.</span>
+            <span>All Government Permits land transport during the trip including baggage and bike transfer.</span>
           </li>
           <li class="flex items-start space-x-3">
             <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
-            <span><strong>4x4 Shuttle & Support Fleet</strong>: Shuttle transfers where accessible throughout the tour for riders and luggage.</span>
+            <span>Domestic flights (KTM- PKR, PKR- KTM) *KTM=Kathmandu, PKR=POKHARA</span>
           </li>
           <li class="flex items-start space-x-3">
             <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
-            <span><strong>Permits & Special Access</strong>: Annapurna Conservation Area Project (ACAP), TIMS card, and Upper Mustang Special Restricted Area Permits.</span>
+            <span>Airport pick up and drop off</span>
           </li>
           <li class="flex items-start space-x-3">
             <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
-            <span><strong>Expert Guided Leadership</strong>: PMBIA-certified Nepali lead guides, sweep guides, and trail mechanics with first aid and oxygen.</span>
+            <span>4x4 Toyota Hilux (for Shuttle service + back up vehicle)</span>
           </li>
           <li class="flex items-start space-x-3">
             <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
-            <span><strong>Accommodations</strong>: Premium boutique hotels in Kathmandu and Pokhara, plus comfortable, authentic Himalayan lodges throughout Mustang.</span>
+            <span>All meals during biking days in Mustang (Breakfast, Lunch, Dinner) as per itinerary</span>
           </li>
           <li class="flex items-start space-x-3">
             <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
-            <span><strong>Celebratory Dinners</strong>: Traditional welcome dinner in Thamel and farewell victory feast with the full team.</span>
+            <span>Accommodation (clean and comfortable hotels and tea house lodges)</span>
+          </li>
+          <li class="flex items-start space-x-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
+            <span>3-star standard hotels on BB Plan in Kathmandu and Pokhara</span>
+          </li>
+          <li class="flex items-start space-x-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#FFC700] shrink-0 mt-1"></i>
+            <span>English speaking local MTB guides and dedicated support team</span>
           </li>
         </ul>
       </div>
@@ -825,7 +832,7 @@
   <!-- =========================================================================
        6. PHOTO GALLERY TEASER (MUSTANG TRAIL MOMENTS)
        ========================================================================= -->
-  <section class="py-16 bg-[#0D0D0D] border-b border-white/10">
+  <section class="py-16 bg-[#2A4E7A] border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex items-center justify-between mb-8">
@@ -868,9 +875,7 @@
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
           />
         </div>
-      </div>
-
-      <div class="mt-6 text-center sm:hidden">
+            <div class="mt-6 text-center sm:hidden">
         <a href="gallery.html" class="inline-flex items-center space-x-2 text-xs font-heading uppercase tracking-widest text-[#FFC700]">
           <span>View Full Photo Gallery</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -881,9 +886,9 @@
   </section>
 
   <!-- =========================================================================
-       7. TACTICAL FOOTER
+       7. SITE FOOTER
        ========================================================================= -->
-  <footer class="bg-[#080808] border-t border-white/10 pt-10 sm:pt-12 pb-8 sm:pb-10 text-gray-400">
+  <footer class="bg-[#162E4D] border-t border-white/10 pt-10 sm:pt-12 pb-8 sm:pb-10 text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col items-center text-center max-w-md mx-auto mb-8">
         <div class="flex items-center space-x-3 mb-3">
@@ -891,7 +896,7 @@
           <span class="font-display text-2xl text-white">GNARLY <span class="text-[#FFC700]">MTB</span></span>
         </div>
         <p class="font-body text-xs text-gray-400 leading-relaxed">
-          Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours, E-MTB tours, and skills clinics.
+          Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours and E-MTB tours.
         </p>
       </div>
 
@@ -903,14 +908,14 @@
   </footer>
 
   <!-- =========================================================================
-       8. INTERACTIVE BOOKING MODAL DIALOG
+       8. BOOKING MODAL DIALOG (WITH TOUR PRE-SELECTED)
        ========================================================================= -->
   <div id="booking-modal" class="modal-backdrop">
     <div class="modal-dialog">
       <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
         <div>
           <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#FFC700]">TOUR RESERVATION</span>
-          <h3 class="font-display text-3xl text-white uppercase">BOOK ENDURO THIN AIR</h3>
+          <h3 class="font-display text-3xl text-white uppercase">RESERVE YOUR SPOT</h3>
         </div>
         <button id="modal-close-btn" class="p-2 text-gray-400 hover:text-white" aria-label="Close modal">
           <i data-lucide="x" class="w-6 h-6"></i>
@@ -919,59 +924,57 @@
 
       <form id="booking-form" class="space-y-4">
         <div>
-          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Selected Tour</label>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Select Tour / Program</label>
           <select id="modal-tour-select" class="form-input-dark">
             <option value="enduro-thin-air-ultimate" selected>Enduro Thin Air : Ultimate (Upper & Lower Mustang, 12 Days)</option>
             <option value="everest-express">Everest Express (Khumbu & Phaplu, 10 Days)</option>
-            <option value="mustang-e-motion">Mustang E-Motion (E-MTB, 12 Days)</option>
             <option value="moto-mustang">Himalayan Moto Holidays “Hello Moto” (Dual-Sport Enduro, 11 Days)</option>
             <option value="himalayan-enduro">The Himalayan Enduro Race</option>
-            <option value="g-mtb-skills">G MTB Skills Coaching Academy</option>
           </select>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Preferred Departure Date</label>
-            <input type="text" id="modal-date-input" placeholder="e.g. 08-19 October 2026 or April 20-01 May 2027" class="form-input-dark" />
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Preferred Date</label>
+            <input type="text" id="modal-date-input" placeholder="e.g. 12 Apr 2026 or Flexible" class="form-input-dark" />
           </div>
           <div>
             <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Number of Riders</label>
             <select id="form-riders" class="form-input-dark">
               <option value="1">1 Rider (Solo)</option>
               <option value="2">2 Riders</option>
-              <option value="3-4">3 - 4 Riders</option>
-              <option value="5-8">5 - 8 Riders (Full Private Group)</option>
+              <option value="3-5">3 - 5 Riders (Small Group)</option>
+              <option value="6+">6+ Riders (Custom Private Tour)</option>
             </select>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Your Full Name</label>
-            <input type="text" id="form-name" required placeholder="e.g. Marcus Vance" class="form-input-dark" />
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Your Name</label>
+            <input type="text" id="form-name" required placeholder="e.g. Sarah Jenkins" class="form-input-dark" />
           </div>
           <div>
             <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Email Address</label>
-            <input type="email" id="form-email" required placeholder="marcus@example.com" class="form-input-dark" />
+            <input type="email" id="form-email" required placeholder="sarah@example.com" class="form-input-dark" />
           </div>
         </div>
 
         <div>
-          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">WhatsApp Number (with Country Code)</label>
-          <input type="tel" id="form-phone" required placeholder="e.g. +1 555 019 2831" class="form-input-dark" />
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">WhatsApp Number</label>
+          <input type="tel" id="form-phone" required placeholder="e.g. +1 555 123 4567 (with country code)" class="form-input-dark" />
         </div>
 
         <div>
           <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
           <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
-            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
-              <input type="radio" name="bike-type" value="byob" checked class="accent-[#FFC700]" />
-              <span>Bringing My Own Bike</span>
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+              <input type="radio" name="bike-type" value="rental" checked class="accent-[#FFC700]" />
+              <span>Rent Enduro / E-MTB Rig</span>
             </label>
-            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
-              <input type="radio" name="bike-type" value="rental" class="accent-[#FFC700]" />
-              <span>Rent Enduro Rig</span>
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#FFC700]">
+              <input type="radio" name="bike-type" value="byob" class="accent-[#FFC700]" />
+              <span>Bringing My Own Bike</span>
             </label>
           </div>
         </div>
