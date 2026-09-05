@@ -232,8 +232,8 @@ function initTourSlideshows() {
       dots.forEach((dot, i) => {
         if (i === 0) {
           dot.classList.add("active");
-          dot.style.backgroundColor = "#FFC700";
-          dot.style.borderColor = "#FFC700";
+          dot.style.backgroundColor = "#F5EFEB";
+          dot.style.borderColor = "#F5EFEB";
           dot.style.transform = "scale(1.25)";
         } else {
           dot.classList.remove("active");
@@ -267,8 +267,8 @@ function initTourSlideshows() {
       currentSlide.style.zIndex = "2";
       if (dots[currentIndex]) {
         dots[currentIndex].classList.add("active");
-        dots[currentIndex].style.backgroundColor = "#FFC700";
-        dots[currentIndex].style.borderColor = "#FFC700";
+        dots[currentIndex].style.backgroundColor = "#F5EFEB";
+        dots[currentIndex].style.borderColor = "#F5EFEB";
         dots[currentIndex].style.transform = "scale(1.25)";
       }
     };
@@ -573,10 +573,10 @@ function initCrewCarousel() {
     currentIndex = index;
     dots.forEach((dot, idx) => {
       if (idx === currentIndex) {
-        dot.classList.add("bg-[#FFC700]", "w-8");
+        dot.classList.add("bg-[#F5EFEB]", "w-8");
         dot.classList.remove("bg-white/40", "w-2.5");
       } else {
-        dot.classList.remove("bg-[#FFC700]", "w-8");
+        dot.classList.remove("bg-[#F5EFEB]", "w-8");
         dot.classList.add("bg-white/40", "w-2.5");
       }
     });
@@ -698,10 +698,10 @@ function initScheduleFilters() {
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       filterBtns.forEach((b) => {
-        b.classList.remove("bg-[#FFC700]", "text-black");
+        b.classList.remove("bg-[#F5EFEB]", "text-black");
         b.classList.add("text-white/70");
       });
-      btn.classList.add("bg-[#FFC700]", "text-black");
+      btn.classList.add("bg-[#F5EFEB]", "text-black");
       btn.classList.remove("text-white/70");
 
       const filter = btn.getAttribute("data-filter");
@@ -724,7 +724,7 @@ function initScrollChevron() {
   if (!chevron) return;
 
   chevron.addEventListener("click", () => {
-    const target = document.getElementById("tours-section") || document.getElementById("marquee-banner");
+    const target = document.getElementById("tours") || document.getElementById("tours-section") || document.getElementById("reviews");
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -804,10 +804,10 @@ function initFaqFeatures() {
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       filterBtns.forEach((b) => {
-        b.classList.remove("bg-[#FFC700]", "text-black");
+        b.classList.remove("bg-[#F5EFEB]", "text-black");
         b.classList.add("bg-[#1E3A5F]", "text-gray-300");
       });
-      btn.classList.add("bg-[#FFC700]", "text-black");
+      btn.classList.add("bg-[#F5EFEB]", "text-black");
       btn.classList.remove("bg-[#1E3A5F]", "text-gray-300");
 
       currentCategory = btn.getAttribute("data-category") || "all";

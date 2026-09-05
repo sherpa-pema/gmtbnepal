@@ -6,15 +6,15 @@ A dark-first, high-performance web application built with the custom tour design
 
 ## Features & Highlights
 
-* **Dark-First High-Octane Aesthetic**: Deep obsidian canvas (`#0D0D0D` / `#000000`), electric golden amber accents (`#FFC700`), and tactical hairline dividers.
+* **High-Octane Aesthetic**: Alpine blue canvas (`#2A4E7A` / `#1E3A5F`), warm beige/ivory accents (`#F5EFEB`), and tactical hairline dividers.
 * **Typography Hierarchy**: **Anton** display titles, **Oswald** tracked uppercase headers, and **Roboto** body copy.
 * **Fullscreen Hero Section**: High-resolution video background, animated bouncing scroll indicator, and frosted sticky header navigation.
-* **Continuous Running Ticker**: Infinite marquee looping in `#FFC700` uppercase.
+* **Continuous Running Ticker**: Infinite marquee looping in `#F5EFEB` uppercase.
 * **Video-on-Hover Tour Cards**: Interactive cards for *Enduro Thin Air*, *Everest Express*, *Enduro Thin Air : Ultimate*, *Mustang E-Motion*, and *Himalayan Moto Holidays “Hello Moto”*.
 * **The Himalayan Enduro**: Feature showcase for race registration and event information.
 * **Responsive Departure Table**: 4-column desktop layout that collapses to 2 columns on tablet and 1 column on mobile with *Book Now* and *Sold Out* states.
-* **Interactive Booking Modal**: `#161616` dark dialog with WhatsApp direct integration.
-* **Testimonials Slider**: 5-star gold ratings with dot navigation.
+* **Interactive Booking Modal**: `#162E4D` dark dialog with WhatsApp direct integration.
+* **Testimonials Slider**: 5-star ratings with dot navigation.
 
 ---
 

@@ -1,14 +1,14 @@
 /* ==========================================================================
    GNARLY MTB NEPAL - High-Octane Tour Design System
-   Visual Identity: Dark Obsidian Canvas + Electric Amber (#FFC700)
+   Visual Identity: Blue Canvas + Warm Beige Accent (#F5EFEB)
    ========================================================================== */
 
 :root {
   /* Brand Color Tokens */
-  --brand: #FFC700;
-  --brand-hover: #E5B300;
-  --brand-dark: #CCA000;
-  --brand-glow: rgba(255, 199, 0, 0.25);
+  --brand: #F5EFEB;
+  --brand-hover: #E8DFD8;
+  --brand-dark: #D8CEC4;
+  --brand-glow: rgba(245, 239, 235, 0.25);
 
   /* Background Palette */
   --bg-canvas: #2A4E7A;
@@ -21,13 +21,13 @@
   --border-subtle: rgba(255, 255, 255, 0.12);
   --border-medium: rgba(255, 255, 255, 0.20);
   --border-strong: rgba(255, 255, 255, 0.35);
-  --border-brand: #FFC700;
+  --border-brand: #F5EFEB;
 
   /* Typography Colors */
   --text-primary: #FFFFFF;
   --text-secondary: #D1D5DB;
   --text-muted: #9CA3AF;
-  --text-accent: #FFC700;
+  --text-accent: #F5EFEB;
 
   /* Fonts */
   --font-display: "Anton", -apple-system, BlinkMacSystemFont, "Impact", sans-serif;
@@ -348,8 +348,8 @@ body {
 
 .slideshow-indicators .indicator-dot.active {
   width: 8px !important;
-  background-color: #FFC700 !important;
-  box-shadow: 0 0 8px rgba(255, 199, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.8) !important;
+  background-color: #F5EFEB !important;
+  box-shadow: 0 0 8px rgba(245, 239, 235, 0.9), 0 1px 4px rgba(0, 0, 0, 0.8) !important;
   transform: scale(1.25);
 }
 
@@ -573,8 +573,8 @@ body {
 }
 
 .crew-card:hover {
-  border-color: rgba(255, 199, 0, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 199, 0, 0.06);
+  border-color: rgba(245, 239, 235, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 239, 235, 0.06);
 }
 
 .crew-nav-btn {
@@ -709,7 +709,7 @@ body {
 }
 .gallery-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 199, 0, 0.4);
+  border-color: rgba(245, 239, 235, 0.4);
   box-shadow: 0 12px 30px rgba(10, 25, 45, 0.7);
 }
 
@@ -767,7 +767,7 @@ body {
   background-color: var(--brand);
   border-color: var(--brand);
   color: #000000;
-  box-shadow: 0 0 15px rgba(255, 199, 0, 0.3);
+  box-shadow: 0 0 15px rgba(245, 239, 235, 0.3);
 }
 .gallery-filter-btn .count-badge {
   font-family: var(--font-mono);

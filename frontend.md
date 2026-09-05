@@ -8,7 +8,7 @@ A high-performance, dark-first visual identity and design system engineered for 
 
 ### 1.1 Aesthetic Identity: *"Rugged Editorial & High-Octane Cinematic"*
 * **Dark-First Canvas**: Deep, obsidian-black and dark charcoal tones establish an immersive, cinema-grade atmosphere that makes high-resolution photography and video pop.
-* **High-Voltage Accent**: A single electric golden amber (`#FFC700`) acts as the high-visibility focal accent—reminiscent of tour gear, caution trail markings, and tactical instruments.
+* **High-Voltage Accent**: A single warm beige/ivory (`#F5EFEB`) acts as the high-visibility focal accent—reminiscent of tour gear, caution trail markings, and tactical instruments.
 * **Industrial Condensed Typography**: High-impact, tall headline typefaces paired with tracked uppercase subheadings deliver an editorial, tour-poster energy.
 * **Atmospheric Motion & Layering**: Subtle viewport scale-ups, continuous horizontal ticker marquees, parallax background shifts, and video-on-hover card interactions bring life without sacrificing performance.
 * **Tactical Hairline Borders**: Subtle low-opacity borders (`rgba(255, 255, 255, 0.08)`) and frosted glass surfaces (`backdrop-filter: blur(1px)` to `blur(12px)`) provide structure and depth without visual clutter.
@@ -21,8 +21,8 @@ A high-performance, dark-first visual identity and design system engineered for 
 
 | Token Name | Value | Usage / Semantic Role |
 | :--- | :--- | :--- |
-| `--brand-primary` | `#FFC700` | Primary CTA buttons, active states, highlights, ticker text, key badges, breadcrumb active links. |
-| `--brand-primary-hover` | `#E5B300` / `#FFFFFF` | Button hover shifts, accented borders, active glow. |
+| `--brand-primary` | `#F5EFEB` | Primary CTA buttons, active states, highlights, ticker text, key badges, breadcrumb active links. |
+| `--brand-primary-hover` | `#E8DFD8` / `#FFFFFF` | Button hover shifts, accented borders, active glow. |
 | `--bg-canvas` | `#2A4E7A` | Global background canvas, hero background, section backdrops. |
 | `--bg-surface-primary` | `#1E3A5F` | Main section backgrounds, cards, modal dialogs, large content panels. |
 | `--bg-surface-secondary` | `#162E4D` | Form inputs, footers, secondary container blocks. |
@@ -33,12 +33,12 @@ A high-performance, dark-first visual identity and design system engineered for 
 | `--text-primary` | `#FFFFFF` | Primary headlines, hero text, active button labels. |
 | `--text-secondary` | `#E2E8F0` / `#D1D5DB` | Subheadings, body copy, itinerary descriptions. |
 | `--text-muted` | `#94A3B8` / `#CBD5E1` | Metadata labels, specs, duration tags, fine print. |
-| `--text-accent` | `#FFC700` | Accented keywords, ratings, prices, category tags. |
+| `--text-accent` | `#F5EFEB` | Accented keywords, ratings, prices, category tags. |
 | `--state-disabled` | `rgba(255, 255, 255, 0.40)` | "Sold Out" state, disabled triggers. |
 
 ### 2.2 Color Utility Rules
 * **Never use pure white backgrounds** for containers; contrast must always be light-on-dark.
-* **Accent Discipline**: Use `#FFC700` deliberately for high-priority actions, active navigation states, and micro-tags. Do not overuse on long body paragraphs.
+* **Accent Discipline**: Use `#F5EFEB` deliberately for high-priority actions, active navigation states, and micro-tags. Do not overuse on long body paragraphs.
 * **Dividers**: Prefer `1px solid rgba(255, 255, 255, 0.08)` over solid gray lines.
 
 ---
@@ -128,7 +128,7 @@ All major sections and card grids execute scrollspy entrance animations when ent
   * Video activates and plays smoothly beneath a dark vignette gradient (`rgba(0,0,0,0.3)` to `rgba(0,0,0,0.85)`).
 
 ### 5.4 Continuous Infinite Marquee Ticker
-* A continuous banner marquee with yellow accent text:
+* A continuous banner marquee with warm beige accent text:
   ```css
   @keyframes marqueeAnimation {
     0% { transform: translateX(0); }
@@ -175,7 +175,7 @@ All major sections and card grids execute scrollspy entrance animations when ent
   ```
 * **Nav Links**: Uppercase Oswald (`14px`, tracking `2px`, bold).
   * Inactive: `#FFFFFF` with `opacity: 0.85`.
-  * Hover / Active: `#FFC700` with instant color shift.
+  * Hover / Active: `#F5EFEB` with instant color shift.
 * **Action CTAs**: Ghost white outline button (`1px solid #FFFFFF`), transitioning to solid white with black text on hover.
 
 ---
@@ -235,14 +235,14 @@ The centerpiece component used to display trips, tours, and experiences.
 
 /* 1. Primary Accent Button */
 .btn-primary {
-  background-color: #FFC700;
+  background-color: #F5EFEB;
   color: #000000;
-  border: 1px solid #FFC700;
+  border: 1px solid #F5EFEB;
 }
 .btn-primary:hover {
   background-color: #000000;
-  color: #FFC700;
-  border-color: #FFC700;
+  color: #F5EFEB;
+  border-color: #F5EFEB;
 }
 
 /* 2. Secondary / Ghost Outline Button */
@@ -264,9 +264,9 @@ The centerpiece component used to display trips, tours, and experiences.
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 .btn-secondary:hover {
-  background-color: #FFC700;
+  background-color: #F5EFEB;
   color: #000000;
-  border-color: #FFC700;
+  border-color: #F5EFEB;
 }
 
 /* 4. Disabled / Sold Out State */
@@ -301,7 +301,7 @@ A high-conversion schedule table designed to format trip dates cleanly across al
 * **Column 2**: End Date (Weekday + Day Month Year)
 * **Column 3**: Flex spacer
 * **Column 4**: Fixed width action button (`min-width: 210px; min-height: 44px;`) with "Book Now" or "Sold Out" state.
-* **Header Row**: Golden uppercase column titles (`#FFC700`, `12px`, tracking `0.08em`).
+* **Header Row**: Beige uppercase column titles (`#F5EFEB`, `12px`, tracking `0.08em`).
 
 #### Tablet Layout (591px - 1024px)
 * Hides End Date column to prevent wrapping.
@@ -339,9 +339,9 @@ A high-conversion schedule table designed to format trip dates cleanly across al
 * **Form Inputs**:
   * Background: `#121212`
   * Border: `1px solid rgba(255, 255, 255, 0.15)`
-  * Focus: `border-color: #FFC700; outline: none; box-shadow: 0 0 0 2px rgba(255, 199, 0, 0.2);`
+  * Focus: `border-color: #F5EFEB; outline: none; box-shadow: 0 0 0 2px rgba(245, 239, 235, 0.2);`
   * Typography: Roboto `15px`, color `#FFFFFF`.
-* **Submit Action**: Full-width `#FFC700` button with black uppercase bold text.
+* **Submit Action**: Full-width `#F5EFEB` button with black uppercase bold text.
 
 ---
 
@@ -358,21 +358,21 @@ A high-conversion schedule table designed to format trip dates cleanly across al
 
 ### 6.8 Guide / Team Profile Grid
 * **Avatar**: Circular or square aspect-ratio image with `border: 2px solid rgba(255, 255, 255, 0.1)`.
-* **Hover State**: Border shifts to `#FFC700`.
+* **Hover State**: Border shifts to `#F5EFEB`.
 * **Name**: Oswald `20px` bold, uppercase.
-* **Role / Credential**: `#FFC700`, `12px`, uppercase, tracking `1.5px`.
+* **Role / Credential**: `#F5EFEB`, `12px`, uppercase, tracking `1.5px`.
 * **Short Bio**: Roboto `14px`, line-height `1.6`, `#D1D5DB`.
 
 ---
 
 ### 6.9 Testimonial & Social Proof Carousel
 * **Card Container**: `#161616` background with subtle quote mark watermark in background.
-* **Star Ratings**: 5 gold stars (`#FFC700`).
+* **Star Ratings**: 5 stars (`#F5EFEB`).
 * **Quote Body**: Italicized Roboto `15px`, `#E5E7EB`.
 * **Author Info**: Author Name (Oswald Bold) + Country / Tour Year tag (`#9CA3AF`).
 * **Dot Navigation**:
   * Inactive Dots: White circle (`width: 8px; height: 8px; border-radius: 50%; opacity: 0.4;`).
-  * Active Dot: `#FFC700` (`opacity: 1; transform: scale(1.25);`).
+  * Active Dot: `#F5EFEB` (`opacity: 1; transform: scale(1.25);`).
 
 ---
 
@@ -380,7 +380,7 @@ A high-conversion schedule table designed to format trip dates cleanly across al
 * 3 or 4-column responsive card grid.
 * Card layout:
   1. Featured image (`16:9`) with hover zoom (`scale(1.05)`).
-  2. Category Badge: `#FFC700` uppercase micro-text.
+  2. Category Badge: `#F5EFEB` uppercase micro-text.
   3. Article Title: Oswald `20px` bold, 2-line clamp.
   4. Excerpt: Roboto `14px`, `#9CA3AF`, 3-line clamp.
   5. Footer: Read time (e.g. `5 MIN READ`) + Date.
@@ -394,7 +394,7 @@ A high-conversion schedule table designed to format trip dates cleanly across al
   * Column 1: Brand Logo + Mission Statement + Social Icon Cluster.
   * Column 2: Tour Routes / Main Categories.
   * Column 3: Rider Resources & Guides.
-  * Column 4: Newsletter Subscription Box (Dark input field with inline `#FFC700` submit button).
+  * Column 4: Newsletter Subscription Box (Dark input field with inline `#F5EFEB` submit button).
 * **Bottom Sub-footer**: Legal copyright, terms, privacy links formatted in ultra-compact uppercase font (`8px - 10px`, line-height `1.4`).
 
 ---
@@ -438,9 +438,9 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          DEFAULT: "#FFC700",
-          hover: "#E5B300",
-          dark: "#CCA000",
+          DEFAULT: "#F5EFEB",
+          hover: "#E8DFD8",
+          dark: "#D8CEC4",
         },
         canvas: "#0D0D0D",
         surface: {
@@ -521,7 +521,7 @@ module.exports = {
     </video>
 
     <!-- Top Badge -->
-    <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-sm border border-white/10 px-3 py-1 text-[11px] font-heading font-bold uppercase tracking-widest text-[#FFC700]">
+    <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-sm border border-white/10 px-3 py-1 text-[11px] font-heading font-bold uppercase tracking-widest text-[#F5EFEB]">
       12 Days Tour
     </div>
   </div>
@@ -531,7 +531,7 @@ module.exports = {
     <p class="text-xs font-heading font-semibold uppercase tracking-wider text-gray-400 mb-1">
       Mostly Dirt, Some Tarmac | Spring & Autumn
     </p>
-    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-white group-hover:text-[#FFC700] transition-colors duration-200 mb-4">
+    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-white group-hover:text-[#F5EFEB] transition-colors duration-200 mb-4">
       The High Mountain Pass Tour
     </h3>
     
@@ -553,13 +553,13 @@ module.exports = {
 ```html
 <div class="w-full bg-[#0D0D0D] border-y border-white/10 py-3 overflow-hidden select-none">
   <div class="flex w-max animate-marquee">
-    <div class="flex items-center space-x-8 text-2xl md:text-3xl font-heading font-bold uppercase text-[#FFC700] tracking-wider whitespace-nowrap">
+    <div class="flex items-center space-x-8 text-2xl md:text-3xl font-heading font-bold uppercase text-[#F5EFEB] tracking-wider whitespace-nowrap">
       <span>❖ Guided High Altitude Tours</span>
       <span>❖ Hand-Crafted Routes for True Adventurers</span>
       <span>❖ Fully Supported Crew & Remote Logistics</span>
       <span>❖ Ride the Legend</span>
     </div>
-    <div class="flex items-center space-x-8 text-2xl md:text-3xl font-heading font-bold uppercase text-[#FFC700] tracking-wider whitespace-nowrap ml-8">
+    <div class="flex items-center space-x-8 text-2xl md:text-3xl font-heading font-bold uppercase text-[#F5EFEB] tracking-wider whitespace-nowrap ml-8">
       <span>❖ Guided High Altitude Tours</span>
       <span>❖ Hand-Crafted Routes for True Adventurers</span>
       <span>❖ Fully Supported Crew & Remote Logistics</span>
@@ -577,7 +577,7 @@ module.exports = {
 <div class="grid grid-cols-1 lg:grid-cols-[260px_260px_1fr_auto] gap-4 lg:gap-8 items-center py-4 border-t border-white/10 text-white">
   <!-- Start Date -->
   <div>
-    <span class="block text-xs font-heading uppercase tracking-wider text-[#FFC700] lg:hidden mb-1">Start Date</span>
+    <span class="block text-xs font-heading uppercase tracking-wider text-[#F5EFEB] lg:hidden mb-1">Start Date</span>
     <span class="text-sm md:text-base font-body font-medium">Monday, 15 Sep 2026</span>
   </div>
 
@@ -593,7 +593,7 @@ module.exports = {
   <div class="w-full lg:w-auto">
     <a 
       href="#book" 
-      class="inline-flex items-center justify-center w-full lg:min-w-[210px] h-[44px] bg-[#FFC700] hover:bg-black hover:text-[#FFC700] hover:border hover:border-[#FFC700] text-black font-heading font-bold text-sm uppercase tracking-widest transition-all duration-200 rounded-sm"
+      class="inline-flex items-center justify-center w-full lg:min-w-[210px] h-[44px] bg-[#F5EFEB] hover:bg-black hover:text-[#F5EFEB] hover:border hover:border-[#F5EFEB] text-black font-heading font-bold text-sm uppercase tracking-widest transition-all duration-200 rounded-sm"
     >
       Book Now
     </a>
@@ -606,7 +606,7 @@ module.exports = {
 ## 10. Summary Checklist for Replicating the Exact Style
 
 - [x] **Dark Canvas**: Backgrounds locked to `#000000` / `#0D0D0D` / `#141414`.
-- [x] **Brand Accent**: Pure Electric Yellow (`#FFC700`) used on active items, hero badges, star ratings, and primary buttons.
+- [x] **Brand Accent**: Warm Beige (`#F5EFEB`) used on active items, hero badges, star ratings, and primary buttons.
 - [x] **Font Trio**: **Anton** (Hero/Main Headlines), **Oswald** (Subheaders, Navigation, Meta, Buttons), **Roboto** (Body Copy, Descriptions).
 - [x] **Tracking Rule**: All uppercase Oswald typography must have `letter-spacing: 2px - 3px` (tracking-widest).
 - [x] **Frosted Glass Sticky Nav**: Initial transparent overlay -> snaps to frosted sticky bar (`rgba(0,0,0,0.85)` + `backdrop-filter: blur(12px)`).
