@@ -287,11 +287,19 @@ function initAccordions() {
 
     trigger.addEventListener("click", () => {
       const isActive = item.classList.contains("active");
+      const parentGroup = item.closest(".accordion-group");
+      const isFaqItem = item.classList.contains("faq-item");
 
-      // Close other open accordions in the same group
-      accordionItems.forEach((other) => {
-        if (other !== item) other.classList.remove("active");
-      });
+      // For FAQ items or containers where multiple are allowed, allow independent toggle.
+      // For single-collapse accordions, only close other open siblings within the same parent container.
+      if (!isFaqItem && (!parentGroup || parentGroup.dataset.allowMultiple !== "true")) {
+        const siblings = parentGroup
+          ? parentGroup.querySelectorAll(".accordion-item")
+          : (item.parentElement ? item.parentElement.querySelectorAll(".accordion-item") : accordionItems);
+        siblings.forEach((other) => {
+          if (other !== item) other.classList.remove("active");
+        });
+      }
 
       if (!isActive) {
         item.classList.add("active");
@@ -389,11 +397,17 @@ function initBookingModal() {
   document.querySelectorAll("[data-open-modal]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const tourKey = btn.getAttribute("data-tour");
+      let tourKey = btn.getAttribute("data-tour");
       const defaultDate = btn.getAttribute("data-date");
 
-      if (tourSelect && tourKey && TOURS_DATABASE[tourKey]) {
-        tourSelect.value = tourKey;
+      // Normalize tour aliases
+      if (tourKey === "hello-moto") tourKey = "moto-mustang";
+
+      if (tourSelect && tourKey) {
+        const optionExists = Array.from(tourSelect.options).some((opt) => opt.value === tourKey);
+        if (optionExists) {
+          tourSelect.value = tourKey;
+        }
       }
       if (dateInput && defaultDate) {
         dateInput.value = defaultDate;
@@ -419,20 +433,29 @@ function initBookingModal() {
   if (bookingForm) {
     bookingForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const name = document.getElementById("form-name")?.value || "";
-      const email = document.getElementById("form-email")?.value || "";
-      const phone = document.getElementById("form-phone")?.value || "";
+      const name = document.getElementById("form-name")?.value.trim() || "";
+      const email = document.getElementById("form-email")?.value.trim() || "";
+      const phone = document.getElementById("form-phone")?.value.trim() || "";
       const tour = tourSelect ? tourSelect.options[tourSelect.selectedIndex]?.text : "Tour";
-      const date = dateInput?.value || "Flexible";
+      const date = dateInput?.value.trim() || "Flexible";
       const riders = document.getElementById("form-riders")?.value || "1";
 
+      const bikeRadio = document.querySelector('input[name="bike-type"]:checked');
+      const bikePreference = bikeRadio
+        ? (bikeRadio.value === "byob" ? "Bringing Own Bike (BYOB)" : "Rental Enduro / E-MTB Rig")
+        : "Not specified";
+
       // Form validation & direct WhatsApp message redirect
-      const message = `Namaste Gnarly MTB! I would like to book the ${tour} for ${riders} rider(s) on ${date}.\n\nName: ${name}\nEmail: ${email}\nWhatsApp: ${phone}`;
+      const message = `Namaste Gnarly MTB! I would like to book the ${tour} for ${riders} rider(s) on ${date}.\n\nName: ${name}\nEmail: ${email}\nWhatsApp: ${phone}\nBike Preference: ${bikePreference}`;
       const waUrl = `https://wa.me/9779803661496?text=${encodeURIComponent(message)}`;
 
-      window.open(waUrl, "_blank");
       closeModal();
-      alert("Thank you! Opening WhatsApp to finalize your tour details with Shyam & the Gnarly crew.");
+
+      // Open WhatsApp cleanly without thread-blocking alerts that trigger mobile popup blockers
+      const win = window.open(waUrl, "_blank");
+      if (!win || win.closed || typeof win.closed === "undefined") {
+        window.location.href = waUrl;
+      }
     });
   }
 }
@@ -650,6 +673,10 @@ function initCrewCarousel() {
   let hasDragged = false;
 
   track.addEventListener("mousedown", (e) => {
+    // Prevent dragging when clicking buttons, links, or readable text
+    if (e.target.closest("button, a, .overflow-y-auto, p, h3, .font-body, .font-heading, span")) {
+      return;
+    }
     isDown = true;
     hasDragged = false;
     track.classList.add("is-dragging");

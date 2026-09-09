@@ -116,7 +116,7 @@
       <nav class="mt-8 flex flex-col space-y-5">
         <a href="index.html#tours" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Tours</a>
         <a href="gallery.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-[#F5EFEB] font-bold">Tour Gallery</a>
-        <a href="index.html#events" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Events</a>
+        <a href="events.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Events</a>
         <a href="index.html#crew" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">The Crew</a>
         <a href="index.html#reviews" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Reviews</a>
         <a href="faq.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">FAQ</a>
@@ -3234,7 +3234,9 @@
           <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Select Tour / Program</label>
           <select id="modal-tour-select" class="form-input-dark">
             <option value="enduro-thin-air-ultimate">Enduro Thin Air : Ultimate (Upper & Lower Mustang, 12 Days)</option>
+            <option value="enduro-thin-air">Enduro Thin Air (Lower Mustang, 10 Days)</option>
             <option value="everest-express">Everest Express (Khumbu & Phaplu, 10 Days)</option>
+            <option value="mustang-e-motion">Mustang E-Motion (E-MTB, 12 Days)</option>
             <option value="moto-mustang">Himalayan Moto Holidays “Hello Moto” (Dual-Sport Enduro, 11 Days)</option>
             <option value="himalayan-enduro">The Himalayan Enduro Race</option>
           </select>
@@ -3275,11 +3277,11 @@
         <div>
           <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
           <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
-            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#F5EFEB]">
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#F5EFEB]">
               <input type="radio" name="bike-type" value="rental" checked class="accent-[#F5EFEB]" />
               <span>Rent Enduro / E-MTB Rig</span>
             </label>
-            <label class="flex items-center space-x-2 p-3 bg-[#101010] border border-white/10 rounded cursor-pointer hover:border-[#F5EFEB]">
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#F5EFEB]">
               <input type="radio" name="bike-type" value="byob" class="accent-[#F5EFEB]" />
               <span>Bringing My Own Bike</span>
             </label>
@@ -3385,13 +3387,22 @@
         });
       }
 
-      // Fullscreen toggle
+      // Fullscreen toggle with iOS/Safari safety guards
       if (lightboxFullscreen) {
         lightboxFullscreen.addEventListener('click', () => {
-          if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(() => {});
+          const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+          if (!isFullscreen) {
+            if (document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen().catch(() => {});
+            } else if (document.documentElement.webkitRequestFullscreen) {
+              document.documentElement.webkitRequestFullscreen();
+            }
           } else {
-            if (document.exitFullscreen) document.exitFullscreen();
+            if (document.exitFullscreen) {
+              document.exitFullscreen().catch(() => {});
+            } else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen();
+            }
           }
         });
       }

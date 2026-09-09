@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EVENTS | GNARLY MTB NEPAL - ASIA Epic ENDURO</title>
+  <meta name="description" content="ASIA epic ENDURO - Coming Soon! High-octane mountain biking events and race stages by Gnarly MTB Nepal." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/branding/favicon.png" />
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: "#F5EFEB",
+              hover: "#E8DFD8",
+              dark: "#D8CEC4",
+            },
+            canvas: "#2A4E7A",
+            surface: {
+              DEFAULT: "#1E3A5F",
+              secondary: "#162E4D",
+              elevated: "#345C8C",
+            }
+          },
+          fontFamily: {
+            display: ["Anton", "sans-serif"],
+            heading: ["Oswald", "sans-serif"],
+            body: ["Roboto", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Design System Styles -->
+  <link rel="stylesheet" href="css/style.css?v=6.0" />
+</head>
+<body class="bg-[#2A4E7A] text-gray-200 antialiased selection:bg-[#F5EFEB] selection:text-black flex flex-col min-h-screen">
+
+  <!-- =========================================================================
+       1. NAVIGATION HEADER (Sticky & Frosted)
+       ========================================================================= -->
+  <header id="main-navbar" class="navbar-fixed navbar-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Left: Seal Icon -->
+        <a href="index.html" class="flex items-center group z-10" title="GNARLY MTB Home">
+          <img src="assets/branding/logo.png" alt="GNARLY MTB Seal" class="w-10 h-10 object-contain rounded-full group-hover:scale-105 transition-transform duration-200 shadow-md" />
+        </a>
+
+        <!-- Center: Wordmark Brand Image -->
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto">
+          <a href="index.html" class="group">
+            <img src="assets/branding/brand-text.png" alt="Gnarly MTB Nepal" class="h-[38px] sm:h-[46px] w-auto object-contain group-hover:scale-105 group-hover:brightness-110 transition-all duration-200" />
+          </a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a href="index.html#tours" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#F5EFEB] transition-colors duration-200">Tours</a>
+          <a href="gallery.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#F5EFEB] transition-colors duration-200">Gallery</a>
+          <a href="events.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-[#F5EFEB] border-b-2 border-[#F5EFEB] pb-0.5">Events</a>
+          <a href="faq.html" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#F5EFEB] transition-colors duration-200">FAQ</a>
+          <a href="index.html#reviews" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#F5EFEB] transition-colors duration-200">Reviews</a>
+          <a href="index.html#about" class="font-heading text-sm font-semibold uppercase tracking-widest text-white/90 hover:text-[#F5EFEB] transition-colors duration-200">About</a>
+        </nav>
+
+        <!-- Right Action Cluster -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <a href="https://wa.me/9779803661496" target="_blank" class="p-2.5 rounded border border-white/20 text-white hover:text-[#F5EFEB] hover:border-[#F5EFEB] transition-colors duration-200" title="WhatsApp Us">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+          </a>
+          <a href="#booking-modal" data-open-modal class="btn-tactical btn-primary">
+            Book Tour
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded text-[#D6463B] hover:text-white transition-colors focus:outline-none" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-In Drawer Backdrop -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1040] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- Mobile Slide-In Drawer -->
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 z-[1050] w-full max-w-sm bg-[#1E3A5F] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-white/10">
+        <div class="flex items-center space-x-3">
+          <img src="assets/branding/logo.png" alt="GNARLY MTB Logo" class="w-8 h-8 object-contain rounded-full" />
+          <span class="font-display text-2xl text-white">GNARLY <span class="text-[#F5EFEB]">MTB</span></span>
+        </div>
+        <button id="mobile-drawer-close" class="p-2 text-gray-400 hover:text-[#F5EFEB] hover:bg-white/5 rounded-lg transition-colors cursor-pointer focus:outline-none" aria-label="Close Menu">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <nav class="mt-8 flex flex-col space-y-5">
+        <a href="index.html#tours" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Tours</a>
+        <a href="gallery.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Tour Gallery</a>
+        <a href="events.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-[#F5EFEB] font-bold">Events</a>
+        <a href="faq.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">FAQ</a>
+        <a href="index.html#reviews" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Reviews</a>
+        <a href="index.html#crew" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">The Crew</a>
+        <a href="index.html#contact" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Contact Us</a>
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-white/10">
+      <a href="#booking-modal" data-open-modal class="btn-tactical btn-primary w-full text-center block py-3 text-sm">
+        Book Tour
+      </a>
+      <div class="mt-4 flex items-center justify-center space-x-4 text-xs font-heading uppercase tracking-widest text-gray-400">
+        <span>Kathmandu, Nepal</span>
+        <span>•</span>
+        <span>Est. 2012</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. EVENTS MAIN CONTENT AREA
+       ========================================================================= -->
+  <main class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-28 sm:py-36 relative overflow-hidden">
+    <!-- Atmospheric background glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#F5EFEB]/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="relative z-10 text-center max-w-4xl mx-auto space-y-6 reveal-init">
+      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl uppercase tracking-tight text-white leading-none">
+        ASIA <span class="font-heading lowercase text-[#F5EFEB] text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold">epic</span> ENDURO
+      </h1>
+      <p class="font-heading text-2xl sm:text-3xl md:text-5xl uppercase tracking-[0.25em] text-[#F5EFEB] font-bold pt-2">
+        COMING SOON!
+      </p>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       3. SITE FOOTER
+       ========================================================================= -->
+  <footer class="bg-[#162E4D] py-12 border-t border-white/10 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center text-center max-w-md mx-auto mb-8">
+        <div class="flex items-center space-x-3 mb-3">
+          <img src="assets/branding/logo.png" alt="GNARLY MTB Logo" class="w-8 h-8 object-contain rounded-full" />
+          <span class="font-display text-2xl text-white">GNARLY <span class="text-[#F5EFEB]">MTB</span></span>
+        </div>
+        <p class="font-body text-xs text-gray-400 leading-relaxed">
+          Nepal’s premier adventure mountain biking outfitter. Handcrafted high-altitude enduro tours and E-MTB tours.
+        </p>
+      </div>
+
+      <!-- Bottom Micro-footer -->
+      <div class="pt-6 border-t border-white/10 text-center text-[11px] font-heading tracking-widest uppercase text-gray-400">
+        <div>Copyright © 2026 GNARLY MTB Nepal (GNARLY PVT. LTD.). All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       4. INTERACTIVE BOOKING MODAL DIALOG
+       ========================================================================= -->
+  <div id="booking-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+        <div>
+          <span class="font-heading text-xs font-bold uppercase tracking-widest text-[#F5EFEB]">TOUR RESERVATION</span>
+          <h3 class="font-display text-3xl text-white uppercase">RESERVE YOUR SPOT</h3>
+        </div>
+        <button id="modal-close-btn" class="p-2 text-gray-400 hover:text-white" aria-label="Close modal">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <form id="booking-form" class="space-y-4">
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Select Tour / Program</label>
+          <select id="modal-tour-select" class="form-input-dark">
+            <option value="enduro-thin-air-ultimate">Enduro Thin Air : Ultimate (Upper & Lower Mustang, 12 Days)</option>
+            <option value="enduro-thin-air">Enduro Thin Air (Lower Mustang, 10 Days)</option>
+            <option value="everest-express">Everest Express (Khumbu & Phaplu, 10 Days)</option>
+            <option value="mustang-e-motion">Mustang E-Motion (E-MTB, 12 Days)</option>
+            <option value="moto-mustang">Himalayan Moto Holidays “Hello Moto” (Dual-Sport Enduro, 11 Days)</option>
+            <option value="himalayan-enduro">The Himalayan Enduro Race</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Preferred Date</label>
+            <input type="text" id="modal-date-input" placeholder="e.g. 12 Apr 2026 or Flexible" class="form-input-dark" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Number of Riders</label>
+            <select id="form-riders" class="form-input-dark">
+              <option value="1">1 Rider (Solo)</option>
+              <option value="2">2 Riders</option>
+              <option value="3-5">3 - 5 Riders (Small Group)</option>
+              <option value="6+">6+ Riders (Custom Private Tour)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Your Name</label>
+            <input type="text" id="form-name" required placeholder="e.g. Sarah Jenkins" class="form-input-dark" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Email Address</label>
+            <input type="email" id="form-email" required placeholder="sarah@example.com" class="form-input-dark" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">WhatsApp Number</label>
+          <input type="tel" id="form-phone" required placeholder="e.g. +1 555 123 4567 (with country code)" class="form-input-dark" />
+        </div>
+
+        <div>
+          <label class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Bike Preference</label>
+          <div class="grid grid-cols-2 gap-3 text-xs font-heading uppercase text-gray-300">
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#F5EFEB]">
+              <input type="radio" name="bike-type" value="rental" checked class="accent-[#F5EFEB]" />
+              <span>Rent Enduro / E-MTB Rig</span>
+            </label>
+            <label class="flex items-center space-x-2 p-3 bg-[#162E4D] border border-white/10 rounded cursor-pointer hover:border-[#F5EFEB]">
+              <input type="radio" name="bike-type" value="byob" class="accent-[#F5EFEB]" />
+              <span>Bringing My Own Bike</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-4 flex items-center gap-4">
+          <button type="submit" class="btn-tactical btn-primary flex-1 py-3.5">
+            Confirm & Chat on WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/app.js?v=3.4"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

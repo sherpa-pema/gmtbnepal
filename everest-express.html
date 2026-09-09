@@ -114,7 +114,7 @@
       <nav class="mt-8 flex flex-col space-y-5">
         <a href="index.html#tours" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-[#F5EFEB] font-bold">Tours</a>
         <a href="gallery.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Tour Gallery</a>
-        <a href="index.html#events" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Events</a>
+        <a href="events.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Events</a>
         <a href="index.html#crew" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">The Crew</a>
         <a href="index.html#reviews" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">Reviews</a>
         <a href="faq.html" class="mobile-drawer-link font-heading text-xl uppercase tracking-wider text-white hover:text-[#F5EFEB]">FAQ</a>
@@ -575,7 +575,7 @@
         </div>
 
         <!-- Row 1: 23-30 April 2027 (SOLD OUT) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 border-b border-white/10 items-center opacity-60">
+        <div class="schedule-row grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 border-b border-white/10 items-center opacity-60" data-season="spring">
           <div class="lg:col-span-4">
             <div class="flex items-center space-x-2 text-xs font-heading uppercase text-gray-400 lg:hidden mb-1">
               <span>Date</span>
@@ -610,7 +610,7 @@
         </div>
 
         <!-- Row 2: 02-09 May 2027 (Available) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 items-center">
+        <div class="schedule-row grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 items-center" data-season="spring">
           <div class="lg:col-span-4">
             <div class="flex items-center space-x-2 text-xs font-heading uppercase text-gray-400 lg:hidden mb-1">
               <span>Date</span>
@@ -818,6 +818,7 @@
           <select id="modal-tour-select" class="form-input-dark">
             <option value="everest-express" selected>Everest Express (Khumbu & Phaplu, 10 Days)</option>
             <option value="enduro-thin-air-ultimate">Enduro Thin Air : Ultimate (Upper & Lower Mustang, 12 Days)</option>
+            <option value="enduro-thin-air">Enduro Thin Air (Lower Mustang, 10 Days)</option>
             <option value="mustang-e-motion">Mustang E-Motion (E-MTB, 12 Days)</option>
             <option value="moto-mustang">Himalayan Moto Holidays “Hello Moto” (Dual-Sport Enduro, 11 Days)</option>
             <option value="himalayan-enduro">The Himalayan Enduro Race</option>
