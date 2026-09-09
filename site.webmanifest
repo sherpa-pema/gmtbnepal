@@ -1,0 +1,21 @@
+{
+  "name": "GNARLY MTB NEPAL",
+  "short_name": "GNARLY MTB",
+  "description": "Guided Himalayan Mountain Biking and Motorcycle Tours in Nepal",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2A4E7A",
+  "theme_color": "#162E4D",
+  "icons": [
+    {
+      "src": "/assets/branding/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/branding/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
+  <url>
+    <loc>https://gnarlymtb.com/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gnarlymtb.com/assets/hero/hero-poster.jpg</image:loc>
+      <image:title>GNARLY MTB Nepal - High-Altitude Mountain Biking and Motorcycle Tours</image:title>
+      <image:caption>Riders on high alpine singletrack overlooking the Himalayan range in Nepal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gnarlymtb.com/assets/branding/logo.png</image:loc>
+      <image:title>GNARLY MTB Nepal Official Seal</image:title>
+      <image:caption>Nepal's premier mountain bike and dual-sport moto tour operator</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Enduro Thin Air Ultimate Tour (Mustang) -->
+  <url>
+    <loc>https://gnarlymtb.com/enduro-thin-air-ultimate.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gnarlymtb.com/assets/tours/enduro-thin-air/card-cover.jpg</image:loc>
+      <image:title>Enduro Thin Air Ultimate MTB Tour Upper Mustang</image:title>
+      <image:caption>12-Day high-altitude enduro mountain biking expedition across Upper and Lower Mustang</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Everest Express MTB Tour (Khumbu & Phaplu) -->
+  <url>
+    <loc>https://gnarlymtb.com/everest-express.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gnarlymtb.com/assets/tours/everest-express/card-cover.jpg</image:loc>
+      <image:title>Everest Express Mountain Bike Tour Nepal</image:title>
+      <image:caption>10-Day fast-paced mountain bike adventure through Solukhumbu and Phaplu beneath Everest</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Himalayan Moto Holidays "Hello Moto" (Mustang Motorcycle Tour) -->
+  <url>
+    <loc>https://gnarlymtb.com/hello-moto.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gnarlymtb.com/assets/tours/hello-moto/card-cover.jpg</image:loc>
+      <image:title>Himalayan Moto Holidays Hello Moto Mustang Dirt Bike Tour</image:title>
+      <image:caption>11-Day dual-sport motorcycle adventure across Kathmandu, Pokhara, and Upper Mustang</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Tour Gallery -->
+  <url>
+    <loc>https://gnarlymtb.com/gallery.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://gnarlymtb.com/assets/gallery/03_03302186-e800-4ba5-8d3f-e196d1a5db51.jpg</image:loc>
+      <image:title>Himalayan Mountain Bike Trail Dispatches</image:title>
+      <image:caption>High-resolution trail photography from Upper Mustang and Asian Enduro Series</image:caption>
+    </image:image>
+  </url>
+
+  <!-- FAQ Page -->
+  <url>
+    <loc>https://gnarlymtb.com/faq.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Events & Racing -->
+  <url>
+    <loc>https://gnarlymtb.com/events.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow non-public directories
+Disallow: /scratch/
+Disallow: /.git/
+
+# Sitemaps
+Sitemap: https://gnarlymtb.com/sitemap.xml

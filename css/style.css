@@ -872,3 +872,54 @@ body {
   justify-content: space-between;
 }
 
+/* =========================================================================
+   ACCESSIBILITY (WCAG 2.1 AA) & FOCUS STATES
+   ========================================================================= */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+}
+
+.focus\:not-sr-only:focus {
+  position: fixed !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 10px 18px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  top: 16px !important;
+  left: 16px !important;
+  z-index: 9999 !important;
+  background-color: var(--brand) !important;
+  color: #000000 !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 4px !important;
+  outline: 3px solid #FFFFFF !important;
+  outline-offset: 2px !important;
+}
+
+/* Tactical Keyboard Focus Rings */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--brand) !important;
+  outline-offset: 2px !important;
+}
+
+

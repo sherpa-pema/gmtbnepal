@@ -121,17 +121,23 @@ function initMobileMenu() {
 
   if (!toggleBtn || !drawer) return;
 
+  let lastFocusBeforeDrawer = null;
+
   const openDrawer = () => {
+    lastFocusBeforeDrawer = document.activeElement;
     drawer.classList.remove("translate-x-full");
+    toggleBtn.setAttribute("aria-expanded", "true");
     if (backdrop) {
       backdrop.classList.remove("opacity-0", "pointer-events-none");
       backdrop.classList.add("opacity-100", "pointer-events-auto");
     }
     document.body.style.overflow = "hidden";
+    if (closeBtn) closeBtn.focus();
   };
 
   const closeDrawer = () => {
     drawer.classList.add("translate-x-full");
+    toggleBtn.setAttribute("aria-expanded", "false");
     if (backdrop) {
       backdrop.classList.add("opacity-0", "pointer-events-none");
       backdrop.classList.remove("opacity-100", "pointer-events-auto");
@@ -140,6 +146,9 @@ function initMobileMenu() {
     const modal = document.getElementById("booking-modal");
     if (!modal || !modal.classList.contains("open")) {
       document.body.style.overflow = "";
+    }
+    if (lastFocusBeforeDrawer && lastFocusBeforeDrawer.focus) {
+      lastFocusBeforeDrawer.focus();
     }
   };
 
@@ -393,10 +402,13 @@ function initBookingModal() {
 
   if (!modal) return;
 
+  let lastFocusBeforeModal = null;
+
   // Open modal triggers
   document.querySelectorAll("[data-open-modal]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
+      lastFocusBeforeModal = btn;
       let tourKey = btn.getAttribute("data-tour");
       const defaultDate = btn.getAttribute("data-date");
 
@@ -415,18 +427,29 @@ function initBookingModal() {
 
       modal.classList.add("open");
       document.body.style.overflow = "hidden";
+      if (tourSelect) tourSelect.focus();
     });
   });
 
   const closeModal = () => {
     modal.classList.remove("open");
     document.body.style.overflow = "";
+    if (lastFocusBeforeModal && lastFocusBeforeModal.focus) {
+      lastFocusBeforeModal.focus();
+    }
   };
 
   if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
 
   modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
+  });
+
+  // Escape key closes modal
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) {
+      closeModal();
+    }
   });
 
   // Handle Form Submission
