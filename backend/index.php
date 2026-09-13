@@ -65,6 +65,9 @@ $galleryCount = count($registry['gallery'] ?? []);
     };
   </script>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Cropper.js CSS -->
+  <link rel="stylesheet" href="../css/vendor/cropper.min.css" onerror="this.onerror=null;this.href='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css';" />
+
   <style>
     body {
       background-color: #162E4D;
@@ -79,6 +82,21 @@ $galleryCount = count($registry['gallery'] ?? []);
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: rgba(245, 239, 235, 0.4);
+    }
+    /* Cropper styling enhancements */
+    .cropper-view-box {
+      outline: 2px solid #F5EFEB !important;
+      outline-color: rgba(245, 239, 235, 0.95) !important;
+    }
+    .cropper-line {
+      background-color: rgba(245, 239, 235, 0.35) !important;
+    }
+    .cropper-point {
+      background-color: #F5EFEB !important;
+    }
+    .cropper-bg {
+      background-image: none !important;
+      background-color: #0b1420 !important;
     }
   </style>
 </head>
@@ -464,6 +482,95 @@ $galleryCount = count($registry['gallery'] ?? []);
   </main>
 
   <!-- =========================================================================
+       DRAG-AND-ZOOM IMAGE CROP MODAL
+       ========================================================================= -->
+  <div id="crop-modal" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6 transition-all duration-200">
+    <div class="bg-[#162E4D] border border-white/20 rounded-2xl max-w-4xl w-full max-h-[95vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="p-4 border-b border-white/10 bg-[#1E3A5F] flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-[#2A4E7A] flex items-center justify-center text-[#F5EFEB] shrink-0">
+            <i data-lucide="crop" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h3 class="font-heading text-base font-bold uppercase tracking-wider text-white" id="crop-modal-title">
+                Crop &amp; Frame Image
+              </h3>
+              <span id="crop-badge-dimension" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-black/40 text-[#F5EFEB] border border-white/10">
+                1600 × 1000 px (16:10)
+              </span>
+              <span id="crop-badge-mismatch" class="hidden px-2 py-0.5 rounded text-[10px] font-heading font-semibold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40 items-center gap-1">
+                <i data-lucide="alert-triangle" class="w-3 h-3"></i>
+                <span>Orientation Mismatch</span>
+              </span>
+            </div>
+            <p class="text-xs text-gray-300 mt-0.5" id="crop-modal-subtitle">
+              Drag image to reposition • Scroll wheel or slider to zoom
+            </p>
+          </div>
+        </div>
+
+        <button type="button" onclick="closeCropModal()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors" title="Cancel &amp; Close">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Cropper Viewport -->
+      <div class="relative bg-black/90 flex-1 min-h-[340px] sm:min-h-[440px] max-h-[58vh] overflow-hidden flex items-center justify-center p-2">
+        <div class="w-full h-full max-h-[56vh] flex items-center justify-center">
+          <img id="cropper-target-img" src="" alt="Crop Source" class="max-w-full block" />
+        </div>
+      </div>
+
+      <!-- Controls Toolbar -->
+      <div class="p-3 bg-[#193254] border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <!-- Zoom Controls -->
+        <div class="flex items-center gap-2">
+          <span class="text-gray-400 font-heading uppercase text-[11px] tracking-wider">Zoom:</span>
+          <button type="button" onclick="cropZoom(-0.1)" class="w-7 h-7 rounded bg-[#1E3A5F] hover:bg-[#2A4E7A] text-white flex items-center justify-center font-bold border border-white/10" title="Zoom Out">-</button>
+          <input type="range" id="crop-zoom-range" min="0.1" max="3" step="0.05" value="1" oninput="handleZoomSlider(this.value)" class="w-28 sm:w-40 accent-[#F5EFEB]" />
+          <button type="button" onclick="cropZoom(0.1)" class="w-7 h-7 rounded bg-[#1E3A5F] hover:bg-[#2A4E7A] text-white flex items-center justify-center font-bold border border-white/10" title="Zoom In">+</button>
+        </div>
+
+        <!-- Rotate & Reset Controls -->
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="cropRotate(-90)" class="px-2.5 py-1.5 rounded bg-[#1E3A5F] hover:bg-[#2A4E7A] text-gray-200 hover:text-white border border-white/10 flex items-center gap-1 font-heading text-[11px] uppercase tracking-wider transition-colors" title="Rotate 90° Left">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            <span>-90°</span>
+          </button>
+          <button type="button" onclick="cropRotate(90)" class="px-2.5 py-1.5 rounded bg-[#1E3A5F] hover:bg-[#2A4E7A] text-gray-200 hover:text-white border border-white/10 flex items-center gap-1 font-heading text-[11px] uppercase tracking-wider transition-colors" title="Rotate 90° Right">
+            <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
+            <span>+90°</span>
+          </button>
+          <button type="button" onclick="cropReset()" class="px-2.5 py-1.5 rounded bg-[#1E3A5F] hover:bg-[#2A4E7A] text-gray-200 hover:text-white border border-white/10 flex items-center gap-1 font-heading text-[11px] uppercase tracking-wider transition-colors" title="Reset to center">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+            <span>Reset</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-[#1E3A5F] border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+        <div class="text-[11px] text-gray-400">
+          Standard Output: <span id="crop-footer-dim" class="text-[#F5EFEB] font-semibold">1600 × 1000 px</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="closeCropModal()" class="px-4 py-2 rounded-lg border border-white/20 text-gray-300 hover:text-white hover:bg-white/5 font-heading text-xs uppercase tracking-wider transition-colors">
+            Cancel
+          </button>
+          <button type="button" id="crop-apply-btn" onclick="applyCropAndSave()" class="px-5 py-2 rounded-lg bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg transition-all">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Apply Crop &amp; Save</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
        4. TOAST NOTIFICATION SYSTEM
        ========================================================================= -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none max-w-sm">
@@ -480,43 +587,51 @@ $galleryCount = count($registry['gallery'] ?? []);
     const INITIAL_GALLERY = <?php echo json_encode($registry['gallery'] ?? []); ?>;
   </script>
 
+  <!-- Vendor Cropper.js Library with CDN Fallback -->
+  <script src="../js/vendor/cropper.min.js"></script>
+  <script>
+    if (typeof Cropper === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"><\/script>');
+    }
+  </script>
+
   <!-- =========================================================================
        5. JAVASCRIPT LOGIC FOR BACKEND OPERATIONS
        ========================================================================= -->
   <script>
     const DEFAULT_SLOTS = {
-      "hero-bg": { name: "Hero Section Media Fallback", section: "Hero", aspectRatio: "16/9", default: "assets/hero/hero-poster.jpg", alt: "GNARLY MTB Nepal Himalayan Action" },
+      "hero-bg": { name: "Hero Section Media Fallback", section: "Hero", aspectRatio: "16/9", standardWidth: 1920, standardHeight: 1080, orientation: "landscape", default: "assets/hero/hero-poster.jpg", alt: "GNARLY MTB Nepal Himalayan Action" },
       
-      "tour-thin-air-1": { name: "Enduro Thin Air — Slide 1 (Cover)", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 1, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-1.jpg", alt: "Enduro Thin Air Ultimate Lo Manthang Traverse" },
-      "tour-thin-air-2": { name: "Enduro Thin Air — Slide 2", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 2, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-2.jpg", alt: "Mustang Desert Ridge Singletrack Descent" },
-      "tour-thin-air-3": { name: "Enduro Thin Air — Slide 3", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 3, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-3.jpg", alt: "High Alpine Scree & Rocky Enduro Ride" },
-      "tour-thin-air-4": { name: "Enduro Thin Air — Slide 4", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 4, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-4.jpg", alt: "Upper Mustang Canyon Pass and Sky Caves" },
-      "tour-thin-air-5": { name: "Enduro Thin Air — Slide 5", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 5, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-5.jpg", alt: "Upper Mustang High-Altitude Singletrack" },
-      "tour-thin-air-6": { name: "Enduro Thin Air — Slide 6", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 6, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-6.jpg", alt: "High Himalayan Mountain Pass Enduro" },
+      "tour-thin-air-1": { name: "Enduro Thin Air — Slide 1 (Cover)", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 1, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/enduro-thin-air/card-slide-1.jpg", alt: "Enduro Thin Air Ultimate Lo Manthang Traverse" },
+      "tour-thin-air-2": { name: "Enduro Thin Air — Slide 2", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 2, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/enduro-thin-air/card-slide-2.jpg", alt: "Mustang Desert Ridge Singletrack Descent" },
+      "tour-thin-air-3": { name: "Enduro Thin Air — Slide 3", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 3, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/enduro-thin-air/card-slide-3.jpg", alt: "High Alpine Scree & Rocky Enduro Ride" },
+      "tour-thin-air-4": { name: "Enduro Thin Air — Slide 4", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 4, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/enduro-thin-air/card-slide-4.jpg", alt: "Upper Mustang Canyon Pass and Sky Caves" },
+      "tour-thin-air-5": { name: "Enduro Thin Air — Slide 5", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 5, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/enduro-thin-air/card-slide-5.jpg", alt: "Upper Mustang High-Altitude Singletrack" },
+      "tour-thin-air-6": { name: "Enduro Thin Air — Slide 6", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 6, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/enduro-thin-air/card-slide-6.jpg", alt: "High Himalayan Mountain Pass Enduro" },
 
-      "tour-everest-1": { name: "Everest Express — Slide 1 (Cover)", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 1, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-1.jpg", alt: "Everest Express Khumbu Mountain Singletrack" },
-      "tour-everest-2": { name: "Everest Express — Slide 2", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 2, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-2.jpg", alt: "Alpine Downhill Rider on Khumbu Ridge" },
-      "tour-everest-3": { name: "Everest Express — Slide 3", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 3, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-3.jpg", alt: "Solukhumbu High Valley Singletrack" },
-      "tour-everest-4": { name: "Everest Express — Slide 4", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 4, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-4.jpg", alt: "Himalayan Mountain Range under Everest" },
-      "tour-everest-5": { name: "Everest Express — Slide 5", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 5, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-5.jpg", alt: "Himalayan Sherpa Valley Trail Riding" },
-      "tour-everest-6": { name: "Everest Express — Slide 6", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 6, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-6.jpg", alt: "High Altitude Everest Panorama Descent" },
+      "tour-everest-1": { name: "Everest Express — Slide 1 (Cover)", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 1, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/everest-express/card-slide-1.jpg", alt: "Everest Express Khumbu Mountain Singletrack" },
+      "tour-everest-2": { name: "Everest Express — Slide 2", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 2, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/everest-express/card-slide-2.jpg", alt: "Alpine Downhill Rider on Khumbu Ridge" },
+      "tour-everest-3": { name: "Everest Express — Slide 3", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 3, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/everest-express/card-slide-3.jpg", alt: "Solukhumbu High Valley Singletrack" },
+      "tour-everest-4": { name: "Everest Express — Slide 4", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 4, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/everest-express/card-slide-4.jpg", alt: "Himalayan Mountain Range under Everest" },
+      "tour-everest-5": { name: "Everest Express — Slide 5", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 5, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/everest-express/card-slide-5.jpg", alt: "Himalayan Sherpa Valley Trail Riding" },
+      "tour-everest-6": { name: "Everest Express — Slide 6", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 6, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/everest-express/card-slide-6.jpg", alt: "High Altitude Everest Panorama Descent" },
 
-      "tour-moto-1": { name: "Hello Moto — Slide 1 (Cover)", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 1, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-1.jpg", alt: "Himalayan Moto Holidays Enduro Dual-Sport Rider" },
-      "tour-moto-2": { name: "Hello Moto — Slide 2", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 2, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-2.jpg", alt: "Dual Sport Motorcycle on Dirt Riverbed" },
-      "tour-moto-3": { name: "Hello Moto — Slide 3", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 3, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-3.jpg", alt: "Mustang Valley Dirt Gorge Crossing" },
-      "tour-moto-4": { name: "Hello Moto — Slide 4", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 4, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-4.jpg", alt: "Himalayan Mountain Pass Route" },
-      "tour-moto-5": { name: "Hello Moto — Slide 5", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 5, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-5.jpg", alt: "Mustang Plateau Moto Exploration" },
-      "tour-moto-6": { name: "Hello Moto — Slide 6", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 6, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-6.jpg", alt: "High Altitude Himalayan Dirt Bike Tour" },
+      "tour-moto-1": { name: "Hello Moto — Slide 1 (Cover)", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 1, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/hello-moto/card-slide-1.jpg", alt: "Himalayan Moto Holidays Enduro Dual-Sport Rider" },
+      "tour-moto-2": { name: "Hello Moto — Slide 2", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 2, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/hello-moto/card-slide-2.jpg", alt: "Dual Sport Motorcycle on Dirt Riverbed" },
+      "tour-moto-3": { name: "Hello Moto — Slide 3", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 3, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/hello-moto/card-slide-3.jpg", alt: "Mustang Valley Dirt Gorge Crossing" },
+      "tour-moto-4": { name: "Hello Moto — Slide 4", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 4, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/hello-moto/card-slide-4.jpg", alt: "Himalayan Mountain Pass Route" },
+      "tour-moto-5": { name: "Hello Moto — Slide 5", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 5, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/hello-moto/card-slide-5.jpg", alt: "Mustang Plateau Moto Exploration" },
+      "tour-moto-6": { name: "Hello Moto — Slide 6", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 6, aspectRatio: "16/10", standardWidth: 1600, standardHeight: 1000, orientation: "landscape", default: "assets/tours/hello-moto/card-slide-6.jpg", alt: "High Altitude Himalayan Dirt Bike Tour" },
 
-      "why-ride-1": { name: "Trails For Every Skill", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/01-trails-every-skill.jpg", alt: "Trails for every skill" },
-      "why-ride-2": { name: "All-Mountain & Enduro", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/02-all-mountain-enduro.jpg", alt: "All-mountain and enduro adventures" },
-      "why-ride-3": { name: "Family Focused", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/03-family-focused.jpg", alt: "Family focused mountain biking" },
-      "why-ride-4": { name: "Customised Tours", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/04-customised-tours.jpg", alt: "Customised Himalayan tours" },
-      "why-ride-5": { name: "Fully Supported", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/05-fully-supported.jpg", alt: "Fully supported expeditions" },
+      "why-ride-1": { name: "Trails For Every Skill", section: "Why Ride With Us", aspectRatio: "9/16", standardWidth: 1080, standardHeight: 1920, orientation: "portrait", default: "assets/why-ride-with-us/01-trails-every-skill.jpg", alt: "Trails for every skill" },
+      "why-ride-2": { name: "All-Mountain & Enduro", section: "Why Ride With Us", aspectRatio: "9/16", standardWidth: 1080, standardHeight: 1920, orientation: "portrait", default: "assets/why-ride-with-us/02-all-mountain-enduro.jpg", alt: "All-mountain and enduro adventures" },
+      "why-ride-3": { name: "Family Focused", section: "Why Ride With Us", aspectRatio: "9/16", standardWidth: 1080, standardHeight: 1920, orientation: "portrait", default: "assets/why-ride-with-us/03-family-focused.jpg", alt: "Family focused mountain biking" },
+      "why-ride-4": { name: "Customised Tours", section: "Why Ride With Us", aspectRatio: "9/16", standardWidth: 1080, standardHeight: 1920, orientation: "portrait", default: "assets/why-ride-with-us/04-customised-tours.jpg", alt: "Customised Himalayan tours" },
+      "why-ride-5": { name: "Fully Supported", section: "Why Ride With Us", aspectRatio: "9/16", standardWidth: 1080, standardHeight: 1920, orientation: "portrait", default: "assets/why-ride-with-us/05-fully-supported.jpg", alt: "Fully supported expeditions" },
 
-      "crew-shyam": { name: "Shyam Gyan Limbu", section: "The Crew", aspectRatio: "4/5", default: "assets/crew/shyam-gyan-limbu.jpg", alt: "Shyam Gyan Limbu - Head Guide" },
-      "crew-prachit": { name: "Prachit Thapa Magar", section: "The Crew", aspectRatio: "4/5", default: "assets/crew/prachit-thapa-magar.jpg", alt: "Prachit Thapa Magar - Senior Guide" },
-      "crew-tek": { name: "Tek Shrestha", section: "The Crew", aspectRatio: "4/5", default: "assets/crew/tek-shrestha.jpg", alt: "Tek Shrestha - Logistics" }
+      "crew-shyam": { name: "Shyam Gyan Limbu", section: "The Crew", aspectRatio: "4/5", standardWidth: 1200, standardHeight: 1500, orientation: "portrait", default: "assets/crew/shyam-gyan-limbu.jpg", alt: "Shyam Gyan Limbu - Head Guide" },
+      "crew-prachit": { name: "Prachit Thapa Magar", section: "The Crew", aspectRatio: "4/5", standardWidth: 1200, standardHeight: 1500, orientation: "portrait", default: "assets/crew/prachit-thapa-magar.jpg", alt: "Prachit Thapa Magar - Senior Guide" },
+      "crew-tek": { name: "Tek Shrestha", section: "The Crew", aspectRatio: "4/5", standardWidth: 1200, standardHeight: 1500, orientation: "portrait", default: "assets/crew/tek-shrestha.jpg", alt: "Tek Shrestha - Logistics" }
     };
 
     const TOURS_CONFIG = [
@@ -556,6 +671,241 @@ $galleryCount = count($registry['gallery'] ?? []);
     let currentRegistry = { slots: INITIAL_SLOTS || {}, gallery: INITIAL_GALLERY || [] };
     const tourActiveSlide = { 'thin-air': 1, 'everest': 1, 'hello-moto': 1 };
     let tourSlideView = 'card';
+
+    // -----------------------------------------------------------------
+    // Interactive Drag-and-Zoom Cropper Engine
+    // -----------------------------------------------------------------
+    let activeCropper = null;
+    let cropSlotKey = null;
+    let cropTourId = null;
+    let cropAltText = '';
+    let cropSlotConfig = null;
+
+    function openCropModal(imageSrc, slotKey, isMismatch = false, tourId = null, altText = '') {
+      cropSlotKey = slotKey;
+      cropTourId = tourId;
+      cropAltText = altText;
+      cropSlotConfig = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
+
+      const stdWidth = cropSlotConfig.standardWidth || (cropSlotConfig.aspectRatio === '9/16' ? 1080 : (cropSlotConfig.aspectRatio === '4/5' ? 1200 : (cropSlotConfig.aspectRatio === '16/9' ? 1920 : 1600)));
+      const stdHeight = cropSlotConfig.standardHeight || (cropSlotConfig.aspectRatio === '9/16' ? 1920 : (cropSlotConfig.aspectRatio === '4/5' ? 1500 : (cropSlotConfig.aspectRatio === '16/9' ? 1080 : 1000)));
+      const ratio = stdWidth / stdHeight;
+      const ratioStr = cropSlotConfig.aspectRatio || `${stdWidth}:${stdHeight}`;
+      const orientationStr = stdWidth >= stdHeight ? 'Landscape' : 'Portrait';
+
+      document.getElementById('crop-modal-title').textContent = `Crop Image: ${cropSlotConfig.name || slotKey}`;
+      document.getElementById('crop-badge-dimension').textContent = `Standard: ${stdWidth} × ${stdHeight} px (${ratioStr} ${orientationStr})`;
+      document.getElementById('crop-footer-dim').textContent = `${stdWidth} × ${stdHeight} px (${ratioStr})`;
+
+      const mismatchBadge = document.getElementById('crop-badge-mismatch');
+      if (isMismatch) {
+        mismatchBadge.classList.remove('hidden');
+        mismatchBadge.classList.add('inline-flex');
+      } else {
+        mismatchBadge.classList.add('hidden');
+        mismatchBadge.classList.remove('inline-flex');
+      }
+
+      const modal = document.getElementById('crop-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      const imgEl = document.getElementById('cropper-target-img');
+      imgEl.src = imageSrc;
+
+      if (activeCropper) {
+        activeCropper.destroy();
+        activeCropper = null;
+      }
+
+      activeCropper = new Cropper(imgEl, {
+        aspectRatio: ratio,
+        viewMode: 1,
+        dragMode: 'move',
+        autoCropArea: 1,
+        restore: false,
+        guides: true,
+        center: true,
+        highlight: false,
+        cropBoxMovable: false,
+        cropBoxResizable: false,
+        toggleDragModeOnDblclick: false,
+        ready() {
+          document.getElementById('crop-zoom-range').value = 1;
+          lucide.createIcons();
+        },
+        zoom(event) {
+          const slider = document.getElementById('crop-zoom-range');
+          if (slider && event.detail.ratio) {
+            slider.value = Math.min(3, Math.max(0.1, event.detail.ratio));
+          }
+        }
+      });
+    }
+
+    function cropZoom(delta) {
+      if (!activeCropper) return;
+      activeCropper.zoom(delta);
+    }
+
+    function handleZoomSlider(val) {
+      if (!activeCropper) return;
+      activeCropper.zoomTo(parseFloat(val));
+    }
+
+    function cropRotate(deg) {
+      if (!activeCropper) return;
+      activeCropper.rotate(deg);
+    }
+
+    function cropReset() {
+      if (!activeCropper) return;
+      activeCropper.reset();
+      document.getElementById('crop-zoom-range').value = 1;
+    }
+
+    function closeCropModal() {
+      if (activeCropper) {
+        activeCropper.destroy();
+        activeCropper = null;
+      }
+      const modal = document.getElementById('crop-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    async function applyCropAndSave() {
+      if (!activeCropper || !cropSlotKey) return;
+      
+      const stdWidth = cropSlotConfig.standardWidth || (cropSlotConfig.aspectRatio === '9/16' ? 1080 : (cropSlotConfig.aspectRatio === '4/5' ? 1200 : (cropSlotConfig.aspectRatio === '16/9' ? 1920 : 1600)));
+      const stdHeight = cropSlotConfig.standardHeight || (cropSlotConfig.aspectRatio === '9/16' ? 1920 : (cropSlotConfig.aspectRatio === '4/5' ? 1500 : (cropSlotConfig.aspectRatio === '16/9' ? 1080 : 1000)));
+
+      const btn = document.getElementById('crop-apply-btn');
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Saving...</span>`;
+      lucide.createIcons();
+
+      const croppedCanvas = activeCropper.getCroppedCanvas({
+        width: stdWidth,
+        height: stdHeight,
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'high'
+      });
+
+      croppedCanvas.toBlob(async (blob) => {
+        try {
+          const formData = new FormData();
+          formData.append('slot_key', cropSlotKey);
+          formData.append('image', blob, `${cropSlotKey}.jpg`);
+          if (cropAltText) formData.append('alt', cropAltText);
+          formData.append('csrf_token', CSRF_TOKEN);
+
+          const response = await fetch('../api/upload.php', { method: 'POST', body: formData });
+          const res = await response.json();
+          if (res.success) {
+            if (!currentRegistry.slots[cropSlotKey]) currentRegistry.slots[cropSlotKey] = { ...cropSlotConfig };
+            currentRegistry.slots[cropSlotKey].url = res.url;
+            if (cropAltText) currentRegistry.slots[cropSlotKey].alt = cropAltText;
+            closeCropModal();
+            renderSlots();
+            showToast(res.message || `Image cropped to standard ${stdWidth}×${stdHeight} px and saved!`);
+            refreshStats();
+          } else {
+            showToast(res.error || 'Failed to upload cropped image.', false);
+          }
+        } catch (err) {
+          showToast('Network error during upload: ' + err.message, false);
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>Apply Crop & Save</span>`;
+          lucide.createIcons();
+        }
+      }, 'image/jpeg', 0.88);
+    }
+
+    // Inspect image for orientation/ratio mismatch
+    function inspectAndProcessImage(file, slotKey, tourId = null, forceCrop = false) {
+      if (!file) return;
+
+      const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
+      const stdWidth = slot.standardWidth || (slot.aspectRatio === '9/16' ? 1080 : (slot.aspectRatio === '4/5' ? 1200 : (slot.aspectRatio === '16/9' ? 1920 : 1600)));
+      const stdHeight = slot.standardHeight || (slot.aspectRatio === '9/16' ? 1920 : (slot.aspectRatio === '4/5' ? 1500 : (slot.aspectRatio === '16/9' ? 1080 : 1000)));
+      const targetRatio = stdWidth / stdHeight;
+      const targetIsPortrait = stdHeight > stdWidth;
+
+      const altInput = document.getElementById(tourId ? `tour-alt-input-${tourId}` : `alt-input-${slotKey}`);
+      const altVal = altInput ? altInput.value : (slot.alt || '');
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = e.target.result;
+        const img = new Image();
+        img.onload = () => {
+          const uploadRatio = img.naturalWidth / img.naturalHeight;
+          const uploadIsPortrait = img.naturalHeight > img.naturalWidth;
+          const isOrientationMismatch = (uploadIsPortrait !== targetIsPortrait);
+          const ratioDiff = Math.abs(uploadRatio - targetRatio) / targetRatio;
+          const isRatioMismatch = isOrientationMismatch || ratioDiff > 0.03;
+
+          if (forceCrop || isRatioMismatch) {
+            openCropModal(dataUrl, slotKey, isOrientationMismatch, tourId, altVal);
+          } else {
+            // Direct save if aspect ratio matches
+            saveDirectSlotImage(file, slotKey, tourId, altVal);
+          }
+        };
+        img.src = dataUrl;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function openCropForCurrentSlot(slotKey, tourId = null) {
+      const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
+      const isCustom = Boolean(slot.url);
+      const activeUrl = isCustom ? (slot.url.startsWith('data:') ? slot.url : '../' + slot.url) : '../' + slot.default;
+      const altInput = document.getElementById(tourId ? `tour-alt-input-${tourId}` : `alt-input-${slotKey}`);
+      const altVal = altInput ? altInput.value : (slot.alt || '');
+      openCropModal(activeUrl, slotKey, false, tourId, altVal);
+    }
+
+    function openCropForTourSlide(tourId) {
+      const curSlide = tourActiveSlide[tourId] || 1;
+      const tour = TOURS_CONFIG.find(t => t.id === tourId);
+      if (!tour) return;
+      const slotKey = `${tour.prefix}${curSlide}`;
+      openCropForCurrentSlot(slotKey, tourId);
+    }
+
+    async function saveDirectSlotImage(file, slotKey, tourId, altVal) {
+      const loader = document.getElementById(tourId ? `tour-loader-${tourId}` : `loader-${slotKey}`);
+      if (loader) { loader.classList.remove('hidden'); loader.classList.add('flex'); }
+
+      try {
+        const optimizedFile = await optimizeImage(file);
+        const formData = new FormData();
+        formData.append('slot_key', slotKey);
+        formData.append('image', optimizedFile);
+        formData.append('alt', altVal);
+        formData.append('csrf_token', CSRF_TOKEN);
+
+        const res = await fetch('../api/upload.php', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          if (!currentRegistry.slots[slotKey]) currentRegistry.slots[slotKey] = { ...DEFAULT_SLOTS[slotKey] };
+          currentRegistry.slots[slotKey].url = data.url;
+          currentRegistry.slots[slotKey].alt = altVal;
+          renderSlots();
+          showToast(data.message || 'Image replaced and saved to server storage!');
+          refreshStats();
+        } else {
+          showToast(data.error || 'Failed to replace image.', false);
+        }
+      } catch (err) {
+        showToast('Error replacing image: ' + err.message, false);
+      } finally {
+        if (loader) { loader.classList.add('hidden'); loader.classList.remove('flex'); }
+      }
+    }
 
     // -----------------------------------------------------------------
     // Tab Switching
@@ -696,45 +1046,13 @@ $galleryCount = count($registry['gallery'] ?? []);
       }
     }
 
-    async function handleTourSlideFilePicked(tourId, file) {
+    function handleTourSlideFilePicked(tourId, file) {
       if (!file) return;
       const curSlide = tourActiveSlide[tourId] || 1;
       const tour = TOURS_CONFIG.find(t => t.id === tourId);
       if (!tour) return;
       const slotKey = `${tour.prefix}${curSlide}`;
-      
-      const loader = document.getElementById(`tour-loader-${tourId}`);
-      if (loader) { loader.classList.remove('hidden'); loader.classList.add('flex'); }
-
-      const altInput = document.getElementById(`tour-alt-input-${tourId}`);
-      const altVal = altInput ? altInput.value : '';
-
-      try {
-        const optimizedFile = await optimizeImage(file);
-        const formData = new FormData();
-        formData.append('slot_key', slotKey);
-        formData.append('image', optimizedFile);
-        formData.append('alt', altVal);
-        formData.append('csrf_token', CSRF_TOKEN);
-
-        const res = await fetch('../api/upload.php', { method: 'POST', body: formData });
-        const data = await res.json();
-        if (data.success) {
-          if (!currentRegistry.slots[slotKey]) currentRegistry.slots[slotKey] = { ...DEFAULT_SLOTS[slotKey] };
-          currentRegistry.slots[slotKey].url = data.url;
-          currentRegistry.slots[slotKey].alt = altVal;
-          renderSlots();
-          showToast(`Slide ${curSlide} replaced and saved to server storage!`);
-          refreshStats();
-          return;
-        } else {
-          showToast(data.error || 'Failed to replace slide image.', false);
-        }
-      } catch (err) {
-        showToast('Error replacing slide: ' + err.message, false);
-      } finally {
-        if (loader) { loader.classList.add('hidden'); loader.classList.remove('flex'); }
-      }
+      inspectAndProcessImage(file, slotKey, tourId);
     }
 
     async function resetTourSlide(tourId) {
@@ -931,12 +1249,16 @@ $galleryCount = count($registry['gallery'] ?? []);
                   </div>
                 </div>
 
-                <!-- Replace & Reset -->
+                <!-- Replace, Crop & Reset -->
                 <div class="pt-2 border-t border-white/10 flex items-center gap-2">
                   <input type="file" id="tour-file-input-${tour.id}" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleTourSlideFilePicked('${tour.id}', this.files[0])" />
                   <button type="button" onclick="document.getElementById('tour-file-input-${tour.id}').click()" class="flex-1 py-2 px-3 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 shadow">
                     <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                    <span>Replace This Slide</span>
+                    <span>Replace Slide</span>
+                  </button>
+                  <button type="button" onclick="openCropForTourSlide('${tour.id}')" class="py-2 px-2.5 rounded bg-[#162E4D] hover:bg-[#2A4E7A] text-[#F5EFEB] border border-white/20 text-xs font-heading uppercase tracking-wider transition-colors flex items-center gap-1 shadow" title="Crop & Re-frame This Slide">
+                    <i data-lucide="crop" class="w-3.5 h-3.5"></i>
+                    <span class="hidden sm:inline">Crop</span>
                   </button>
                   <button 
                     type="button" 
@@ -981,10 +1303,15 @@ $galleryCount = count($registry['gallery'] ?? []);
                 </div>
                 <div class="p-2.5 space-y-2">
                   <input type="file" id="file-input-${slotKey}" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleSlotFileUpload('${slotKey}', this.files[0])" />
-                  <button type="button" onclick="document.getElementById('file-input-${slotKey}').click()" class="w-full py-1.5 px-2 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-[10px] font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1">
-                    <i data-lucide="upload" class="w-3 h-3"></i>
-                    <span>Replace</span>
-                  </button>
+                  <div class="flex items-center gap-1">
+                    <button type="button" onclick="document.getElementById('file-input-${slotKey}').click()" class="flex-1 py-1.5 px-2 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-[10px] font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1">
+                      <i data-lucide="upload" class="w-3 h-3"></i>
+                      <span>Replace</span>
+                    </button>
+                    <button type="button" onclick="openCropForCurrentSlot('${slotKey}')" class="py-1.5 px-2 rounded bg-[#162E4D] hover:bg-[#2A4E7A] text-[#F5EFEB] border border-white/15 text-[10px] font-heading uppercase tracking-wider transition-colors flex items-center justify-center" title="Crop & Re-frame">
+                      <i data-lucide="crop" class="w-3 h-3"></i>
+                    </button>
+                  </div>
                   ${isCustom ? `<button type="button" onclick="confirmResetSlot('${slotKey}')" class="w-full py-1 text-[10px] text-red-300 hover:underline">Reset</button>` : ''}
                 </div>
               </div>
@@ -1088,6 +1415,10 @@ $galleryCount = count($registry['gallery'] ?? []);
                 <button type="button" onclick="document.getElementById('file-input-${key}').click()" class="flex-1 py-1.5 px-2 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-[10px] font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1 shadow">
                   <i data-lucide="upload" class="w-3 h-3"></i>
                   <span>Replace</span>
+                </button>
+                <button type="button" onclick="openCropForCurrentSlot('${key}')" class="py-1.5 px-2 rounded bg-[#162E4D] hover:bg-[#2A4E7A] text-[#F5EFEB] border border-white/15 text-[10px] font-heading uppercase tracking-wider transition-colors flex items-center justify-center gap-1" title="Crop & Re-frame">
+                  <i data-lucide="crop" class="w-3 h-3"></i>
+                  <span>Crop</span>
                 </button>
                 <button 
                   type="button" 
@@ -1199,6 +1530,10 @@ $galleryCount = count($registry['gallery'] ?? []);
                   <i data-lucide="upload" class="w-3.5 h-3.5"></i>
                   <span>Replace Photo</span>
                 </button>
+                <button type="button" onclick="openCropForCurrentSlot('${key}')" class="py-2 px-2.5 rounded bg-[#162E4D] hover:bg-[#2A4E7A] text-[#F5EFEB] border border-white/20 text-xs font-heading uppercase tracking-wider transition-colors flex items-center gap-1 shadow" title="Crop & Re-frame Photo">
+                  <i data-lucide="crop" class="w-3.5 h-3.5"></i>
+                  <span>Crop</span>
+                </button>
                 <button 
                   type="button" 
                   id="reset-btn-${key}" 
@@ -1281,6 +1616,10 @@ $galleryCount = count($registry['gallery'] ?? []);
                 <button type="button" onclick="document.getElementById('file-input-${heroKey}').click()" class="flex-1 py-2 px-3 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 shadow">
                   <i data-lucide="upload" class="w-3.5 h-3.5"></i>
                   <span>Replace Hero Media</span>
+                </button>
+                <button type="button" onclick="openCropForCurrentSlot('${heroKey}')" class="py-2 px-2.5 rounded bg-[#162E4D] hover:bg-[#2A4E7A] text-[#F5EFEB] border border-white/20 text-xs font-heading uppercase tracking-wider transition-colors flex items-center gap-1 shadow" title="Crop & Re-frame Hero Media">
+                  <i data-lucide="crop" class="w-3.5 h-3.5"></i>
+                  <span>Crop</span>
                 </button>
                 <button type="button" id="reset-btn-${heroKey}" onclick="confirmResetSlot('${heroKey}')" class="py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors ${heroCustom ? 'text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer' : 'text-gray-500 opacity-40 cursor-not-allowed'}" ${heroCustom ? '' : 'disabled'}>
                   <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
@@ -1443,44 +1782,9 @@ $galleryCount = count($registry['gallery'] ?? []);
     // -----------------------------------------------------------------
     // Slot Image Upload Handler
     // -----------------------------------------------------------------
-    async function handleSlotFileUpload(slotKey, file) {
+    function handleSlotFileUpload(slotKey, file) {
       if (!file) return;
-
-      const loader = document.getElementById('loader-' + slotKey);
-      if (loader) loader.classList.remove('hidden'), loader.classList.add('flex');
-
-      try {
-        const optimizedFile = await optimizeImage(file);
-        const altInput = document.getElementById('alt-input-' + slotKey);
-        const altVal = altInput ? altInput.value : '';
-
-        const formData = new FormData();
-        formData.append('slot_key', slotKey);
-        formData.append('image', optimizedFile);
-        formData.append('alt', altVal);
-        formData.append('csrf_token', CSRF_TOKEN);
-
-        const response = await fetch('../api/upload.php', {
-          method: 'POST',
-          body: formData
-        });
-
-        const res = await response.json();
-        if (res.success) {
-          if (!currentRegistry.slots[slotKey]) currentRegistry.slots[slotKey] = { ...DEFAULT_SLOTS[slotKey] };
-          currentRegistry.slots[slotKey].url = res.url;
-          currentRegistry.slots[slotKey].alt = altVal;
-          renderSlots();
-          showToast(res.message || 'Image uploaded & live site updated!');
-          refreshStats();
-        } else {
-          showToast(res.error || 'Failed to upload image.', false);
-        }
-      } catch (err) {
-        showToast('Network error during upload: ' + err.message, false);
-      } finally {
-        if (loader) loader.classList.add('hidden'), loader.classList.remove('flex');
-      }
+      inspectAndProcessImage(file, slotKey, null);
     }
 
     // -----------------------------------------------------------------
