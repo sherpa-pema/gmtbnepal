@@ -49,6 +49,16 @@ html {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: 6rem;
+}
+
+#tours,
+#tour-cards,
+#crew,
+#reviews,
+#contact,
+#about {
+  scroll-margin-top: 6rem;
 }
 
 body {

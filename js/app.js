@@ -8,6 +8,25 @@ if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
+/**
+ * Smoothly scrolls to an element leaving room for the sticky header
+ * @param {HTMLElement} targetElement
+ * @param {number} [extraPadding=16]
+ */
+function scrollToElementWithOffset(targetElement, extraPadding = 16) {
+  if (!targetElement) return;
+  const navbar = document.getElementById("main-navbar");
+  const navHeight = navbar ? navbar.offsetHeight : 80;
+  const elementPosition = targetElement.getBoundingClientRect().top;
+  const currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+  const offsetPosition = elementPosition + currentScroll - navHeight - extraPadding;
+
+  window.scrollTo({
+    top: Math.max(0, offsetPosition),
+    behavior: "smooth"
+  });
+}
+
 function handleInitialScroll() {
   const hash = window.location.hash;
   if (hash && hash !== "#" && !hash.startsWith("#booking-modal")) {
@@ -15,7 +34,7 @@ function handleInitialScroll() {
       const targetElement = document.querySelector(hash);
       if (targetElement) {
         setTimeout(() => {
-          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          scrollToElementWithOffset(targetElement);
         }, 150);
       }
     } catch (e) {}
@@ -45,6 +64,12 @@ if (document.readyState === "loading") {
 } else {
   initAll();
 }
+
+window.addEventListener("load", () => {
+  if (window.location.hash && window.location.hash !== "#" && !window.location.hash.startsWith("#booking-modal")) {
+    handleInitialScroll();
+  }
+});
 
 /* 0. Hero Background Video Smooth Handler */
 function initHeroVideo() {
@@ -148,7 +173,7 @@ function initMobileMenu() {
       document.body.style.overflow = "";
     }
     if (lastFocusBeforeDrawer && lastFocusBeforeDrawer.focus) {
-      lastFocusBeforeDrawer.focus();
+      lastFocusBeforeDrawer.focus({ preventScroll: true });
     }
   };
 
@@ -321,16 +346,6 @@ function initAccordions() {
 
 /* 6. Tour Quick-View & Booking Modal */
 const TOURS_DATABASE = {
-  "enduro-thin-air": {
-    title: "ENDURO THIN AIR",
-    region: "Lower Mustang, Nepal",
-    duration: "10 Days",
-    elevation: "4,200m -> 2,800m Descent",
-    terrain: "Singletrack, Big Mountain Scree, Ancient Trade Paths",
-    season: "Spring & Autumn",
-    description: "The signature Lower Mustang singletrack tour dropping from high alpine desert into ancient pine forests and river gorges. Featuring Lubra Pass, Smooth Criminal, and Marpha.",
-    highlights: ["Shuttle-supported descents", "Marpha apple orchards & local culture", "Chasing Capra & Black Yak Trail (3500m+)"]
-  },
   "everest-express": {
     title: "EVEREST EXPRESS",
     region: "Solukhumbu / Khumbu, Nepal",
@@ -351,16 +366,6 @@ const TOURS_DATABASE = {
     description: "The pinnacle Himalayan enduro tour traversing Upper and Lower Mustang. From the ancient walled kingdom of Lo Manthang down through the dramatic Kali Gandaki gorge.",
     highlights: ["Signature Lubra Trail & Lo Free Ride Heaven", "4,200m Thin Air summit & 5,000m+ descent", "Supported 4x4 shuttle & luggage transfers"]
   },
-  "mustang-e-motion": {
-    title: "MUSTANG E-MOTION (E-MTB)",
-    region: "Upper Mustang & Lo Manthang",
-    duration: "12 Days",
-    elevation: "High Alpine Passes (4,000m+)",
-    terrain: "High-torque canyon trails, dirt roads & remote singletrack",
-    season: "Spring, Summer, Autumn",
-    description: "The ultimate electric mountain biking adventure conquering dramatic canyons, sky caves, and the ancient walled Kingdom of Lo Manthang.",
-    highlights: ["Premium full-suspension E-MTB fleet", "Exploration of forbidden kingdom Lo Manthang", "Supported battery recharge logistics"]
-  },
   "moto-mustang": {
     title: "HIMALAYAN MOTO HOLIDAYS “HELLO MOTO”",
     region: "Kathmandu, Pokhara & Mustang Valley",
@@ -380,16 +385,6 @@ const TOURS_DATABASE = {
     season: "Spring (Mar-May) & Autumn (Oct-Dec)",
     description: "An unforgettable journey through Nepal, from Kathmandu and Pokhara to the stunning landscapes of the remote Mustang region.",
     highlights: ["Honda CRF & CF Moto fleet", "Ancient walled kingdom Lo Manthang", "Support 4x4 & mobile mechanic crew"]
-  },
-  "himalayan-enduro": {
-    title: "THE HIMALAYAN ENDURO RACE",
-    region: "Nagarkot Hills & Mustang",
-    duration: "5 Days Event",
-    elevation: "Multi-stage technical enduro descents",
-    terrain: "Loamy pine singletrack, rock gardens, technical drops",
-    season: "Autumn 2026",
-    description: "Nepal's premier international multi-stage mountain bike enduro race event. Race with global riders across raw Himalayan topography.",
-    highlights: ["Chrono-timed stages", "International rider festival", "Full medical & marshal support"]
   }
 };
 
@@ -773,10 +768,11 @@ function initScrollChevron() {
   const chevron = document.getElementById("hero-scroll-trigger");
   if (!chevron) return;
 
-  chevron.addEventListener("click", () => {
-    const target = document.getElementById("tours") || document.getElementById("tours-section") || document.getElementById("reviews");
+  chevron.addEventListener("click", (e) => {
+    e.preventDefault();
+    const target = document.getElementById("tours") || document.getElementById("tour-cards") || document.getElementById("about") || document.getElementById("reviews");
     if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+      scrollToElementWithOffset(target);
     } else {
       window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
     }
@@ -786,17 +782,39 @@ function initScrollChevron() {
 /* 10. Smooth Scrolling for In-Page Anchor Links */
 function initSmoothScrollLinks() {
   document.addEventListener("click", (e) => {
-    const link = e.target.closest('a[href^="#"]');
+    const link = e.target.closest("a");
     if (!link) return;
 
-    const targetId = link.getAttribute("href");
+    const href = link.getAttribute("href");
+    if (!href) return;
+
+    let targetId = null;
+    if (href.startsWith("#")) {
+      targetId = href;
+    } else {
+      try {
+        const url = new URL(link.href, window.location.href);
+        if (url.pathname === window.location.pathname && url.hash) {
+          targetId = url.hash;
+        }
+      } catch (err) {}
+    }
+
     if (!targetId || targetId === "#" || targetId.startsWith("#booking-modal")) return;
 
     try {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        if (history.pushState) {
+          history.pushState(null, null, targetId);
+        }
+
+        // 50ms delay ensures mobile drawer closing and body overflow reset are fully settled
+        setTimeout(() => {
+          scrollToElementWithOffset(targetElement);
+        }, 50);
       }
     } catch (err) {
       // Ignore invalid selectors

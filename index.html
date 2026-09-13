@@ -463,14 +463,14 @@
           </div>
         </div>
 
-        <div class="flex items-center gap-4 mb-8">
-          <a href="#tours" class="btn-tactical btn-primary w-full sm:w-auto px-8 py-4 text-base text-center">
+        <div id="tours" class="flex items-center gap-4 mb-8 scroll-mt-28">
+          <a id="explore-tours" href="#tour-cards" class="btn-tactical btn-primary w-full sm:w-auto px-8 py-4 text-base text-center">
             Explore Tours
           </a>
         </div>
 
         <!-- Flagship Tours Grid -->
-        <div id="tours" class="space-y-8">
+        <div id="tour-cards" class="space-y-8">
           
           <!-- Tour Card 1: Enduro Thin Air : Ultimate -->
           <div class="tour-card reveal-init">
@@ -1501,11 +1501,8 @@
           <label for="modal-tour-select" class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1">Select Tour / Program</label>
           <select id="modal-tour-select" class="form-input-dark">
             <option value="enduro-thin-air-ultimate">Enduro Thin Air : Ultimate (Upper & Lower Mustang, 12 Days)</option>
-            <option value="enduro-thin-air">Enduro Thin Air (Lower Mustang, 10 Days)</option>
             <option value="everest-express">Everest Express (Khumbu & Phaplu, 10 Days)</option>
-            <option value="mustang-e-motion">Mustang E-Motion (E-MTB, 12 Days)</option>
             <option value="moto-mustang">Himalayan Moto Holidays “Hello Moto” (Dual-Sport Enduro, 11 Days)</option>
-            <option value="himalayan-enduro">The Himalayan Enduro Race</option>
           </select>
         </div>
 
@@ -1567,7 +1564,7 @@
   </div>
 
   <!-- Initialize Lucide Icons & Custom Scripts -->
-  <script src="js/app.js?v=5.0"></script>
+  <script src="js/app.js?v=5.1"></script>
   <script>
     lucide.createIcons();
   </script>
