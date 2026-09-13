@@ -1,0 +1,173 @@
+{
+    "slots": {
+        "hero-bg": {
+            "name": "Hero Section Media Fallback / Poster",
+            "section": "Hero",
+            "url": "",
+            "alt": "GNARLY MTB Nepal Himalayan Action",
+            "default": "assets/gallery/Tours7-scaled.jpg",
+            "updated_at": null
+        },
+        "why-ride-1": {
+            "name": "Why Ride: Trails For Every Skill",
+            "section": "Why Ride With Us",
+            "url": "",
+            "alt": "Trails for every skill",
+            "default": "assets/why-ride-with-us/01-trails-every-skill.jpg",
+            "updated_at": null
+        },
+        "why-ride-2": {
+            "name": "Why Ride: All-Mountain & Enduro",
+            "section": "Why Ride With Us",
+            "url": "",
+            "alt": "All-mountain and enduro adventures",
+            "default": "assets/why-ride-with-us/02-all-mountain-enduro.jpg",
+            "updated_at": null
+        },
+        "why-ride-3": {
+            "name": "Why Ride: Family Focused",
+            "section": "Why Ride With Us",
+            "url": "",
+            "alt": "Family focused mountain biking",
+            "default": "assets/why-ride-with-us/03-family-focused.jpg",
+            "updated_at": null
+        },
+        "why-ride-4": {
+            "name": "Why Ride: Customised Tours",
+            "section": "Why Ride With Us",
+            "url": "",
+            "alt": "Customised Himalayan tours",
+            "default": "assets/why-ride-with-us/04-customised-tours.jpg",
+            "updated_at": null
+        },
+        "why-ride-5": {
+            "name": "Why Ride: Fully Supported",
+            "section": "Why Ride With Us",
+            "url": "",
+            "alt": "Fully supported expeditions",
+            "default": "assets/why-ride-with-us/05-fully-supported.jpg",
+            "updated_at": null
+        },
+        "tour-thin-air-1": {
+            "name": "Enduro Thin Air \u2014 Slide 1",
+            "section": "Tour: Enduro Thin Air",
+            "url": "",
+            "alt": "Enduro Thin Air Mustang Slide 1",
+            "default": "assets/tours/enduro-thin-air/card-slide-1.jpg",
+            "updated_at": null
+        },
+        "tour-thin-air-2": {
+            "name": "Enduro Thin Air \u2014 Slide 2",
+            "section": "Tour: Enduro Thin Air",
+            "url": "",
+            "alt": "Enduro Thin Air Mustang Slide 2",
+            "default": "assets/tours/enduro-thin-air/card-slide-2.jpg",
+            "updated_at": null
+        },
+        "tour-thin-air-3": {
+            "name": "Enduro Thin Air \u2014 Slide 3",
+            "section": "Tour: Enduro Thin Air",
+            "url": "",
+            "alt": "Enduro Thin Air Mustang Slide 3",
+            "default": "assets/tours/enduro-thin-air/card-slide-3.jpg",
+            "updated_at": null
+        },
+        "tour-thin-air-4": {
+            "name": "Enduro Thin Air \u2014 Slide 4",
+            "section": "Tour: Enduro Thin Air",
+            "url": "",
+            "alt": "Enduro Thin Air Mustang Slide 4",
+            "default": "assets/tours/enduro-thin-air/card-slide-4.jpg",
+            "updated_at": null
+        },
+        "tour-everest-1": {
+            "name": "Everest Express \u2014 Slide 1",
+            "section": "Tour: Everest Express",
+            "url": "",
+            "alt": "Test Everest Alt 1",
+            "default": "assets/tours/everest-express/card-slide-1.jpg",
+            "updated_at": null
+        },
+        "tour-everest-2": {
+            "name": "Everest Express \u2014 Slide 2",
+            "section": "Tour: Everest Express",
+            "url": "",
+            "alt": "Everest Express Slide 2",
+            "default": "assets/tours/everest-express/card-slide-2.jpg",
+            "updated_at": null
+        },
+        "tour-everest-3": {
+            "name": "Everest Express \u2014 Slide 3",
+            "section": "Tour: Everest Express",
+            "url": "",
+            "alt": "Everest Express Slide 3",
+            "default": "assets/tours/everest-express/card-slide-3.jpg",
+            "updated_at": null
+        },
+        "tour-everest-4": {
+            "name": "Everest Express \u2014 Slide 4",
+            "section": "Tour: Everest Express",
+            "url": "",
+            "alt": "Everest Express Slide 4",
+            "default": "assets/tours/everest-express/card-slide-4.jpg",
+            "updated_at": null
+        },
+        "tour-moto-1": {
+            "name": "Hello Moto \u2014 Slide 1",
+            "section": "Tour: Hello Moto",
+            "url": "",
+            "alt": "Himalayan Moto Holidays Slide 1",
+            "default": "assets/tours/hello-moto/card-slide-1.jpg",
+            "updated_at": null
+        },
+        "tour-moto-2": {
+            "name": "Hello Moto \u2014 Slide 2",
+            "section": "Tour: Hello Moto",
+            "url": "",
+            "alt": "Himalayan Moto Holidays Slide 2",
+            "default": "assets/tours/hello-moto/card-slide-2.jpg",
+            "updated_at": null
+        },
+        "tour-moto-3": {
+            "name": "Hello Moto \u2014 Slide 3",
+            "section": "Tour: Hello Moto",
+            "url": "",
+            "alt": "Himalayan Moto Holidays Slide 3",
+            "default": "assets/tours/hello-moto/card-slide-3.jpg",
+            "updated_at": null
+        },
+        "tour-moto-4": {
+            "name": "Hello Moto \u2014 Slide 4",
+            "section": "Tour: Hello Moto",
+            "url": "",
+            "alt": "Himalayan Moto Holidays Slide 4",
+            "default": "assets/tours/hello-moto/card-slide-4.jpg",
+            "updated_at": null
+        },
+        "crew-shyam": {
+            "name": "Crew: Shyam Gyan Limbu",
+            "section": "The Crew",
+            "url": "",
+            "alt": "Shyam Gyan Limbu - Lead Guide",
+            "default": "assets/crew/shyam-gyan-limbu.jpg",
+            "updated_at": null
+        },
+        "crew-prachit": {
+            "name": "Crew: Prachit Thapa Magar",
+            "section": "The Crew",
+            "url": "",
+            "alt": "Prachit Thapa Magar - Senior Guide",
+            "default": "assets/crew/prachit-thapa-magar.jpg",
+            "updated_at": null
+        },
+        "crew-tek": {
+            "name": "Crew: Tek Shrestha",
+            "section": "The Crew",
+            "url": "",
+            "alt": "Tek Shrestha - Race Logistics & Mechanic",
+            "default": "assets/crew/tek-shrestha.jpg",
+            "updated_at": null
+        }
+    },
+    "gallery": []
+}

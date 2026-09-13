@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMAGE MANAGEMENT BACKEND | GNARLY MTB NEPAL</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="../assets/branding/favicon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { DEFAULT: "#F5EFEB", hover: "#E8DFD8" },
+            canvas: "#2A4E7A",
+            surface: { DEFAULT: "#1E3A5F", secondary: "#162E4D", elevated: "#345C8C" }
+          },
+          fontFamily: {
+            display: ["Anton", "sans-serif"],
+            heading: ["Oswald", "sans-serif"],
+            body: ["Roboto", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      background-color: #162E4D;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(245, 239, 235, 0.2);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="text-gray-200 antialiased min-h-screen flex flex-col font-body selection:bg-[#F5EFEB] selection:text-black">
+
+  <!-- =========================================================================
+       VIEW 1: AUTHENTICATION / LOGIN PROMPT (Shown when unauthenticated)
+       ========================================================================= -->
+  <div id="auth-view" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#162E4D]">
+    <div class="w-full max-w-md">
+      <!-- Top Branding -->
+      <div class="text-center mb-8">
+        <a href="../index.html" class="inline-flex items-center space-x-3 group" title="Return to Website">
+          <img src="../assets/branding/logo.png" alt="Gnarly MTB Nepal" class="w-14 h-14 object-contain rounded-full shadow-xl border border-white/20 group-hover:scale-105 transition-transform" />
+        </a>
+        <h1 class="font-display text-3xl uppercase tracking-wider text-white mt-4">
+          GNARLY <span class="text-[#F5EFEB]">MTB</span>
+        </h1>
+        <p class="font-heading text-xs uppercase tracking-widest text-[#F5EFEB]/70 mt-1">
+          Backend Management Portal
+        </p>
+      </div>
+
+      <!-- Login Card -->
+      <div class="bg-[#1E3A5F]/95 border border-white/15 rounded-xl shadow-2xl p-8 backdrop-blur-md relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-[#F5EFEB]"></div>
+
+        <div class="mb-6">
+          <h2 class="font-heading text-xl uppercase font-bold tracking-wide text-white flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-5 h-5 text-[#F5EFEB]"></i>
+            Owner Authentication
+          </h2>
+          <p class="font-body text-xs text-gray-300 mt-1">
+            Enter username and password to manage website imagery.
+          </p>
+        </div>
+
+        <div id="login-error-alert" class="mb-5 p-3.5 rounded bg-red-950/80 border border-red-500/50 hidden items-start gap-3 text-red-200 text-sm">
+          <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+          <span id="login-error-msg">Invalid username or password.</span>
+        </div>
+
+        <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5">
+          <div>
+            <label for="login-username" class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1.5">
+              Username
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <i data-lucide="user" class="w-4 h-4"></i>
+              </div>
+              <input 
+                type="text" 
+                id="login-username" 
+                required 
+                autofocus
+                placeholder="Enter username" 
+                value="admin"
+                class="w-full pl-10 pr-4 py-2.5 bg-[#162E4D] border border-white/20 rounded text-white placeholder-gray-400 focus:outline-none focus:border-[#F5EFEB] font-body text-sm transition-colors"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="login-password" class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1.5">
+              Password
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </div>
+              <input 
+                type="password" 
+                id="login-password" 
+                required 
+                placeholder="••••••••••••" 
+                class="w-full pl-10 pr-10 py-2.5 bg-[#162E4D] border border-white/20 rounded text-white placeholder-gray-400 focus:outline-none focus:border-[#F5EFEB] font-body text-sm transition-colors"
+              />
+              <button 
+                type="button" 
+                onclick="togglePasswordVisibility()" 
+                class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-white transition-colors" 
+                aria-label="Toggle password">
+                <i data-lucide="eye" id="login-eye-icon" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            id="login-submit-btn"
+            class="w-full py-3 px-4 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-sm font-bold uppercase tracking-widest rounded transition-all duration-200 transform hover:-translate-y-0.5 shadow-lg flex items-center justify-center gap-2">
+            <span>Log In to Backend</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </form>
+
+        <div class="mt-6 pt-4 border-t border-white/10 text-center">
+          <a href="../index.html" class="inline-flex items-center gap-1.5 text-xs font-heading uppercase tracking-wider text-gray-400 hover:text-[#F5EFEB] transition-colors">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            <span>Return to Live Website</span>
+          </a>
+        </div>
+      </div>
+
+      <p class="text-center text-[11px] text-gray-400 mt-6 tracking-wide">
+        Default credentials: <code class="text-[#F5EFEB]">admin</code> / <code class="text-[#F5EFEB]">gnarlymtb2026</code>
+      </p>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       VIEW 2: BACKEND DASHBOARD (Visible once authenticated)
+       ========================================================================= -->
+  <div id="dashboard-view" class="hidden flex-col min-h-screen">
+    
+    <!-- Top Bar -->
+    <header class="sticky top-0 z-40 bg-[#1E3A5F] border-b border-white/10 shadow-lg backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 sm:h-20">
+          
+          <div class="flex items-center space-x-3 sm:space-x-4">
+            <a href="../index.html" target="_blank" class="flex items-center space-x-3 group" title="Preview Live Website">
+              <img src="../assets/branding/logo.png" alt="Gnarly MTB" class="w-9 h-9 sm:w-10 sm:h-10 object-contain rounded-full border border-white/20 group-hover:scale-105 transition-transform" />
+              <div class="hidden sm:block">
+                <span class="font-display text-xl sm:text-2xl text-white tracking-wide">
+                  GNARLY <span class="text-[#F5EFEB]">BACKEND</span>
+                </span>
+                <span class="block text-[10px] font-heading tracking-widest uppercase text-gray-400">
+                  Image Management System
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="flex items-center space-x-3 sm:space-x-4">
+            <div id="environment-badge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#2A4E7A] text-[10px] font-heading uppercase tracking-wider text-[#F5EFEB] border border-white/10">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span id="env-text">Vercel Preview Mode</span>
+            </div>
+
+            <a href="../index.html" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-white/20 text-xs font-heading uppercase tracking-wider text-white hover:text-[#F5EFEB] hover:border-[#F5EFEB] transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>View Live Site</span>
+            </a>
+
+            <div class="flex items-center space-x-2 pl-3 border-l border-white/10">
+              <div class="hidden md:flex flex-col text-right">
+                <span id="current-user-display" class="text-xs font-heading uppercase tracking-wider text-white font-semibold">admin</span>
+                <span class="text-[10px] text-green-400 flex items-center justify-end gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+                  Active
+                </span>
+              </div>
+              <button onclick="handleLogout()" class="p-2 rounded bg-red-950/40 border border-red-500/30 text-red-300 hover:bg-red-900/60 hover:text-white transition-all flex items-center gap-1.5 text-xs font-heading uppercase tracking-wider">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Logout</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- Metrics Bar -->
+    <div class="bg-[#193254] border-b border-white/5 py-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          
+          <div class="bg-[#1E3A5F] p-3.5 rounded-lg border border-white/10 flex items-center gap-3">
+            <div class="w-10 h-10 rounded bg-[#2A4E7A] flex items-center justify-center text-[#F5EFEB] shrink-0">
+              <i data-lucide="layout-grid" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-[10px] font-heading uppercase tracking-wider text-gray-400">Total Page Slots</p>
+              <p class="text-xl font-display text-white" id="stat-total-slots">21</p>
+            </div>
+          </div>
+
+          <div class="bg-[#1E3A5F] p-3.5 rounded-lg border border-white/10 flex items-center gap-3">
+            <div class="w-10 h-10 rounded bg-green-900/40 border border-green-500/30 flex items-center justify-center text-green-400 shrink-0">
+              <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-[10px] font-heading uppercase tracking-wider text-gray-400">Custom Overrides</p>
+              <p class="text-xl font-display text-green-400" id="stat-custom-slots">0</p>
+            </div>
+          </div>
+
+          <div class="bg-[#1E3A5F] p-3.5 rounded-lg border border-white/10 flex items-center gap-3">
+            <div class="w-10 h-10 rounded bg-[#2A4E7A] flex items-center justify-center text-[#F5EFEB] shrink-0">
+              <i data-lucide="images" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-[10px] font-heading uppercase tracking-wider text-gray-400">Gallery Uploads</p>
+              <p class="text-xl font-display text-white" id="stat-gallery-count">0</p>
+            </div>
+          </div>
+
+          <div class="bg-[#1E3A5F] p-3.5 rounded-lg border border-white/10 flex items-center gap-3">
+            <div class="w-10 h-10 rounded bg-[#2A4E7A] flex items-center justify-center text-[#F5EFEB] shrink-0">
+              <i data-lucide="hard-drive" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-[10px] font-heading uppercase tracking-wider text-gray-400">Storage State</p>
+              <p class="text-xl font-display text-white" id="stat-disk-usage">Active</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      
+      <!-- Tab Controls -->
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4 mb-6">
+        <nav class="flex space-x-2" aria-label="Backend Tabs">
+          <button id="tab-btn-slots" onclick="switchTab('slots')" class="tab-btn active px-4 py-2 rounded font-heading text-xs uppercase tracking-wider font-semibold transition-all flex items-center gap-2 bg-[#F5EFEB] text-black">
+            <i data-lucide="image" class="w-4 h-4"></i>
+            <span>Core Website Images</span>
+          </button>
+          <button id="tab-btn-gallery" onclick="switchTab('gallery')" class="tab-btn px-4 py-2 rounded font-heading text-xs uppercase tracking-wider font-semibold transition-all flex items-center gap-2 text-gray-300 hover:text-white hover:bg-white/5">
+            <i data-lucide="grid" class="w-4 h-4"></i>
+            <span>Tour Gallery Dispatches</span>
+          </button>
+          <button id="tab-btn-settings" onclick="switchTab('settings')" class="tab-btn px-4 py-2 rounded font-heading text-xs uppercase tracking-wider font-semibold transition-all flex items-center gap-2 text-gray-300 hover:text-white hover:bg-white/5">
+            <i data-lucide="settings" class="w-4 h-4"></i>
+            <span>Settings & Security</span>
+          </button>
+        </nav>
+
+        <div id="slots-controls" class="flex flex-wrap items-center gap-2">
+          <div class="relative">
+            <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <input 
+              type="text" 
+              id="slot-search" 
+              placeholder="Search slots (e.g. Everest, Hero)..." 
+              oninput="filterSlots()"
+              class="pl-8 pr-3 py-1.5 bg-[#1E3A5F] border border-white/15 rounded text-xs text-white placeholder-gray-400 focus:outline-none focus:border-[#F5EFEB] w-48 sm:w-64"
+            />
+          </div>
+          <select id="section-filter" onchange="filterSlots()" class="px-3 py-1.5 bg-[#1E3A5F] border border-white/15 rounded text-xs text-white focus:outline-none focus:border-[#F5EFEB]">
+            <option value="all">All Sections</option>
+            <option value="Hero">Hero Section</option>
+            <option value="Tour: Enduro Thin Air">Tour: Enduro Thin Air</option>
+            <option value="Tour: Everest Express">Tour: Everest Express</option>
+            <option value="Tour: Hello Moto">Tour: Hello Moto</option>
+            <option value="The Crew">The Crew</option>
+            <option value="Why Ride With Us">Why Ride With Us</option>
+            <option value="custom-only">Custom Overrides Only</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tab 1: Core Website Images -->
+      <div id="panel-slots" class="tab-panel">
+        <div id="slots-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Tab 2: Tour Gallery Dispatches -->
+      <div id="panel-gallery" class="tab-panel hidden">
+        <div class="bg-[#1E3A5F] border border-white/15 rounded-xl p-6 shadow-xl mb-8">
+          <h2 class="font-heading text-lg font-bold uppercase tracking-wide text-white flex items-center gap-2 mb-4">
+            <i data-lucide="plus-circle" class="w-5 h-5 text-[#F5EFEB]"></i>
+            Upload New Tour Dispatch Photo
+          </h2>
+
+          <form id="gallery-upload-form" onsubmit="handleGalleryUpload(event)" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-heading uppercase tracking-wider text-gray-300 mb-1">Dispatch Title</label>
+                <input type="text" id="gal-title" required placeholder="e.g. Upper Mustang High Pass Singletrack" class="w-full px-3 py-2 bg-[#162E4D] border border-white/20 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" />
+              </div>
+              <div>
+                <label class="block text-xs font-heading uppercase tracking-wider text-gray-300 mb-1">Tour Category</label>
+                <select id="gal-category" class="w-full px-3 py-2 bg-[#162E4D] border border-white/20 rounded text-sm text-white focus:outline-none focus:border-[#F5EFEB]">
+                  <option value="tours-2024">Himalayan Tours 2024</option>
+                  <option value="asian-enduro">Asian Enduro Series</option>
+                  <option value="lower-mustang">Lower Mustang</option>
+                  <option value="upper-mustang">Upper Mustang</option>
+                  <option value="everest">Everest Singletrack</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-heading uppercase tracking-wider text-gray-300 mb-1">Alt Text (SEO)</label>
+                <input type="text" id="gal-alt" placeholder="e.g. Guided mountain biking in Lower Mustang" class="w-full px-3 py-2 bg-[#162E4D] border border-white/20 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" />
+              </div>
+            </div>
+
+            <div onclick="document.getElementById('gal-file-input').click()" class="border-2 border-dashed border-white/20 hover:border-[#F5EFEB] rounded-xl p-6 text-center cursor-pointer transition-colors bg-[#162E4D]/40 group">
+              <input type="file" id="gal-file-input" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleGalleryFilePicked(this.files[0])" />
+              <div class="flex flex-col items-center justify-center space-y-2">
+                <div class="w-12 h-12 rounded-full bg-[#2A4E7A] flex items-center justify-center text-[#F5EFEB] group-hover:scale-110 transition-transform">
+                  <i data-lucide="image-plus" class="w-6 h-6"></i>
+                </div>
+                <p id="gal-file-label" class="font-heading text-sm uppercase tracking-wider text-white">
+                  Drag & Drop photo here, or <span class="text-[#F5EFEB] underline">Browse</span>
+                </p>
+                <p class="text-[11px] text-gray-400">JPG, PNG, or WebP up to 15MB • Auto-optimized before saving</p>
+              </div>
+              <div id="gal-selected-preview" class="hidden mt-4 pt-4 border-t border-white/10 flex items-center justify-center gap-4">
+                <img id="gal-thumb-img" src="" alt="Preview" class="h-24 w-auto object-cover rounded shadow" />
+                <div class="text-left text-xs">
+                  <p id="gal-file-name" class="font-semibold text-white"></p>
+                  <p id="gal-file-size" class="text-gray-400"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-end">
+              <button type="submit" id="gal-upload-btn" class="py-2.5 px-6 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center gap-2 shadow-lg">
+                <i data-lucide="cloud-upload" class="w-4 h-4"></i>
+                <span>Upload Photo to Gallery</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-heading text-base font-bold uppercase tracking-wider text-white flex items-center gap-2">
+            <i data-lucide="images" class="w-4 h-4 text-[#F5EFEB]"></i>
+            Custom Uploaded Dispatches (<span id="gallery-items-count">0</span>)
+          </h3>
+          <a href="../gallery.html" target="_blank" class="text-xs font-heading uppercase tracking-wider text-[#F5EFEB] hover:underline flex items-center gap-1">
+            <span>View Full Tour Gallery</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+      </div>
+
+      <!-- Tab 3: Settings & Security -->
+      <div id="panel-settings" class="tab-panel hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-[#1E3A5F] border border-white/15 rounded-xl p-6 shadow-xl">
+            <h2 class="font-heading text-lg font-bold uppercase tracking-wide text-white flex items-center gap-2 mb-1">
+              <i data-lucide="lock" class="w-5 h-5 text-[#F5EFEB]"></i>
+              Update Backend Credentials
+            </h2>
+            <p class="text-xs text-gray-300 mb-6">Change your admin username or password.</p>
+
+            <form id="credentials-form" onsubmit="handleCredentialsUpdate(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-heading uppercase tracking-wider text-gray-300 mb-1">Current Password</label>
+                <input type="password" id="current-password" required placeholder="••••••••••••" class="w-full px-3 py-2 bg-[#162E4D] border border-white/20 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" />
+              </div>
+              <div>
+                <label class="block text-xs font-heading uppercase tracking-wider text-gray-300 mb-1">New Username</label>
+                <input type="text" id="new-username" required value="admin" class="w-full px-3 py-2 bg-[#162E4D] border border-white/20 rounded text-sm text-white focus:outline-none focus:border-[#F5EFEB]" />
+              </div>
+              <div>
+                <label class="block text-xs font-heading uppercase tracking-wider text-gray-300 mb-1">New Password</label>
+                <input type="password" id="new-password" required minlength="6" placeholder="At least 6 characters" class="w-full px-3 py-2 bg-[#162E4D] border border-white/20 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" />
+              </div>
+              <button type="submit" class="w-full py-2.5 px-4 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2 shadow">
+                <i data-lucide="save" class="w-4 h-4"></i>
+                <span>Save New Credentials</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="bg-[#1E3A5F] border border-white/15 rounded-xl p-6 shadow-xl flex flex-col justify-between">
+            <div>
+              <h2 class="font-heading text-lg font-bold uppercase tracking-wide text-white flex items-center gap-2 mb-1">
+                <i data-lucide="hard-drive" class="w-5 h-5 text-[#F5EFEB]"></i>
+                Hosting & Migration Guide
+              </h2>
+              <div class="space-y-3 bg-[#162E4D] p-4 rounded-lg border border-white/10 text-xs mt-4">
+                <p class="text-gray-300 leading-relaxed">
+                  <strong class="text-[#F5EFEB]">Testing on Vercel:</strong> Image replacements and gallery dispatches are rendered using fast client-side storage cache so you can preview everything live without needing PHP.
+                </p>
+                <p class="text-gray-300 leading-relaxed">
+                  <strong class="text-green-400">cPanel Migration:</strong> When moving to cPanel, simply upload all files to <code class="text-white">public_html</code>. The PHP backend (<code class="text-white">backend/index.php</code>) will activate automatically with permanent server disk storage and zero monthly fees.
+                </p>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10">
+              <button type="button" onclick="resetAllOverrides()" class="w-full py-2.5 px-4 rounded border border-red-500/30 text-red-300 hover:bg-red-900/40 hover:text-white font-heading text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span>Reset All Slots to Default Website Assets</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none max-w-sm">
+    <div id="toast-inner" class="flex items-center gap-3 p-4 rounded-xl shadow-2xl border text-sm">
+      <i id="toast-icon" data-lucide="check-circle" class="w-5 h-5 shrink-0"></i>
+      <span id="toast-message" class="font-body"></span>
+    </div>
+  </div>
+
+  <!-- Unified CMS Controller Script -->
+  <script>
+    // -----------------------------------------------------------------
+    // Initial Slot Definitions
+    // -----------------------------------------------------------------
+    const DEFAULT_SLOTS = {
+      "hero-bg": { name: "Hero Section Media Fallback", section: "Hero", default: "assets/gallery/Tours7-scaled.jpg", alt: "GNARLY MTB Nepal Himalayan Action" },
+      "why-ride-1": { name: "Why Ride: Trails For Every Skill", section: "Why Ride With Us", default: "assets/why-ride-with-us/01-trails-every-skill.jpg", alt: "Trails for every skill" },
+      "why-ride-2": { name: "Why Ride: All-Mountain & Enduro", section: "Why Ride With Us", default: "assets/why-ride-with-us/02-all-mountain-enduro.jpg", alt: "All-mountain and enduro adventures" },
+      "why-ride-3": { name: "Why Ride: Family Focused", section: "Why Ride With Us", default: "assets/why-ride-with-us/03-family-focused.jpg", alt: "Family focused mountain biking" },
+      "why-ride-4": { name: "Why Ride: Customised Tours", section: "Why Ride With Us", default: "assets/why-ride-with-us/04-customised-tours.jpg", alt: "Customised Himalayan tours" },
+      "why-ride-5": { name: "Why Ride: Fully Supported", section: "Why Ride With Us", default: "assets/why-ride-with-us/05-fully-supported.jpg", alt: "Fully supported expeditions" },
+      "tour-thin-air-1": { name: "Enduro Thin Air — Slide 1", section: "Tour: Enduro Thin Air", default: "assets/tours/enduro-thin-air/card-slide-1.jpg", alt: "Enduro Thin Air Slide 1" },
+      "tour-thin-air-2": { name: "Enduro Thin Air — Slide 2", section: "Tour: Enduro Thin Air", default: "assets/tours/enduro-thin-air/card-slide-2.jpg", alt: "Enduro Thin Air Slide 2" },
+      "tour-thin-air-3": { name: "Enduro Thin Air — Slide 3", section: "Tour: Enduro Thin Air", default: "assets/tours/enduro-thin-air/card-slide-3.jpg", alt: "Enduro Thin Air Slide 3" },
+      "tour-thin-air-4": { name: "Enduro Thin Air — Slide 4", section: "Tour: Enduro Thin Air", default: "assets/tours/enduro-thin-air/card-slide-4.jpg", alt: "Enduro Thin Air Slide 4" },
+      "tour-everest-1": { name: "Everest Express — Slide 1", section: "Tour: Everest Express", default: "assets/tours/everest-express/card-slide-1.jpg", alt: "Everest Express Slide 1" },
+      "tour-everest-2": { name: "Everest Express — Slide 2", section: "Tour: Everest Express", default: "assets/tours/everest-express/card-slide-2.jpg", alt: "Everest Express Slide 2" },
+      "tour-everest-3": { name: "Everest Express — Slide 3", section: "Tour: Everest Express", default: "assets/tours/everest-express/card-slide-3.jpg", alt: "Everest Express Slide 3" },
+      "tour-everest-4": { name: "Everest Express — Slide 4", section: "Tour: Everest Express", default: "assets/tours/everest-express/card-slide-4.jpg", alt: "Everest Express Slide 4" },
+      "tour-moto-1": { name: "Hello Moto — Slide 1", section: "Tour: Hello Moto", default: "assets/tours/hello-moto/card-slide-1.jpg", alt: "Himalayan Moto Holidays Slide 1" },
+      "tour-moto-2": { name: "Hello Moto — Slide 2", section: "Tour: Hello Moto", default: "assets/tours/hello-moto/card-slide-2.jpg", alt: "Himalayan Moto Holidays Slide 2" },
+      "tour-moto-3": { name: "Hello Moto — Slide 3", section: "Tour: Hello Moto", default: "assets/tours/hello-moto/card-slide-3.jpg", alt: "Himalayan Moto Holidays Slide 3" },
+      "tour-moto-4": { name: "Hello Moto — Slide 4", section: "Tour: Hello Moto", default: "assets/tours/hello-moto/card-slide-4.jpg", alt: "Himalayan Moto Holidays Slide 4" },
+      "crew-shyam": { name: "Crew: Shyam Gyan Limbu", section: "The Crew", default: "assets/crew/shyam-gyan-limbu.jpg", alt: "Shyam Gyan Limbu - Head Guide" },
+      "crew-prachit": { name: "Crew: Prachit Thapa Magar", section: "The Crew", default: "assets/crew/prachit-thapa-magar.jpg", alt: "Prachit Thapa Magar - Senior Guide" },
+      "crew-tek": { name: "Crew: Tek Shrestha", section: "The Crew", default: "assets/crew/tek-shrestha.jpg", alt: "Tek Shrestha - Logistics" }
+    };
+
+    const CACHE_KEY = 'gnarly_site_images_cache';
+    const AUTH_KEY = 'gnarly_admin_session';
+
+    let currentRegistry = { slots: {}, gallery: [] };
+    let isPhpServer = false;
+    let csrfToken = '';
+
+    // Initialize State
+    async function initBackend() {
+      // 1. Check if running under PHP backend
+      try {
+        const testRes = await fetch('../api/auth.php?action=status', { cache: 'no-store' });
+        if (testRes.ok) {
+          const status = await testRes.json();
+          if (status && typeof status.logged_in !== 'undefined') {
+            isPhpServer = true;
+            csrfToken = status.csrf_token || '';
+            document.getElementById('env-text').textContent = 'cPanel / PHP Mode';
+            if (status.logged_in) {
+              setLoggedIn(true, status.username);
+            }
+          }
+        }
+      } catch (e) {
+        // Static host (Vercel)
+        isPhpServer = false;
+        document.getElementById('env-text').textContent = 'Vercel Preview Mode';
+      }
+
+      // 2. Check local session if on static
+      if (!isPhpServer) {
+        const storedAuth = localStorage.getItem(AUTH_KEY);
+        if (storedAuth) {
+          setLoggedIn(true, storedAuth);
+        }
+      }
+
+      loadRegistry();
+      renderSlots();
+      renderGallery();
+      updateStats();
+      lucide.createIcons();
+    }
+
+    // Load registry from cache / defaults
+    function loadRegistry() {
+      try {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          currentRegistry = JSON.parse(cached);
+        }
+      } catch (e) {}
+
+      if (!currentRegistry.slots) currentRegistry.slots = {};
+      for (const [key, val] of Object.entries(DEFAULT_SLOTS)) {
+        if (!currentRegistry.slots[key]) {
+          currentRegistry.slots[key] = { ...val, url: '' };
+        } else {
+          currentRegistry.slots[key].default = val.default;
+          currentRegistry.slots[key].section = val.section;
+          currentRegistry.slots[key].name = val.name;
+        }
+      }
+      if (!currentRegistry.gallery) currentRegistry.gallery = [];
+    }
+
+    function saveRegistry() {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify(currentRegistry));
+      } catch (e) {}
+      updateStats();
+    }
+
+    // -----------------------------------------------------------------
+    // Authentication Logic
+    // -----------------------------------------------------------------
+    async function handleLogin(e) {
+      e.preventDefault();
+      const usernameInput = document.getElementById('login-username').value.trim();
+      const passwordInput = document.getElementById('login-password').value;
+      const errorBox = document.getElementById('login-error-alert');
+
+      errorBox.classList.add('hidden');
+      errorBox.classList.remove('flex');
+
+      if (isPhpServer) {
+        try {
+          const formData = new FormData();
+          formData.append('action', 'login');
+          formData.append('username', usernameInput);
+          formData.append('password', passwordInput);
+
+          const res = await fetch('../api/auth.php', { method: 'POST', body: formData });
+          const data = await res.json();
+          if (data.success) {
+            csrfToken = data.csrf_token || '';
+            setLoggedIn(true, usernameInput);
+            showToast('Welcome back, ' + usernameInput + '!');
+            return;
+          } else {
+            document.getElementById('login-error-msg').textContent = data.error || 'Invalid credentials.';
+            errorBox.classList.remove('hidden');
+            errorBox.classList.add('flex');
+            return;
+          }
+        } catch (err) {}
+      }
+
+      // Static / Vercel fallback validation
+      const storedCreds = JSON.parse(localStorage.getItem('gnarly_custom_creds') || 'null');
+      const validUser = storedCreds ? storedCreds.username : 'admin';
+      const validPass = storedCreds ? storedCreds.password : 'gnarlymtb2026';
+
+      if (usernameInput === validUser && passwordInput === validPass) {
+        localStorage.setItem(AUTH_KEY, usernameInput);
+        setLoggedIn(true, usernameInput);
+        showToast('Logged in successfully to Vercel Preview!');
+      } else {
+        document.getElementById('login-error-msg').textContent = 'Invalid username or password. Default: admin / gnarlymtb2026';
+        errorBox.classList.remove('hidden');
+        errorBox.classList.add('flex');
+      }
+    }
+
+    function setLoggedIn(isLoggedIn, username = 'admin') {
+      const authView = document.getElementById('auth-view');
+      const dashView = document.getElementById('dashboard-view');
+      const userDisplay = document.getElementById('current-user-display');
+
+      if (isLoggedIn) {
+        authView.classList.add('hidden');
+        dashView.classList.remove('hidden');
+        dashView.classList.add('flex');
+        userDisplay.textContent = username;
+      } else {
+        authView.classList.remove('hidden');
+        dashView.classList.add('hidden');
+        dashView.classList.remove('flex');
+      }
+      lucide.createIcons();
+    }
+
+    async function handleLogout() {
+      if (isPhpServer) {
+        try {
+          await fetch('../api/auth.php?action=logout');
+        } catch (e) {}
+      }
+      localStorage.removeItem(AUTH_KEY);
+      setLoggedIn(false);
+      showToast('Logged out.');
+    }
+
+    function togglePasswordVisibility() {
+      const pwd = document.getElementById('login-password');
+      const icon = document.getElementById('login-eye-icon');
+      const isPwd = pwd.type === 'password';
+      pwd.type = isPwd ? 'text' : 'password';
+      icon.setAttribute('data-lucide', isPwd ? 'eye-off' : 'eye');
+      lucide.createIcons();
+    }
+
+    // -----------------------------------------------------------------
+    // Render Core Slots
+    // -----------------------------------------------------------------
+    function renderSlots() {
+      const grid = document.getElementById('slots-grid');
+      grid.innerHTML = '';
+
+      for (const [key, slot] of Object.entries(currentRegistry.slots)) {
+        const isCustom = Boolean(slot.url);
+        const activeUrl = isCustom ? (slot.url.startsWith('data:') ? slot.url : '../' + slot.url) : '../' + slot.default;
+
+        const card = document.createElement('div');
+        card.className = 'slot-card bg-[#1E3A5F] border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all hover:border-white/20 flex flex-col justify-between';
+        card.setAttribute('data-slot-key', key);
+        card.setAttribute('data-section', slot.section);
+        card.setAttribute('data-name', slot.name.toLowerCase());
+        card.setAttribute('data-is-custom', isCustom ? 'true' : 'false');
+
+        card.innerHTML = `
+          <div class="p-4 border-b border-white/10 bg-[#162E4D]/60 flex items-start justify-between gap-2">
+            <div>
+              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] mb-1">
+                ${slot.section}
+              </span>
+              <h3 class="font-heading text-sm font-bold uppercase tracking-wide text-white leading-tight">
+                ${slot.name}
+              </h3>
+            </div>
+            <div class="shrink-0 status-pill">
+              ${isCustom 
+                ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-950 border border-green-500/40 text-green-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>Custom
+                   </span>`
+                : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-800 border border-white/10 text-gray-400">
+                    Default
+                   </span>`
+              }
+            </div>
+          </div>
+
+          <div class="relative bg-black/40 h-48 flex items-center justify-center overflow-hidden group">
+            <img 
+              id="preview-img-${key}"
+              src="${activeUrl}" 
+              alt="${slot.alt || ''}" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+              loading="lazy"
+            />
+            <a href="${activeUrl}" target="_blank" class="absolute top-2 right-2 p-1.5 rounded bg-black/70 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+            </a>
+            <div id="loader-${key}" class="absolute inset-0 bg-black/80 flex-col items-center justify-center gap-2 hidden">
+              <div class="w-7 h-7 border-2 border-[#F5EFEB] border-t-transparent rounded-full animate-spin"></div>
+              <span class="text-xs text-white font-heading uppercase tracking-wider">Updating...</span>
+            </div>
+          </div>
+
+          <div class="p-4 space-y-3 flex-1 flex flex-col justify-between">
+            <div>
+              <label class="block text-[10px] font-heading uppercase tracking-wider text-gray-400 mb-1">Alt Text / SEO</label>
+              <div class="flex items-center gap-1.5">
+                <input 
+                  type="text" 
+                  id="alt-input-${key}" 
+                  value="${slot.alt || ''}" 
+                  placeholder="Image SEO description" 
+                  class="flex-1 px-2.5 py-1.5 bg-[#162E4D] border border-white/15 rounded text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" 
+                />
+                <button type="button" onclick="saveAltText('${key}')" class="p-1.5 rounded bg-white/10 hover:bg-white/20 text-white transition-colors text-xs" title="Save Alt">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-white/10 flex items-center gap-2">
+              <input type="file" id="file-input-${key}" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleSlotUpload('${key}', this.files[0])" />
+              <button type="button" onclick="document.getElementById('file-input-${key}').click()" class="flex-1 py-2 px-3 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 shadow">
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                <span>Replace Image</span>
+              </button>
+              <button 
+                type="button" 
+                id="reset-btn-${key}" 
+                onclick="resetSlot('${key}')" 
+                class="py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors ${isCustom ? 'text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer' : 'text-gray-500 opacity-40 cursor-not-allowed'}" 
+                ${isCustom ? '' : 'disabled'}
+                title="Reset to default image"
+              >
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      lucide.createIcons();
+    }
+
+    // -----------------------------------------------------------------
+    // Slot Upload Handling
+    // -----------------------------------------------------------------
+    async function handleSlotUpload(slotKey, file) {
+      if (!file) return;
+      const loader = document.getElementById('loader-' + slotKey);
+      if (loader) loader.classList.remove('hidden'), loader.classList.add('flex');
+
+      try {
+        const altInput = document.getElementById('alt-input-' + slotKey);
+        const altVal = altInput ? altInput.value : '';
+
+        // If PHP server is available
+        if (isPhpServer) {
+          const formData = new FormData();
+          formData.append('slot_key', slotKey);
+          formData.append('image', file);
+          formData.append('alt', altVal);
+          formData.append('csrf_token', csrfToken);
+
+          const res = await fetch('../api/upload.php', { method: 'POST', body: formData });
+          const data = await res.json();
+          if (data.success) {
+            currentRegistry.slots[slotKey].url = data.url;
+            currentRegistry.slots[slotKey].alt = altVal;
+            saveRegistry();
+            renderSlots();
+            showToast('Image replaced and saved to server storage!');
+            return;
+          }
+        }
+
+        // Vercel / Client-side Storage Mode
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const dataUrl = e.target.result;
+          currentRegistry.slots[slotKey].url = dataUrl;
+          currentRegistry.slots[slotKey].alt = altVal;
+          saveRegistry();
+          renderSlots();
+          showToast('Image replaced! (Saved in Preview Cache)');
+        };
+        reader.readAsDataURL(file);
+
+      } catch (err) {
+        showToast('Error replacing image: ' + err.message, false);
+      } finally {
+        if (loader) loader.classList.add('hidden'), loader.classList.remove('flex');
+      }
+    }
+
+    // Reset Slot to Default
+    async function resetSlot(slotKey) {
+      if (!confirm('Revert this image back to the original default asset?')) return;
+
+      if (isPhpServer) {
+        try {
+          const formData = new FormData();
+          formData.append('slot_key', slotKey);
+          formData.append('csrf_token', csrfToken);
+          await fetch('../api/delete.php', { method: 'POST', body: formData });
+        } catch (e) {}
+      }
+
+      currentRegistry.slots[slotKey].url = '';
+      saveRegistry();
+      renderSlots();
+      showToast('Image reset to original website default!');
+    }
+
+    function saveAltText(slotKey) {
+      const altInput = document.getElementById('alt-input-' + slotKey);
+      if (!altInput) return;
+      currentRegistry.slots[slotKey].alt = altInput.value;
+      saveRegistry();
+      showToast('Alt text saved!');
+    }
+
+    // -----------------------------------------------------------------
+    // Gallery Manager
+    // -----------------------------------------------------------------
+    let pickedGalFile = null;
+    function handleGalleryFilePicked(file) {
+      if (!file) return;
+      pickedGalFile = file;
+      const preview = document.getElementById('gal-selected-preview');
+      const thumb = document.getElementById('gal-thumb-img');
+      document.getElementById('gal-file-name').textContent = file.name;
+      document.getElementById('gal-file-size').textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+
+      const r = new FileReader();
+      r.onload = (e) => { thumb.src = e.target.result; preview.classList.remove('hidden'); };
+      r.readAsDataURL(file);
+
+      const titleEl = document.getElementById('gal-title');
+      if (!titleEl.value) titleEl.value = file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+    }
+
+    async function handleGalleryUpload(e) {
+      e.preventDefault();
+      if (!pickedGalFile) { showToast('Please choose a file first.', false); return; }
+
+      const title = document.getElementById('gal-title').value;
+      const category = document.getElementById('gal-category').value;
+      const alt = document.getElementById('gal-alt').value || title;
+
+      if (isPhpServer) {
+        try {
+          const formData = new FormData();
+          formData.append('type', 'gallery');
+          formData.append('image', pickedGalFile);
+          formData.append('title', title);
+          formData.append('category', category);
+          formData.append('alt', alt);
+          formData.append('csrf_token', csrfToken);
+
+          const res = await fetch('../api/upload.php', { method: 'POST', body: formData });
+          const data = await res.json();
+          if (data.success && data.item) {
+            currentRegistry.gallery.unshift(data.item);
+            saveRegistry();
+            finishGalUpload();
+            return;
+          }
+        } catch (err) {}
+      }
+
+      // Vercel Preview Mode
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const newItem = {
+          id: 'gal_' + Date.now(),
+          url: e.target.result,
+          title: title,
+          category: category,
+          alt: alt,
+          created_at: new Date().toISOString()
+        };
+        currentRegistry.gallery.unshift(newItem);
+        saveRegistry();
+        finishGalUpload();
+      };
+      reader.readAsDataURL(pickedGalFile);
+    }
+
+    function finishGalUpload() {
+      document.getElementById('gallery-upload-form').reset();
+      document.getElementById('gal-selected-preview').classList.add('hidden');
+      pickedGalFile = null;
+      renderGallery();
+      showToast('Dispatch uploaded to gallery!');
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById('gallery-grid');
+      const countEl = document.getElementById('gallery-items-count');
+      grid.innerHTML = '';
+      countEl.textContent = currentRegistry.gallery.length;
+
+      if (currentRegistry.gallery.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-[#1E3A5F] border border-white/10 rounded-xl p-12 text-center text-gray-400">
+            <i data-lucide="camera-off" class="w-10 h-10 mx-auto text-gray-500 mb-3"></i>
+            <p class="font-heading text-sm uppercase tracking-wider text-white">No custom gallery uploads yet</p>
+            <p class="text-xs text-gray-400 mt-1">Uploaded photos will show here and at the top of <span class="text-[#F5EFEB]">gallery.html</span>.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      currentRegistry.gallery.forEach(item => {
+        const card = document.createElement('div');
+        const imgUrl = item.url.startsWith('data:') ? item.url : '../' + item.url;
+        card.className = 'bg-[#1E3A5F] border border-white/10 rounded-lg overflow-hidden shadow-md group';
+        card.innerHTML = `
+          <div class="relative h-44 bg-black/30 overflow-hidden">
+            <img src="${imgUrl}" alt="${item.alt || ''}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            <button onclick="deleteGalleryItem('${item.id}')" class="absolute top-2 right-2 p-1.5 rounded-full bg-red-900/80 hover:bg-red-700 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+          <div class="p-3">
+            <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] mb-1">
+              ${item.category || 'Tour'}
+            </span>
+            <p class="text-xs font-semibold text-white truncate">${item.title || 'Dispatch'}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function deleteGalleryItem(id) {
+      if (!confirm('Delete this photo from gallery?')) return;
+      currentRegistry.gallery = currentRegistry.gallery.filter(i => i.id !== id);
+      saveRegistry();
+      renderGallery();
+      showToast('Gallery photo deleted.');
+    }
+
+    // -----------------------------------------------------------------
+    // Settings & Reset
+    // -----------------------------------------------------------------
+    function handleCredentialsUpdate(e) {
+      e.preventDefault();
+      const cur = document.getElementById('current-password').value;
+      const newU = document.getElementById('new-username').value.trim();
+      const newP = document.getElementById('new-password').value;
+
+      const storedCreds = JSON.parse(localStorage.getItem('gnarly_custom_creds') || 'null');
+      const validPass = storedCreds ? storedCreds.password : 'gnarlymtb2026';
+
+      if (cur !== validPass) {
+        showToast('Current password is not correct.', false);
+        return;
+      }
+
+      localStorage.setItem('gnarly_custom_creds', JSON.stringify({ username: newU, password: newP }));
+      localStorage.setItem(AUTH_KEY, newU);
+      document.getElementById('current-user-display').textContent = newU;
+      showToast('Admin credentials updated!');
+      document.getElementById('current-password').value = '';
+      document.getElementById('new-password').value = '';
+    }
+
+    function resetAllOverrides() {
+      if (!confirm('Are you sure you want to reset ALL custom images back to default website assets?')) return;
+      for (const k in currentRegistry.slots) {
+        currentRegistry.slots[k].url = '';
+      }
+      currentRegistry.gallery = [];
+      saveRegistry();
+      renderSlots();
+      renderGallery();
+      showToast('All images reset to original defaults!');
+    }
+
+    // -----------------------------------------------------------------
+    // Navigation & Utility
+    // -----------------------------------------------------------------
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('bg-[#F5EFEB]', 'text-black');
+        b.classList.add('text-gray-300');
+      });
+      document.getElementById('panel-' + tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById('tab-btn-' + tabId);
+      activeBtn.classList.add('bg-[#F5EFEB]', 'text-black');
+      activeBtn.classList.remove('text-gray-300');
+      document.getElementById('slots-controls').style.display = (tabId === 'slots') ? 'flex' : 'none';
+    }
+
+    function filterSlots() {
+      const q = (document.getElementById('slot-search').value || '').toLowerCase();
+      const sec = document.getElementById('section-filter').value;
+      document.querySelectorAll('.slot-card').forEach(c => {
+        const cSec = c.getAttribute('data-section');
+        const cName = c.getAttribute('data-name');
+        const isCustom = c.getAttribute('data-is-custom') === 'true';
+
+        let matchQ = !q || cName.includes(q) || cSec.toLowerCase().includes(q);
+        let matchSec = (sec === 'custom-only') ? isCustom : (sec === 'all' || cSec === sec);
+        c.style.display = (matchQ && matchSec) ? 'flex' : 'none';
+      });
+    }
+
+    function updateStats() {
+      let custom = 0;
+      for (const k in currentRegistry.slots) {
+        if (currentRegistry.slots[k].url) custom++;
+      }
+      document.getElementById('stat-custom-slots').textContent = custom;
+      document.getElementById('stat-gallery-count').textContent = currentRegistry.gallery.length;
+    }
+
+    let toastTimer;
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('toast');
+      const inner = document.getElementById('toast-inner');
+      document.getElementById('toast-message').textContent = msg;
+      inner.className = isSuccess 
+        ? 'flex items-center gap-3 p-4 rounded-xl shadow-2xl border text-sm bg-emerald-950/95 border-emerald-500/50 text-emerald-200' 
+        : 'flex items-center gap-3 p-4 rounded-xl shadow-2xl border text-sm bg-red-950/95 border-red-500/50 text-red-200';
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none'), 3500);
+    }
+
+    // Kick off
+    initBackend();
+  </script>
+</body>
+</html>

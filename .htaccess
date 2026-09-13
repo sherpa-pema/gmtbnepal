@@ -23,6 +23,9 @@ DirectoryIndex index.html index.php
   RewriteCond %{REQUEST_URI} ^/(.*)/$
   RewriteRule ^/(.*)/$ /$1 [L,R=301]
 
+  # Route /backend cleanly to backend portal
+  RewriteRule ^backend/?$ backend/index.php [L]
+
   # Clean URLs: Map extension-less URLs to .html (e.g., /gallery -> /gallery.html)
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}\.html -f
