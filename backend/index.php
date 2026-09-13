@@ -214,19 +214,17 @@ $galleryCount = count($registry['gallery'] ?? []);
           <input 
             type="text" 
             id="slot-search" 
-            placeholder="Search slots (e.g. Everest, Hero)..." 
+            placeholder="Search images, tours, guides..." 
             oninput="filterSlots()"
             class="pl-8 pr-3 py-1.5 bg-[#1E3A5F] border border-white/15 rounded text-xs text-white placeholder-gray-400 focus:outline-none focus:border-[#F5EFEB] w-48 sm:w-64"
           />
         </div>
         <select id="section-filter" onchange="filterSlots()" class="px-3 py-1.5 bg-[#1E3A5F] border border-white/15 rounded text-xs text-white focus:outline-none focus:border-[#F5EFEB]">
-          <option value="all">All Sections</option>
-          <option value="Hero">Hero Section</option>
-          <option value="Tour: Enduro Thin Air">Tour: Enduro Thin Air</option>
-          <option value="Tour: Everest Express">Tour: Everest Express</option>
-          <option value="Tour: Hello Moto">Tour: Hello Moto</option>
-          <option value="The Crew">The Crew</option>
-          <option value="Why Ride With Us">Why Ride With Us</option>
+          <option value="all">All Sections (Homepage Order)</option>
+          <option value="tours">Featured Tour Cards (16:10 • 18 Slides)</option>
+          <option value="why-ride">Why Ride With Us (9:16 Portrait • 5 Cards)</option>
+          <option value="crew">The Crew (4:5 Portrait • 3 Cards)</option>
+          <option value="hero">Hero Section (16:9 Landscape)</option>
           <option value="custom-only">Custom Overrides Only</option>
         </select>
       </div>
@@ -235,150 +233,33 @@ $galleryCount = count($registry['gallery'] ?? []);
     <!-- =========================================================================
          PANEL 1: CORE WEBSITE IMAGE SLOTS
          ========================================================================= -->
-    <div id="panel-slots" class="tab-panel">
+    <div id="panel-slots" class="tab-panel space-y-8">
       
-      <div class="mb-4 flex items-center justify-between">
-        <p class="text-xs text-gray-400">
-          Showing <span id="visible-slots-count" class="text-white font-semibold"><?php echo $totalSlots; ?></span> image slots across the website.
-        </p>
-        <span class="text-[11px] text-gray-400 flex items-center gap-1.5">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#F5EFEB]"></i>
-          Auto-optimizes images before upload for lightning performance
-        </span>
-      </div>
-
-      <div id="slots-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <?php foreach (($registry['slots'] ?? []) as $key => $slot): 
-            $isCustom = !empty($slot['url']);
-            $activeUrl = $isCustom ? '../' . $slot['url'] : '../' . $slot['default'];
-            $section = $slot['section'] ?? 'Website';
-            $slotName = $slot['name'] ?? $key;
-            $altText = $slot['alt'] ?? '';
-        ?>
-        <div 
-          class="slot-card bg-[#1E3A5F] border border-white/10 rounded-xl overflow-hidden shadow-lg transition-all hover:border-white/20 flex flex-col justify-between"
-          data-slot-key="<?php echo htmlspecialchars($key); ?>"
-          data-section="<?php echo htmlspecialchars($section); ?>"
-          data-name="<?php echo htmlspecialchars(strtolower($slotName)); ?>"
-          data-is-custom="<?php echo $isCustom ? 'true' : 'false'; ?>"
-        >
-          <!-- Card Header -->
-          <div class="p-4 border-b border-white/10 bg-[#162E4D]/60 flex items-start justify-between gap-2">
-            <div>
-              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] mb-1">
-                <?php echo htmlspecialchars($section); ?>
-              </span>
-              <h3 class="font-heading text-sm font-bold uppercase tracking-wide text-white leading-tight">
-                <?php echo htmlspecialchars($slotName); ?>
-              </h3>
-            </div>
-            
-            <div class="shrink-0 status-pill">
-              <?php if ($isCustom): ?>
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-950 border border-green-500/40 text-green-300">
-                  <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
-                  Custom
-                </span>
-              <?php else: ?>
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-800 border border-white/10 text-gray-400">
-                  Default
-                </span>
-              <?php endif; ?>
-            </div>
-          </div>
-
-          <!-- Image Preview Area -->
-          <div class="relative bg-black/40 h-48 flex items-center justify-center overflow-hidden group">
-            <img 
-              id="preview-img-<?php echo htmlspecialchars($key); ?>"
-              src="<?php echo htmlspecialchars($activeUrl); ?>" 
-              alt="<?php echo htmlspecialchars($altText); ?>"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-            
-            <!-- Direct view link overlay -->
-            <a 
-              href="<?php echo htmlspecialchars($activeUrl); ?>" 
-              target="_blank" 
-              class="absolute top-2 right-2 p-1.5 rounded bg-black/70 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity"
-              title="Open Full Image"
-            >
-              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
-            </a>
-
-            <!-- Loading overlay -->
-            <div id="loader-<?php echo htmlspecialchars($key); ?>" class="absolute inset-0 bg-black/80 flex-col items-center justify-center gap-2 hidden">
-              <div class="w-7 h-7 border-2 border-[#F5EFEB] border-t-transparent rounded-full animate-spin"></div>
-              <span class="text-xs text-white font-heading uppercase tracking-wider">Uploading...</span>
-            </div>
-          </div>
-
-          <!-- Card Body & Controls -->
-          <div class="p-4 space-y-3 flex-1 flex flex-col justify-between">
-            
-            <!-- Alt Text Editor -->
-            <div>
-              <label class="block text-[10px] font-heading uppercase tracking-wider text-gray-400 mb-1">
-                Alt Text / SEO Description
-              </label>
-              <div class="flex items-center gap-1.5">
-                <input 
-                  type="text" 
-                  id="alt-input-<?php echo htmlspecialchars($key); ?>"
-                  value="<?php echo htmlspecialchars($altText); ?>" 
-                  placeholder="Describe image for SEO & accessibility"
-                  class="flex-1 px-2.5 py-1.5 bg-[#162E4D] border border-white/15 rounded text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]"
-                />
-                <button 
-                  type="button" 
-                  onclick="saveAltText('<?php echo htmlspecialchars($key); ?>')" 
-                  class="p-1.5 rounded bg-white/10 hover:bg-white/20 text-white transition-colors text-xs" 
-                  title="Save Alt Text"
-                >
-                  <i data-lucide="check" class="w-4 h-4"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Upload / Replace Actions -->
-            <div class="pt-2 border-t border-white/10 flex items-center gap-2">
-              
-              <!-- Replace file input (hidden) -->
-              <input 
-                type="file" 
-                id="file-input-<?php echo htmlspecialchars($key); ?>" 
-                accept="image/jpeg,image/png,image/webp" 
-                class="hidden" 
-                onchange="handleSlotFileUpload('<?php echo htmlspecialchars($key); ?>', this.files[0])" 
-              />
-              
-              <button 
-                type="button" 
-                onclick="document.getElementById('file-input-<?php echo htmlspecialchars($key); ?>').click()"
-                class="flex-1 py-2 px-3 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 shadow"
-              >
-                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                <span>Replace Image</span>
-              </button>
-
-              <button 
-                type="button" 
-                id="reset-btn-<?php echo htmlspecialchars($key); ?>"
-                onclick="confirmResetSlot('<?php echo htmlspecialchars($key); ?>')"
-                class="py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors <?php echo $isCustom ? 'text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer' : 'text-gray-500 opacity-40 cursor-not-allowed'; ?>"
-                <?php echo $isCustom ? '' : 'disabled'; ?>
-                title="<?php echo $isCustom ? 'Reset to default image' : 'Already using default image'; ?>"
-              >
-                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-              </button>
-
-            </div>
-
-          </div>
+      <!-- Summary Banner & Section Quick Jump -->
+      <div class="bg-[#1E3A5F]/70 border border-white/10 rounded-xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-heading text-base font-bold uppercase tracking-wider text-white flex items-center gap-2">
+            <i data-lucide="layout-grid" class="w-4 h-4 text-[#F5EFEB]"></i>
+            <span>Homepage Visual Image Manager</span>
+          </h2>
+          <p class="text-xs text-gray-300 mt-0.5">
+            Images display in their true homepage aspect ratios: <strong class="text-[#F5EFEB]">16:10</strong> for Tour Cards, <strong class="text-[#F5EFEB]">9:16</strong> for Why Ride With Us, <strong class="text-[#F5EFEB]">4:5</strong> for The Crew, and <strong class="text-[#F5EFEB]">16:9</strong> for Hero.
+          </p>
         </div>
-        <?php endforeach; ?>
+        <div class="flex flex-wrap items-center gap-2 text-xs font-heading uppercase tracking-wider">
+          <button type="button" onclick="setSectionFilter('all')" id="pill-all" class="sec-pill px-3 py-1.5 rounded bg-[#F5EFEB] text-black font-semibold transition-colors">All Sections</button>
+          <button type="button" onclick="setSectionFilter('tours')" id="pill-tours" class="sec-pill px-3 py-1.5 rounded bg-[#162E4D] text-gray-300 hover:text-white border border-white/10 transition-colors">Tour Cards (16:10)</button>
+          <button type="button" onclick="setSectionFilter('why-ride')" id="pill-why-ride" class="sec-pill px-3 py-1.5 rounded bg-[#162E4D] text-gray-300 hover:text-white border border-white/10 transition-colors">Why Ride (9:16)</button>
+          <button type="button" onclick="setSectionFilter('crew')" id="pill-crew" class="sec-pill px-3 py-1.5 rounded bg-[#162E4D] text-gray-300 hover:text-white border border-white/10 transition-colors">The Crew (4:5)</button>
+          <button type="button" onclick="setSectionFilter('hero')" id="pill-hero" class="sec-pill px-3 py-1.5 rounded bg-[#162E4D] text-gray-300 hover:text-white border border-white/10 transition-colors">Hero (16:9)</button>
+        </div>
       </div>
+
+      <!-- Dynamic Content Root Container -->
+      <div id="slots-sections-container" class="space-y-12">
+        <!-- Populated dynamically by renderSlots() -->
+      </div>
+
     </div>
 
     <!-- =========================================================================
@@ -673,16 +554,89 @@ $galleryCount = count($registry['gallery'] ?? []);
     </div>
   </div>
 
-  <!-- Global CSRF Token for fetch requests -->
+  <!-- Global CSRF Token & Initial Registry for fetch requests -->
   <script>
     const CSRF_TOKEN = <?php echo json_encode($csrfToken); ?>;
+    const INITIAL_SLOTS = <?php echo json_encode($registry['slots'] ?? new stdClass()); ?>;
+    const INITIAL_GALLERY = <?php echo json_encode($registry['gallery'] ?? []); ?>;
   </script>
 
   <!-- =========================================================================
        5. JAVASCRIPT LOGIC FOR BACKEND OPERATIONS
        ========================================================================= -->
   <script>
-    lucide.createIcons();
+    const DEFAULT_SLOTS = {
+      "hero-bg": { name: "Hero Section Media Fallback", section: "Hero", aspectRatio: "16/9", default: "assets/hero/hero-poster.jpg", alt: "GNARLY MTB Nepal Himalayan Action" },
+      
+      "tour-thin-air-1": { name: "Enduro Thin Air — Slide 1 (Cover)", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 1, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-1.jpg", alt: "Enduro Thin Air Ultimate Lo Manthang Traverse" },
+      "tour-thin-air-2": { name: "Enduro Thin Air — Slide 2", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 2, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-2.jpg", alt: "Mustang Desert Ridge Singletrack Descent" },
+      "tour-thin-air-3": { name: "Enduro Thin Air — Slide 3", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 3, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-3.jpg", alt: "High Alpine Scree & Rocky Enduro Ride" },
+      "tour-thin-air-4": { name: "Enduro Thin Air — Slide 4", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 4, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-4.jpg", alt: "Upper Mustang Canyon Pass and Sky Caves" },
+      "tour-thin-air-5": { name: "Enduro Thin Air — Slide 5", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 5, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-5.jpg", alt: "Upper Mustang High-Altitude Singletrack" },
+      "tour-thin-air-6": { name: "Enduro Thin Air — Slide 6", section: "Tour: Enduro Thin Air", tourGroup: "thin-air", slideNum: 6, aspectRatio: "16/10", default: "assets/tours/enduro-thin-air/card-slide-6.jpg", alt: "High Himalayan Mountain Pass Enduro" },
+
+      "tour-everest-1": { name: "Everest Express — Slide 1 (Cover)", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 1, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-1.jpg", alt: "Everest Express Khumbu Mountain Singletrack" },
+      "tour-everest-2": { name: "Everest Express — Slide 2", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 2, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-2.jpg", alt: "Alpine Downhill Rider on Khumbu Ridge" },
+      "tour-everest-3": { name: "Everest Express — Slide 3", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 3, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-3.jpg", alt: "Solukhumbu High Valley Singletrack" },
+      "tour-everest-4": { name: "Everest Express — Slide 4", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 4, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-4.jpg", alt: "Himalayan Mountain Range under Everest" },
+      "tour-everest-5": { name: "Everest Express — Slide 5", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 5, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-5.jpg", alt: "Himalayan Sherpa Valley Trail Riding" },
+      "tour-everest-6": { name: "Everest Express — Slide 6", section: "Tour: Everest Express", tourGroup: "everest", slideNum: 6, aspectRatio: "16/10", default: "assets/tours/everest-express/card-slide-6.jpg", alt: "High Altitude Everest Panorama Descent" },
+
+      "tour-moto-1": { name: "Hello Moto — Slide 1 (Cover)", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 1, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-1.jpg", alt: "Himalayan Moto Holidays Enduro Dual-Sport Rider" },
+      "tour-moto-2": { name: "Hello Moto — Slide 2", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 2, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-2.jpg", alt: "Dual Sport Motorcycle on Dirt Riverbed" },
+      "tour-moto-3": { name: "Hello Moto — Slide 3", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 3, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-3.jpg", alt: "Mustang Valley Dirt Gorge Crossing" },
+      "tour-moto-4": { name: "Hello Moto — Slide 4", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 4, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-4.jpg", alt: "Himalayan Mountain Pass Route" },
+      "tour-moto-5": { name: "Hello Moto — Slide 5", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 5, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-5.jpg", alt: "Mustang Plateau Moto Exploration" },
+      "tour-moto-6": { name: "Hello Moto — Slide 6", section: "Tour: Hello Moto", tourGroup: "hello-moto", slideNum: 6, aspectRatio: "16/10", default: "assets/tours/hello-moto/card-slide-6.jpg", alt: "High Altitude Himalayan Dirt Bike Tour" },
+
+      "why-ride-1": { name: "Trails For Every Skill", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/01-trails-every-skill.jpg", alt: "Trails for every skill" },
+      "why-ride-2": { name: "All-Mountain & Enduro", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/02-all-mountain-enduro.jpg", alt: "All-mountain and enduro adventures" },
+      "why-ride-3": { name: "Family Focused", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/03-family-focused.jpg", alt: "Family focused mountain biking" },
+      "why-ride-4": { name: "Customised Tours", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/04-customised-tours.jpg", alt: "Customised Himalayan tours" },
+      "why-ride-5": { name: "Fully Supported", section: "Why Ride With Us", aspectRatio: "9/16", default: "assets/why-ride-with-us/05-fully-supported.jpg", alt: "Fully supported expeditions" },
+
+      "crew-shyam": { name: "Shyam Gyan Limbu", section: "The Crew", aspectRatio: "4/5", default: "assets/crew/shyam-gyan-limbu.jpg", alt: "Shyam Gyan Limbu - Head Guide" },
+      "crew-prachit": { name: "Prachit Thapa Magar", section: "The Crew", aspectRatio: "4/5", default: "assets/crew/prachit-thapa-magar.jpg", alt: "Prachit Thapa Magar - Senior Guide" },
+      "crew-tek": { name: "Tek Shrestha", section: "The Crew", aspectRatio: "4/5", default: "assets/crew/tek-shrestha.jpg", alt: "Tek Shrestha - Logistics" }
+    };
+
+    const TOURS_CONFIG = [
+      {
+        id: 'thin-air',
+        title: 'Enduro Thin Air',
+        sub: 'Lo Manthang Traverse • 12 Days (Upper & Lower Mustang)',
+        section: 'Tour: Enduro Thin Air',
+        badge: '16:10 Landscape',
+        prefix: 'tour-thin-air-',
+        slidesCount: 6
+      },
+      {
+        id: 'everest',
+        title: 'Everest Express',
+        sub: 'Khumbu & Phaplu Singletrack • 10 Days',
+        section: 'Tour: Everest Express',
+        badge: '16:10 Landscape',
+        prefix: 'tour-everest-',
+        slidesCount: 6
+      },
+      {
+        id: 'hello-moto',
+        title: 'Himalayan Moto Holidays “Hello Moto”',
+        sub: 'Dual-Sport Enduro Expedition • 11 Days',
+        section: 'Tour: Hello Moto',
+        badge: '16:10 Landscape',
+        prefix: 'tour-moto-',
+        slidesCount: 6
+      }
+    ];
+
+    const WHY_RIDE_KEYS = ['why-ride-1', 'why-ride-2', 'why-ride-3', 'why-ride-4', 'why-ride-5'];
+    const CREW_KEYS = ['crew-shyam', 'crew-prachit', 'crew-tek'];
+    const HERO_KEYS = ['hero-bg'];
+
+    let currentRegistry = { slots: INITIAL_SLOTS || {}, gallery: INITIAL_GALLERY || [] };
+    const tourActiveSlide = { 'thin-air': 1, 'everest': 1, 'hello-moto': 1 };
+    let tourSlideView = 'card';
 
     // -----------------------------------------------------------------
     // Tab Switching
@@ -710,37 +664,793 @@ $galleryCount = count($registry['gallery'] ?? []);
     }
 
     // -----------------------------------------------------------------
+    // Tour Card Slide Navigation Functions
+    // -----------------------------------------------------------------
+    function setTourSlide(tourId, slideNum) {
+      tourActiveSlide[tourId] = slideNum;
+      updateTourCardDOM(tourId);
+    }
+
+    function prevTourSlide(tourId) {
+      let cur = tourActiveSlide[tourId] || 1;
+      cur = cur > 1 ? cur - 1 : 6;
+      setTourSlide(tourId, cur);
+    }
+
+    function nextTourSlide(tourId) {
+      let cur = tourActiveSlide[tourId] || 1;
+      cur = cur < 6 ? cur + 1 : 1;
+      setTourSlide(tourId, cur);
+    }
+
+    function toggleTourViewMode() {
+      tourSlideView = (tourSlideView === 'card') ? 'grid' : 'card';
+      renderSlots();
+    }
+
+    function updateTourCardDOM(tourId) {
+      const tour = TOURS_CONFIG.find(t => t.id === tourId);
+      if (!tour) return;
+      const curSlide = tourActiveSlide[tourId] || 1;
+      const slotKey = `${tour.prefix}${curSlide}`;
+      const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
+      const isCustom = Boolean(slot.url);
+      const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+
+      // Update Preview Image
+      const previewImg = document.getElementById(`tour-preview-${tourId}`);
+      if (previewImg) {
+        previewImg.src = activeUrl;
+        previewImg.alt = slot.alt || '';
+      }
+
+      // Update Max Link
+      const maxLink = document.getElementById(`tour-max-link-${tourId}`);
+      if (maxLink) maxLink.href = activeUrl;
+
+      // Update Badge Text
+      const badgeText = document.getElementById(`tour-badge-text-${tourId}`);
+      if (badgeText) {
+        badgeText.textContent = `Slide ${curSlide} of 6 ${isCustom ? '(Custom)' : '(Default)'}`;
+      }
+
+      // Update Strip Status
+      const stripStatus = document.getElementById(`tour-strip-status-${tourId}`);
+      if (stripStatus) {
+        stripStatus.textContent = `Slide ${curSlide} Selected`;
+      }
+
+      // Update Progression Dots
+      for (let s = 1; s <= 6; s++) {
+        const dot = document.getElementById(`tour-dot-${tourId}-${s}`);
+        if (dot) {
+          if (s === curSlide) {
+            dot.className = 'w-2 h-2 rounded-full bg-[#F5EFEB] scale-125 shadow-md transition-all duration-300';
+          } else {
+            dot.className = 'w-2 h-2 rounded-full bg-white/40 shadow-md transition-all duration-300';
+          }
+        }
+      }
+
+      // Update Thumbnails Selection
+      for (let s = 1; s <= 6; s++) {
+        const thumbBtn = document.getElementById(`tour-thumb-${tourId}-${s}`);
+        if (thumbBtn) {
+          if (s === curSlide) {
+            thumbBtn.className = 'relative rounded overflow-hidden transition-all duration-200 ring-2 ring-[#F5EFEB] scale-105 shadow-md';
+          } else {
+            thumbBtn.className = 'relative rounded overflow-hidden transition-all duration-200 opacity-65 hover:opacity-100 hover:ring-1 hover:ring-white/30';
+          }
+        }
+      }
+
+      // Update Active Slide Label
+      const activeLabel = document.getElementById(`tour-active-label-${tourId}`);
+      if (activeLabel) {
+        activeLabel.textContent = `Slide ${curSlide}: ${slot.name ? slot.name.replace(/^Tour: [^—]+ — /, '') : ''}`;
+      }
+
+      const slotKeyEl = document.getElementById(`tour-slot-key-${tourId}`);
+      if (slotKeyEl) {
+        slotKeyEl.textContent = `Slot ID: ${slotKey}`;
+      }
+
+      const activeStatusEl = document.getElementById(`tour-active-status-${tourId}`);
+      if (activeStatusEl) {
+        activeStatusEl.innerHTML = isCustom 
+          ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-950 border border-green-500/40 text-green-300"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>Custom Image</span>`
+          : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-800 border border-white/10 text-gray-400">Default Asset</span>`;
+      }
+
+      const altInput = document.getElementById(`tour-alt-input-${tourId}`);
+      if (altInput) altInput.value = slot.alt || '';
+
+      const resetBtn = document.getElementById(`tour-reset-btn-${tourId}`);
+      if (resetBtn) {
+        if (isCustom) {
+          resetBtn.className = 'py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer';
+          resetBtn.disabled = false;
+        } else {
+          resetBtn.className = 'py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors text-gray-500 opacity-40 cursor-not-allowed';
+          resetBtn.disabled = true;
+        }
+      }
+    }
+
+    async function handleTourSlideFilePicked(tourId, file) {
+      if (!file) return;
+      const curSlide = tourActiveSlide[tourId] || 1;
+      const tour = TOURS_CONFIG.find(t => t.id === tourId);
+      if (!tour) return;
+      const slotKey = `${tour.prefix}${curSlide}`;
+      
+      const loader = document.getElementById(`tour-loader-${tourId}`);
+      if (loader) { loader.classList.remove('hidden'); loader.classList.add('flex'); }
+
+      const altInput = document.getElementById(`tour-alt-input-${tourId}`);
+      const altVal = altInput ? altInput.value : '';
+
+      try {
+        const optimizedFile = await optimizeImage(file);
+        const formData = new FormData();
+        formData.append('slot_key', slotKey);
+        formData.append('image', optimizedFile);
+        formData.append('alt', altVal);
+        formData.append('csrf_token', CSRF_TOKEN);
+
+        const res = await fetch('../api/upload.php', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          if (!currentRegistry.slots[slotKey]) currentRegistry.slots[slotKey] = { ...DEFAULT_SLOTS[slotKey] };
+          currentRegistry.slots[slotKey].url = data.url;
+          currentRegistry.slots[slotKey].alt = altVal;
+          renderSlots();
+          showToast(`Slide ${curSlide} replaced and saved to server storage!`);
+          refreshStats();
+          return;
+        } else {
+          showToast(data.error || 'Failed to replace slide image.', false);
+        }
+      } catch (err) {
+        showToast('Error replacing slide: ' + err.message, false);
+      } finally {
+        if (loader) { loader.classList.add('hidden'); loader.classList.remove('flex'); }
+      }
+    }
+
+    async function resetTourSlide(tourId) {
+      const curSlide = tourActiveSlide[tourId] || 1;
+      const tour = TOURS_CONFIG.find(t => t.id === tourId);
+      if (!tour) return;
+      const slotKey = `${tour.prefix}${curSlide}`;
+      await confirmResetSlot(slotKey);
+    }
+
+    function saveTourSlideAlt(tourId) {
+      const curSlide = tourActiveSlide[tourId] || 1;
+      const tour = TOURS_CONFIG.find(t => t.id === tourId);
+      if (!tour) return;
+      const slotKey = `${tour.prefix}${curSlide}`;
+      const altInput = document.getElementById(`tour-alt-input-${tourId}`);
+      if (!altInput) return;
+      saveAltText(slotKey, altInput.value);
+    }
+
+    // -----------------------------------------------------------------
+    // Render Core Slots (Homepage Order with True Aspect Ratios)
+    // -----------------------------------------------------------------
+    function renderSlots() {
+      const container = document.getElementById('slots-sections-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      // -------------------------------------------------------------
+      // SECTION 1: FEATURED TOUR CARDS (16:10 Landscape)
+      // -------------------------------------------------------------
+      const toursSection = document.createElement('section');
+      toursSection.id = 'sec-tours';
+      toursSection.className = 'slots-group-section space-y-5';
+      toursSection.setAttribute('data-section-group', 'tours');
+
+      let toursHtml = `
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] border border-white/10 font-semibold">16:10 Landscape</span>
+              <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white">
+                Featured Tour Cards (3 Tours • 6 Slides Each)
+              </h3>
+            </div>
+            <p class="text-xs text-gray-400">
+              Matches the exact <code class="text-white">.tour-media-box</code> 16:10 landscape proportion and 6-slide rotation on the live homepage.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="toggleTourViewMode()" id="tour-view-toggle-btn" class="px-3 py-1.5 rounded bg-[#162E4D] hover:bg-[#1E3A5F] text-xs font-heading uppercase tracking-wider text-[#F5EFEB] border border-white/15 flex items-center gap-1.5 transition-colors">
+              <i data-lucide="${tourSlideView === 'card' ? 'grid' : 'layers'}" class="w-3.5 h-3.5"></i>
+              <span>${tourSlideView === 'card' ? 'View All 18 Slides Grid' : 'Tour Card View'}</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      if (tourSlideView === 'card') {
+        toursHtml += `<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">`;
+        TOURS_CONFIG.forEach(tour => {
+          const curSlide = tourActiveSlide[tour.id] || 1;
+          const slotKey = `${tour.prefix}${curSlide}`;
+          const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
+          const isCustom = Boolean(slot.url);
+          const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+
+          let customCount = 0;
+          for (let s = 1; s <= tour.slidesCount; s++) {
+            const k = `${tour.prefix}${s}`;
+            if (currentRegistry.slots[k] && currentRegistry.slots[k].url) customCount++;
+          }
+
+          toursHtml += `
+            <div class="tour-cms-card bg-[#1E3A5F] border border-white/15 rounded-xl overflow-hidden shadow-xl flex flex-col justify-between" data-tour-id="${tour.id}">
+              <!-- Header -->
+              <div class="p-4 border-b border-white/10 bg-[#162E4D]/80 flex items-start justify-between gap-2">
+                <div>
+                  <span class="inline-block px-2 py-0.5 rounded text-[9px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] mb-1">
+                    ${tour.badge}
+                  </span>
+                  <h4 class="font-heading text-base font-bold uppercase tracking-wide text-white leading-tight">
+                    ${tour.title}
+                  </h4>
+                  <p class="text-[11px] text-gray-300 mt-0.5">${tour.sub}</p>
+                </div>
+                <div class="shrink-0">
+                  ${customCount > 0 
+                    ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-950 border border-green-500/40 text-green-300">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>${customCount}/6 Custom
+                       </span>`
+                    : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-800 border border-white/10 text-gray-400">
+                        Default
+                       </span>`
+                  }
+                </div>
+              </div>
+
+              <!-- Main Media Box in 16:10 Landscape -->
+              <div class="relative w-full overflow-hidden bg-black/60 group" style="aspect-ratio: 16 / 10;">
+                <img 
+                  id="tour-preview-${tour.id}" 
+                  src="${activeUrl}" 
+                  alt="${slot.alt || ''}" 
+                  class="w-full h-full object-cover transition-all duration-300" 
+                  loading="lazy" 
+                />
+                
+                <!-- Slide label pill -->
+                <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5 px-2 py-1 rounded bg-black/70 backdrop-blur-sm text-[10px] font-heading uppercase tracking-wider text-white border border-white/20">
+                  <span id="tour-badge-text-${tour.id}">Slide ${curSlide} of 6 ${isCustom ? '(Custom)' : '(Default)'}</span>
+                </div>
+
+                <!-- Maximize view -->
+                <a id="tour-max-link-${tour.id}" href="${activeUrl}" target="_blank" class="absolute top-2.5 right-2.5 z-10 p-1.5 rounded bg-black/70 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity" title="Open High-Res Image">
+                  <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                </a>
+
+                <!-- Next / Prev Overlay Controls -->
+                <button type="button" onclick="prevTourSlide('${tour.id}')" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" title="Previous Slide">
+                  <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button type="button" onclick="nextTourSlide('${tour.id}')" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" title="Next Slide">
+                  <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+
+                <!-- Progression Dots (Matching Homepage) -->
+                <div class="slideshow-indicators absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10 pointer-events-none">
+                  ${Array.from({length: 6}, (_, i) => {
+                    const active = (i + 1) === curSlide;
+                    return `<span id="tour-dot-${tour.id}-${i+1}" class="w-2 h-2 rounded-full transition-all duration-300 ${active ? 'bg-[#F5EFEB] scale-125 shadow-md' : 'bg-white/40'}"></span>`;
+                  }).join('')}
+                </div>
+
+                <!-- Loader -->
+                <div id="tour-loader-${tour.id}" class="absolute inset-0 bg-black/80 flex-col items-center justify-center gap-2 hidden z-20">
+                  <div class="w-8 h-8 border-2 border-[#F5EFEB] border-t-transparent rounded-full animate-spin"></div>
+                  <span class="text-xs text-white font-heading uppercase tracking-wider">Updating Slide...</span>
+                </div>
+              </div>
+
+              <!-- Interactive 6-Slide Thumbnails Strip -->
+              <div class="p-3 bg-[#162E4D]/80 border-t border-b border-white/10">
+                <div class="flex items-center justify-between text-[10px] font-heading uppercase tracking-wider text-gray-400 mb-2">
+                  <span>Switch Slide (1 to 6):</span>
+                  <span id="tour-strip-status-${tour.id}" class="text-[#F5EFEB] font-semibold">Slide ${curSlide} Selected</span>
+                </div>
+                <div class="grid grid-cols-6 gap-1.5 sm:gap-2">
+                  ${Array.from({length: 6}, (_, i) => {
+                    const s = i + 1;
+                    const sKey = `${tour.prefix}${s}`;
+                    const sSlot = currentRegistry.slots[sKey] || DEFAULT_SLOTS[sKey] || {};
+                    const sCustom = Boolean(sSlot.url);
+                    const sUrl = sCustom ? '../' + sSlot.url : '../' + sSlot.default;
+                    const sActive = s === curSlide;
+
+                    return `
+                      <button 
+                        type="button" 
+                        onclick="setTourSlide('${tour.id}', ${s})" 
+                        id="tour-thumb-${tour.id}-${s}" 
+                        class="relative rounded overflow-hidden transition-all duration-200 group/thumb ${sActive ? 'ring-2 ring-[#F5EFEB] scale-105 shadow-md' : 'opacity-65 hover:opacity-100 hover:ring-1 hover:ring-white/30'}" 
+                        style="aspect-ratio: 16 / 10;" 
+                        title="View Slide ${s}">
+                        <img id="tour-thumb-img-${tour.id}-${s}" src="${sUrl}" alt="Slide ${s}" class="w-full h-full object-cover" loading="lazy" />
+                        <span class="absolute bottom-0 inset-x-0 bg-black/75 text-[8px] font-heading font-bold text-center py-0.5 text-white">#${s}</span>
+                        ${sCustom ? `<span id="tour-thumb-custom-${tour.id}-${s}" class="absolute top-0.5 right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-1 ring-black" title="Custom Override"></span>` : `<span id="tour-thumb-custom-${tour.id}-${s}" class="hidden absolute top-0.5 right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-1 ring-black"></span>`}
+                      </button>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
+
+              <!-- Active Slide Controls -->
+              <div class="p-4 space-y-3 bg-[#1E3A5F] flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-start justify-between gap-2 mb-2">
+                    <div>
+                      <span id="tour-active-label-${tour.id}" class="block text-xs font-heading font-bold uppercase tracking-wider text-white">
+                        Slide ${curSlide}: ${slot.name ? slot.name.replace(/^Tour: [^—]+ — /, '') : ''}
+                      </span>
+                      <span id="tour-slot-key-${tour.id}" class="text-[10px] text-gray-400 font-mono">Slot: ${slotKey}</span>
+                    </div>
+                    <div id="tour-active-status-${tour.id}">
+                      ${isCustom 
+                        ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-950 border border-green-500/40 text-green-300"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>Custom Image</span>`
+                        : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-800 border border-white/10 text-gray-400">Default Asset</span>`
+                      }
+                    </div>
+                  </div>
+
+                  <!-- Alt Text -->
+                  <div>
+                    <label class="block text-[10px] font-heading uppercase tracking-wider text-gray-400 mb-1">Slide SEO Alt Text</label>
+                    <div class="flex items-center gap-1.5">
+                      <input 
+                        type="text" 
+                        id="tour-alt-input-${tour.id}" 
+                        value="${slot.alt || ''}" 
+                        placeholder="Image description for SEO" 
+                        class="flex-1 px-2.5 py-1.5 bg-[#162E4D] border border-white/15 rounded text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" 
+                      />
+                      <button type="button" onclick="saveTourSlideAlt('${tour.id}')" class="p-1.5 rounded bg-white/10 hover:bg-white/20 text-white transition-colors text-xs" title="Save Alt">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Replace & Reset -->
+                <div class="pt-2 border-t border-white/10 flex items-center gap-2">
+                  <input type="file" id="tour-file-input-${tour.id}" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleTourSlideFilePicked('${tour.id}', this.files[0])" />
+                  <button type="button" onclick="document.getElementById('tour-file-input-${tour.id}').click()" class="flex-1 py-2 px-3 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 shadow">
+                    <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                    <span>Replace This Slide</span>
+                  </button>
+                  <button 
+                    type="button" 
+                    id="tour-reset-btn-${tour.id}" 
+                    onclick="resetTourSlide('${tour.id}')" 
+                    class="py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors ${isCustom ? 'text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer' : 'text-gray-500 opacity-40 cursor-not-allowed'}" 
+                    ${isCustom ? '' : 'disabled'} 
+                    title="Revert slide to original default">
+                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          `;
+        });
+        toursHtml += `</div>`;
+      } else {
+        // Render All 18 Tour Slides in 16:10 Grid
+        toursHtml += `<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">`;
+        TOURS_CONFIG.forEach(tour => {
+          for (let s = 1; s <= tour.slidesCount; s++) {
+            const slotKey = `${tour.prefix}${s}`;
+            const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
+            const isCustom = Boolean(slot.url);
+            const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+
+            toursHtml += `
+              <div class="slot-card bg-[#1E3A5F] border border-white/10 rounded-xl overflow-hidden shadow flex flex-col justify-between" data-slot-key="${slotKey}">
+                <div class="p-2.5 bg-[#162E4D]/80 border-b border-white/10 flex items-center justify-between">
+                  <span class="text-[10px] font-heading font-bold uppercase text-white truncate">${tour.title} #${s}</span>
+                  ${isCustom ? `<span class="w-2 h-2 rounded-full bg-emerald-400"></span>` : `<span class="w-2 h-2 rounded-full bg-gray-500"></span>`}
+                </div>
+                <div class="relative w-full overflow-hidden bg-black/40 group" style="aspect-ratio: 16 / 10;">
+                  <img id="preview-img-${slotKey}" src="${activeUrl}" alt="${slot.alt || ''}" class="w-full h-full object-cover" loading="lazy" />
+                  <a href="${activeUrl}" target="_blank" class="absolute top-1.5 right-1.5 p-1 rounded bg-black/70 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                  </a>
+                  <div id="loader-${slotKey}" class="absolute inset-0 bg-black/80 flex-col items-center justify-center gap-1 hidden">
+                    <div class="w-5 h-5 border-2 border-[#F5EFEB] border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                </div>
+                <div class="p-2.5 space-y-2">
+                  <input type="file" id="file-input-${slotKey}" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleSlotFileUpload('${slotKey}', this.files[0])" />
+                  <button type="button" onclick="document.getElementById('file-input-${slotKey}').click()" class="w-full py-1.5 px-2 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-[10px] font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1">
+                    <i data-lucide="upload" class="w-3 h-3"></i>
+                    <span>Replace</span>
+                  </button>
+                  ${isCustom ? `<button type="button" onclick="confirmResetSlot('${slotKey}')" class="w-full py-1 text-[10px] text-red-300 hover:underline">Reset</button>` : ''}
+                </div>
+              </div>
+            `;
+          }
+        });
+        toursHtml += `</div>`;
+      }
+
+      toursSection.innerHTML = toursHtml;
+      container.appendChild(toursSection);
+
+      // -------------------------------------------------------------
+      // SECTION 2: WHY RIDE WITH US (9:16 Vertical Portrait)
+      // -------------------------------------------------------------
+      const whyRideSection = document.createElement('section');
+      whyRideSection.id = 'sec-why-ride';
+      whyRideSection.className = 'slots-group-section space-y-5';
+      whyRideSection.setAttribute('data-section-group', 'why-ride');
+
+      let whyRideHtml = `
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] border border-white/10 font-semibold">9:16 Portrait</span>
+              <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white">
+                Why Ride With Us (5 Vertical Portrait Cards)
+              </h3>
+            </div>
+            <p class="text-xs text-gray-400">
+              Matches the tall 9:16 vertical cards on the homepage. Rendered at full height without top or bottom cropping.
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      `;
+
+      WHY_RIDE_KEYS.forEach((key, idx) => {
+        const slot = currentRegistry.slots[key] || DEFAULT_SLOTS[key] || {};
+        const isCustom = Boolean(slot.url);
+        const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+
+        whyRideHtml += `
+          <div class="slot-card bg-[#1E3A5F] border border-white/15 rounded-xl overflow-hidden shadow-lg flex flex-col justify-between" data-slot-key="${key}" data-section="Why Ride With Us">
+            <!-- Header -->
+            <div class="p-3 bg-[#162E4D]/80 border-b border-white/10 flex items-start justify-between gap-1.5">
+              <div>
+                <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] mb-0.5">
+                  Card 0${idx + 1}
+                </span>
+                <h4 class="font-heading text-xs font-bold uppercase tracking-wide text-white leading-tight">
+                  ${slot.name.replace(/^Why Ride: /, '')}
+                </h4>
+              </div>
+              <div class="shrink-0">
+                ${isCustom 
+                  ? `<span class="inline-block w-2 h-2 rounded-full bg-green-400" title="Custom Upload"></span>`
+                  : `<span class="inline-block w-2 h-2 rounded-full bg-gray-500" title="Default"></span>`
+                }
+              </div>
+            </div>
+
+            <!-- True 9:16 Portrait Container -->
+            <div class="relative w-full overflow-hidden bg-black/50 group" style="aspect-ratio: 9 / 16;">
+              <img 
+                id="preview-img-${key}" 
+                src="${activeUrl}" 
+                alt="${slot.alt || ''}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                loading="lazy" 
+              />
+              <a href="${activeUrl}" target="_blank" class="absolute top-2 right-2 p-1.5 rounded bg-black/70 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity" title="Open Full-Size">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+              </a>
+              <div id="loader-${key}" class="absolute inset-0 bg-black/80 flex-col items-center justify-center gap-2 hidden z-20">
+                <div class="w-7 h-7 border-2 border-[#F5EFEB] border-t-transparent rounded-full animate-spin"></div>
+                <span class="text-[10px] text-white font-heading uppercase tracking-wider">Updating...</span>
+              </div>
+            </div>
+
+            <!-- Body & Actions -->
+            <div class="p-3 space-y-2.5 bg-[#1E3A5F]">
+              <div>
+                <label class="block text-[9px] font-heading uppercase tracking-wider text-gray-400 mb-1">Alt Text</label>
+                <div class="flex items-center gap-1">
+                  <input 
+                    type="text" 
+                    id="alt-input-${key}" 
+                    value="${slot.alt || ''}" 
+                    placeholder="SEO description" 
+                    class="flex-1 px-2 py-1 bg-[#162E4D] border border-white/15 rounded text-[11px] text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" 
+                  />
+                  <button type="button" onclick="saveAltText('${key}')" class="p-1 rounded bg-white/10 hover:bg-white/20 text-white transition-colors" title="Save">
+                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pt-1.5 border-t border-white/10 flex items-center gap-1.5">
+                <input type="file" id="file-input-${key}" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleSlotFileUpload('${key}', this.files[0])" />
+                <button type="button" onclick="document.getElementById('file-input-${key}').click()" class="flex-1 py-1.5 px-2 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-[10px] font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1 shadow">
+                  <i data-lucide="upload" class="w-3 h-3"></i>
+                  <span>Replace</span>
+                </button>
+                <button 
+                  type="button" 
+                  id="reset-btn-${key}" 
+                  onclick="confirmResetSlot('${key}')" 
+                  class="py-1.5 px-2 rounded border border-white/15 text-[10px] font-heading uppercase tracking-wider transition-colors ${isCustom ? 'text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer' : 'text-gray-500 opacity-40 cursor-not-allowed'}" 
+                  ${isCustom ? '' : 'disabled'} 
+                  title="Revert to default">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      whyRideHtml += `</div>`;
+      whyRideSection.innerHTML = whyRideHtml;
+      container.appendChild(whyRideSection);
+
+      // -------------------------------------------------------------
+      // SECTION 3: THE CREW (4:5 Portrait)
+      // -------------------------------------------------------------
+      const crewSection = document.createElement('section');
+      crewSection.id = 'sec-crew';
+      crewSection.className = 'slots-group-section space-y-5';
+      crewSection.setAttribute('data-section-group', 'crew');
+
+      let crewHtml = `
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] border border-white/10 font-semibold">4:5 Portrait</span>
+              <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white">
+                The Crew &amp; Guides (3 Profiles)
+              </h3>
+            </div>
+            <p class="text-xs text-gray-400">
+              Matches the 4:5 portrait guide photos on the homepage.
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      `;
+
+      CREW_KEYS.forEach(key => {
+        const slot = currentRegistry.slots[key] || DEFAULT_SLOTS[key] || {};
+        const isCustom = Boolean(slot.url);
+        const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+
+        crewHtml += `
+          <div class="slot-card bg-[#1E3A5F] border border-white/15 rounded-xl overflow-hidden shadow-lg flex flex-col justify-between" data-slot-key="${key}" data-section="The Crew">
+            <!-- Header -->
+            <div class="p-3.5 bg-[#162E4D]/80 border-b border-white/10 flex items-start justify-between gap-2">
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[9px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] mb-0.5">
+                  Guide Profile
+                </span>
+                <h4 class="font-heading text-sm font-bold uppercase tracking-wide text-white leading-tight">
+                  ${slot.name}
+                </h4>
+              </div>
+              <div class="shrink-0">
+                ${isCustom 
+                  ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-950 border border-green-500/40 text-green-300"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>Custom</span>`
+                  : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-800 border border-white/10 text-gray-400">Default</span>`
+                }
+              </div>
+            </div>
+
+            <!-- 4:5 Portrait Container -->
+            <div class="relative w-full overflow-hidden bg-black/50 group" style="aspect-ratio: 4 / 5;">
+              <img 
+                id="preview-img-${key}" 
+                src="${activeUrl}" 
+                alt="${slot.alt || ''}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                loading="lazy" 
+              />
+              <a href="${activeUrl}" target="_blank" class="absolute top-2 right-2 p-1.5 rounded bg-black/70 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity" title="Open Full-Size">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+              </a>
+              <div id="loader-${key}" class="absolute inset-0 bg-black/80 flex-col items-center justify-center gap-2 hidden z-20">
+                <div class="w-7 h-7 border-2 border-[#F5EFEB] border-t-transparent rounded-full animate-spin"></div>
+                <span class="text-xs text-white font-heading uppercase tracking-wider">Updating...</span>
+              </div>
+            </div>
+
+            <!-- Body & Actions -->
+            <div class="p-4 space-y-3 bg-[#1E3A5F]">
+              <div>
+                <label class="block text-[10px] font-heading uppercase tracking-wider text-gray-400 mb-1">Alt Text / Description</label>
+                <div class="flex items-center gap-1.5">
+                  <input 
+                    type="text" 
+                    id="alt-input-${key}" 
+                    value="${slot.alt || ''}" 
+                    placeholder="SEO description" 
+                    class="flex-1 px-2.5 py-1.5 bg-[#162E4D] border border-white/15 rounded text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" 
+                  />
+                  <button type="button" onclick="saveAltText('${key}')" class="p-1.5 rounded bg-white/10 hover:bg-white/20 text-white transition-colors text-xs" title="Save">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-white/10 flex items-center gap-2">
+                <input type="file" id="file-input-${key}" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleSlotFileUpload('${key}', this.files[0])" />
+                <button type="button" onclick="document.getElementById('file-input-${key}').click()" class="flex-1 py-2 px-3 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 shadow">
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                  <span>Replace Photo</span>
+                </button>
+                <button 
+                  type="button" 
+                  id="reset-btn-${key}" 
+                  onclick="confirmResetSlot('${key}')" 
+                  class="py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors ${isCustom ? 'text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer' : 'text-gray-500 opacity-40 cursor-not-allowed'}" 
+                  ${isCustom ? '' : 'disabled'} 
+                  title="Revert to default">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      crewHtml += `</div>`;
+      crewSection.innerHTML = crewHtml;
+      container.appendChild(crewSection);
+
+      // -------------------------------------------------------------
+      // SECTION 4: HERO SECTION (16:9 Landscape)
+      // -------------------------------------------------------------
+      const heroSection = document.createElement('section');
+      heroSection.id = 'sec-hero';
+      heroSection.className = 'slots-group-section space-y-5';
+      heroSection.setAttribute('data-section-group', 'hero');
+
+      const heroKey = 'hero-bg';
+      const heroSlot = currentRegistry.slots[heroKey] || DEFAULT_SLOTS[heroKey] || {};
+      const heroCustom = Boolean(heroSlot.url);
+      const heroActiveUrl = heroCustom ? '../' + heroSlot.url : '../' + heroSlot.default;
+
+      heroSection.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] border border-white/10 font-semibold">16:9 Widescreen</span>
+              <h3 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-wider text-white">
+                Hero Section Video Fallback &amp; Poster
+              </h3>
+            </div>
+            <p class="text-xs text-gray-400">
+              Widescreen 16:9 poster shown behind the main "NAMASTE" hero title when loading or on mobile data saver.
+            </p>
+          </div>
+        </div>
+        <div class="max-w-2xl mx-auto">
+          <div class="slot-card bg-[#1E3A5F] border border-white/15 rounded-xl overflow-hidden shadow-xl" data-slot-key="${heroKey}" data-section="Hero">
+            <div class="p-4 bg-[#162E4D]/80 border-b border-white/10 flex items-center justify-between">
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-heading uppercase tracking-wider bg-[#2A4E7A] text-[#F5EFEB] mb-0.5">Hero Media</span>
+                <h4 class="font-heading text-sm font-bold uppercase tracking-wide text-white">Hero Video Poster Image</h4>
+              </div>
+              <div>
+                ${heroCustom 
+                  ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-950 border border-green-500/40 text-green-300"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>Custom</span>`
+                  : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-800 border border-white/10 text-gray-400">Default</span>`
+                }
+              </div>
+            </div>
+            <div class="relative w-full overflow-hidden bg-black/60 group" style="aspect-ratio: 16 / 9;">
+              <img id="preview-img-${heroKey}" src="${heroActiveUrl}" alt="${heroSlot.alt || ''}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+              <a href="${heroActiveUrl}" target="_blank" class="absolute top-2 right-2 p-1.5 rounded bg-black/70 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+              </a>
+              <div id="loader-${heroKey}" class="absolute inset-0 bg-black/80 flex-col items-center justify-center gap-2 hidden z-20">
+                <div class="w-7 h-7 border-2 border-[#F5EFEB] border-t-transparent rounded-full animate-spin"></div>
+                <span class="text-xs text-white font-heading uppercase tracking-wider">Updating...</span>
+              </div>
+            </div>
+            <div class="p-4 space-y-3 bg-[#1E3A5F]">
+              <div>
+                <label class="block text-[10px] font-heading uppercase tracking-wider text-gray-400 mb-1">Alt Text / SEO</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="text" id="alt-input-${heroKey}" value="${heroSlot.alt || ''}" class="flex-1 px-2.5 py-1.5 bg-[#162E4D] border border-white/15 rounded text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#F5EFEB]" />
+                  <button type="button" onclick="saveAltText('${heroKey}')" class="p-1.5 rounded bg-white/10 hover:bg-white/20 text-white transition-colors text-xs"><i data-lucide="check" class="w-4 h-4"></i></button>
+                </div>
+              </div>
+              <div class="pt-2 border-t border-white/10 flex items-center gap-2">
+                <input type="file" id="file-input-${heroKey}" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleSlotFileUpload('${heroKey}', this.files[0])" />
+                <button type="button" onclick="document.getElementById('file-input-${heroKey}').click()" class="flex-1 py-2 px-3 bg-[#F5EFEB] hover:bg-[#E8DFD8] text-black font-heading text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 shadow">
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                  <span>Replace Hero Media</span>
+                </button>
+                <button type="button" id="reset-btn-${heroKey}" onclick="confirmResetSlot('${heroKey}')" class="py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors ${heroCustom ? 'text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer' : 'text-gray-500 opacity-40 cursor-not-allowed'}" ${heroCustom ? '' : 'disabled'}>
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      container.appendChild(heroSection);
+
+      lucide.createIcons();
+    }
+
+    // -----------------------------------------------------------------
     // Filter & Search Slots
     // -----------------------------------------------------------------
+    function setSectionFilter(secKey) {
+      document.getElementById('section-filter').value = secKey;
+      filterSlots();
+    }
+
     function filterSlots() {
-      const search = (document.getElementById('slot-search').value || '').toLowerCase().trim();
-      const section = document.getElementById('section-filter').value;
-      const cards = document.querySelectorAll('.slot-card');
-      let visible = 0;
+      const q = (document.getElementById('slot-search').value || '').toLowerCase().trim();
+      const sec = document.getElementById('section-filter').value;
 
-      cards.forEach(card => {
-        const cardSection = card.getAttribute('data-section');
-        const cardName = card.getAttribute('data-name');
-        const isCustom = card.getAttribute('data-is-custom') === 'true';
-
-        let matchesSearch = !search || cardName.includes(search) || cardSection.toLowerCase().includes(search);
-        let matchesSection = true;
-
-        if (section === 'custom-only') {
-          matchesSection = isCustom;
-        } else if (section !== 'all') {
-          matchesSection = cardSection === section;
-        }
-
-        if (matchesSearch && matchesSection) {
-          card.style.display = 'flex';
-          visible++;
-        } else {
-          card.style.display = 'none';
-        }
+      // Update Quick Jump Pills
+      document.querySelectorAll('.sec-pill').forEach(btn => {
+        btn.classList.remove('bg-[#F5EFEB]', 'text-black', 'font-semibold');
+        btn.classList.add('bg-[#162E4D]', 'text-gray-300');
       });
+      const activePill = document.getElementById('pill-' + sec);
+      if (activePill) {
+        activePill.classList.add('bg-[#F5EFEB]', 'text-black', 'font-semibold');
+        activePill.classList.remove('bg-[#162E4D]', 'text-gray-300');
+      }
 
-      document.getElementById('visible-slots-count').textContent = visible;
+      // Check sections
+      const sections = [
+        { id: 'sec-tours', group: 'tours' },
+        { id: 'sec-why-ride', group: 'why-ride' },
+        { id: 'sec-crew', group: 'crew' },
+        { id: 'sec-hero', group: 'hero' }
+      ];
+
+      sections.forEach(s => {
+        const el = document.getElementById(s.id);
+        if (!el) return;
+
+        let visible = (sec === 'all' || sec === s.group);
+
+        if (sec === 'custom-only') {
+          if (s.group === 'tours') {
+            visible = TOURS_CONFIG.some(t => {
+              for (let i = 1; i <= t.slidesCount; i++) {
+                const k = `${t.prefix}${i}`;
+                if (currentRegistry.slots[k] && currentRegistry.slots[k].url) return true;
+              }
+              return false;
+            });
+          } else if (s.group === 'why-ride') {
+            visible = WHY_RIDE_KEYS.some(k => currentRegistry.slots[k] && currentRegistry.slots[k].url);
+          } else if (s.group === 'crew') {
+            visible = CREW_KEYS.some(k => currentRegistry.slots[k] && currentRegistry.slots[k].url);
+          } else if (s.group === 'hero') {
+            visible = Boolean(currentRegistry.slots['hero-bg'] && currentRegistry.slots['hero-bg'].url);
+          }
+        }
+
+        if (q) {
+          const text = el.textContent.toLowerCase();
+          visible = visible && text.includes(q);
+        }
+
+        el.style.display = visible ? 'block' : 'none';
+      });
     }
 
     // -----------------------------------------------------------------
@@ -775,7 +1485,6 @@ $galleryCount = count($registry['gallery'] ?? []);
     // -----------------------------------------------------------------
     function optimizeImage(file, maxDimension = 2000, quality = 0.85) {
       return new Promise((resolve) => {
-        // If file is SVG or under 400KB, no need to resize
         if (file.type === 'image/svg+xml' || file.size < 400 * 1024) {
           resolve(file);
           return;
@@ -806,7 +1515,7 @@ $galleryCount = count($registry['gallery'] ?? []);
 
             canvas.toBlob((blob) => {
               if (!blob || blob.size >= file.size) {
-                resolve(file); // fallback to original if compression didn't help
+                resolve(file);
               } else {
                 const optimizedFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".webp", {
                   type: "image/webp",
@@ -849,30 +1558,10 @@ $galleryCount = count($registry['gallery'] ?? []);
 
         const res = await response.json();
         if (res.success) {
-          // Update preview image
-          const img = document.getElementById('preview-img-' + slotKey);
-          if (img) img.src = '../' + res.url + '?v=' + Date.now();
-
-          // Update card state
-          const card = document.querySelector(`[data-slot-key="${slotKey}"]`);
-          if (card) {
-            card.setAttribute('data-is-custom', 'true');
-            const statusPill = card.querySelector('.status-pill');
-            if (statusPill) {
-              statusPill.innerHTML = `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-950 border border-green-500/40 text-green-300">
-                  <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
-                  Custom
-                </span>
-              `;
-            }
-            const resetBtn = document.getElementById('reset-btn-' + slotKey);
-            if (resetBtn) {
-              resetBtn.disabled = false;
-              resetBtn.className = 'py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors text-red-400 hover:border-red-400 hover:bg-red-950/30 cursor-pointer';
-            }
-          }
-
+          if (!currentRegistry.slots[slotKey]) currentRegistry.slots[slotKey] = { ...DEFAULT_SLOTS[slotKey] };
+          currentRegistry.slots[slotKey].url = res.url;
+          currentRegistry.slots[slotKey].alt = altVal;
+          renderSlots();
           showToast(res.message || 'Image uploaded & live site updated!');
           refreshStats();
         } else {
@@ -905,29 +1594,10 @@ $galleryCount = count($registry['gallery'] ?? []);
 
         const res = await response.json();
         if (res.success) {
-          const img = document.getElementById('preview-img-' + slotKey);
-          if (img && res.default_url) {
-            img.src = '../' + res.default_url + '?v=' + Date.now();
+          if (currentRegistry.slots[slotKey]) {
+            currentRegistry.slots[slotKey].url = '';
           }
-
-          const card = document.querySelector(`[data-slot-key="${slotKey}"]`);
-          if (card) {
-            card.setAttribute('data-is-custom', 'false');
-            const statusPill = card.querySelector('.status-pill');
-            if (statusPill) {
-              statusPill.innerHTML = `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-800 border border-white/10 text-gray-400">
-                  Default
-                </span>
-              `;
-            }
-            const resetBtn = document.getElementById('reset-btn-' + slotKey);
-            if (resetBtn) {
-              resetBtn.disabled = true;
-              resetBtn.className = 'py-2 px-3 rounded border border-white/15 text-xs font-heading uppercase tracking-wider transition-colors text-gray-500 opacity-40 cursor-not-allowed';
-            }
-          }
-
+          renderSlots();
           showToast('Image reset to original website default!');
           refreshStats();
         } else {
@@ -941,14 +1611,13 @@ $galleryCount = count($registry['gallery'] ?? []);
     // -----------------------------------------------------------------
     // Save Alt Text
     // -----------------------------------------------------------------
-    async function saveAltText(slotKey) {
-      const altInput = document.getElementById('alt-input-' + slotKey);
-      if (!altInput) return;
+    async function saveAltText(slotKey, explicitVal = null) {
+      const altVal = explicitVal !== null ? explicitVal : (document.getElementById('alt-input-' + slotKey)?.value || '');
 
       try {
         const formData = new FormData();
         formData.append('slot_key', slotKey);
-        formData.append('alt', altInput.value);
+        formData.append('alt', altVal);
         formData.append('csrf_token', CSRF_TOKEN);
 
         const response = await fetch('../api/update-slot.php', {
@@ -957,6 +1626,7 @@ $galleryCount = count($registry['gallery'] ?? []);
         });
         const res = await response.json();
         if (res.success) {
+          if (currentRegistry.slots[slotKey]) currentRegistry.slots[slotKey].alt = altVal;
           showToast('Alt text saved for SEO!');
         } else {
           showToast(res.error || 'Failed to save alt text.', false);
