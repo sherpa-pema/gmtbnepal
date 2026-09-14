@@ -673,6 +673,16 @@ $galleryCount = count($registry['gallery'] ?? []);
     let tourSlideView = 'card';
 
     // -----------------------------------------------------------------
+    // Helper to resolve asset and upload URLs safely
+    // -----------------------------------------------------------------
+    function resolveSlotUrl(path) {
+      if (!path) return '';
+      if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) return path;
+      const clean = path.replace(/^(\.\.\/|\/)+/, '');
+      return '../' + clean;
+    }
+
+    // -----------------------------------------------------------------
     // Interactive Drag-and-Zoom Cropper Engine
     // -----------------------------------------------------------------
     let activeCropper = null;
@@ -862,7 +872,7 @@ $galleryCount = count($registry['gallery'] ?? []);
     function openCropForCurrentSlot(slotKey, tourId = null) {
       const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
       const isCustom = Boolean(slot.url);
-      const activeUrl = isCustom ? (slot.url.startsWith('data:') ? slot.url : '../' + slot.url) : '../' + slot.default;
+      const activeUrl = resolveSlotUrl(isCustom ? slot.url : slot.default);
       const altInput = document.getElementById(tourId ? `tour-alt-input-${tourId}` : `alt-input-${slotKey}`);
       const altVal = altInput ? altInput.value : (slot.alt || '');
       openCropModal(activeUrl, slotKey, false, tourId, altVal);
@@ -964,7 +974,7 @@ $galleryCount = count($registry['gallery'] ?? []);
       const slotKey = `${tour.prefix}${curSlide}`;
       const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
       const isCustom = Boolean(slot.url);
-      const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+      const activeUrl = resolveSlotUrl(isCustom ? slot.url : slot.default);
 
       // Update Preview Image
       const previewImg = document.getElementById(`tour-preview-${tourId}`);
@@ -1105,7 +1115,7 @@ $galleryCount = count($registry['gallery'] ?? []);
           const slotKey = `${tour.prefix}${curSlide}`;
           const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
           const isCustom = Boolean(slot.url);
-          const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+          const activeUrl = resolveSlotUrl(isCustom ? slot.url : slot.default);
 
           let customCount = 0;
           for (let s = 1; s <= tour.slidesCount; s++) {
@@ -1193,7 +1203,7 @@ $galleryCount = count($registry['gallery'] ?? []);
                     const sKey = `${tour.prefix}${s}`;
                     const sSlot = currentRegistry.slots[sKey] || DEFAULT_SLOTS[sKey] || {};
                     const sCustom = Boolean(sSlot.url);
-                    const sUrl = sCustom ? '../' + sSlot.url : '../' + sSlot.default;
+                    const sUrl = resolveSlotUrl(sCustom ? sSlot.url : sSlot.default);
                     const sActive = s === curSlide;
 
                     return `
@@ -1284,7 +1294,7 @@ $galleryCount = count($registry['gallery'] ?? []);
             const slotKey = `${tour.prefix}${s}`;
             const slot = currentRegistry.slots[slotKey] || DEFAULT_SLOTS[slotKey] || {};
             const isCustom = Boolean(slot.url);
-            const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+            const activeUrl = resolveSlotUrl(isCustom ? slot.url : slot.default);
 
             toursHtml += `
               <div class="slot-card bg-[#1E3A5F] border border-white/10 rounded-xl overflow-hidden shadow flex flex-col justify-between" data-slot-key="${slotKey}">
@@ -1352,7 +1362,7 @@ $galleryCount = count($registry['gallery'] ?? []);
       WHY_RIDE_KEYS.forEach((key, idx) => {
         const slot = currentRegistry.slots[key] || DEFAULT_SLOTS[key] || {};
         const isCustom = Boolean(slot.url);
-        const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+        const activeUrl = resolveSlotUrl(isCustom ? slot.url : slot.default);
 
         whyRideHtml += `
           <div class="slot-card bg-[#1E3A5F] border border-white/15 rounded-xl overflow-hidden shadow-lg flex flex-col justify-between" data-slot-key="${key}" data-section="Why Ride With Us">
@@ -1466,7 +1476,7 @@ $galleryCount = count($registry['gallery'] ?? []);
       CREW_KEYS.forEach(key => {
         const slot = currentRegistry.slots[key] || DEFAULT_SLOTS[key] || {};
         const isCustom = Boolean(slot.url);
-        const activeUrl = isCustom ? '../' + slot.url : '../' + slot.default;
+        const activeUrl = resolveSlotUrl(isCustom ? slot.url : slot.default);
 
         crewHtml += `
           <div class="slot-card bg-[#1E3A5F] border border-white/15 rounded-xl overflow-hidden shadow-lg flex flex-col justify-between" data-slot-key="${key}" data-section="The Crew">
@@ -1563,7 +1573,7 @@ $galleryCount = count($registry['gallery'] ?? []);
       const heroKey = 'hero-bg';
       const heroSlot = currentRegistry.slots[heroKey] || DEFAULT_SLOTS[heroKey] || {};
       const heroCustom = Boolean(heroSlot.url);
-      const heroActiveUrl = heroCustom ? '../' + heroSlot.url : '../' + heroSlot.default;
+      const heroActiveUrl = resolveSlotUrl(heroCustom ? heroSlot.url : heroSlot.default);
 
       heroSection.innerHTML = `
         <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
@@ -2096,6 +2106,21 @@ $galleryCount = count($registry['gallery'] ?? []);
           }
         }
       } catch (e) {}
+    }
+
+    // -----------------------------------------------------------------
+    // Dashboard Startup Ignition
+    // -----------------------------------------------------------------
+    function initDashboard() {
+      renderSlots();
+      lucide.createIcons();
+      refreshStats();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDashboard);
+    } else {
+      initDashboard();
     }
   </script>
 </body>
