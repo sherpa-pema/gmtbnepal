@@ -7,23 +7,29 @@ if (is_admin_logged_in()) {
     exit;
 }
 
+$csrfToken = get_csrf_token();
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = (string)($_POST['password'] ?? '');
-
-    if (empty($username) || empty($password)) {
-        $error = 'Please enter both your username and password.';
-    } elseif (verify_login($username, $password)) {
-        session_regenerate_id(true);
-        $_SESSION['gnarly_admin_logged_in'] = true;
-        $_SESSION['gnarly_admin_username'] = $username;
-        $_SESSION['gnarly_login_time'] = time();
-        header('Location: index.php');
-        exit;
+    $submittedCsrf = $_POST['csrf_token'] ?? '';
+    if (!verify_csrf_token($submittedCsrf)) {
+        $error = 'Security session expired. Please refresh the page.';
     } else {
-        usleep(300000);
-        $error = 'Invalid username or password. Please try again.';
+        $username = trim($_POST['username'] ?? '');
+        $password = (string)($_POST['password'] ?? '');
+
+        if (empty($username) || empty($password)) {
+            $error = 'Please enter both your username and password.';
+        } elseif (verify_login($username, $password)) {
+            session_regenerate_id(true);
+            $_SESSION['gnarly_admin_logged_in'] = true;
+            $_SESSION['gnarly_admin_username'] = $username;
+            $_SESSION['gnarly_login_time'] = time();
+            header('Location: index.php');
+            exit;
+        } else {
+            usleep(300000);
+            $error = 'Invalid username or password. Please try again.';
+        }
     }
 }
 ?>
@@ -108,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <?php endif; ?>
 
       <form method="POST" action="login.php" class="space-y-5" autocomplete="on">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>" />
         <div>
           <label for="username" class="block font-heading text-xs uppercase tracking-wider text-gray-300 mb-1.5">
             Username

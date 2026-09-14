@@ -3432,15 +3432,19 @@
         updateLightboxView();
       }
 
-      // Card Click -> Open Lightbox
-      allCards.forEach(card => {
-        card.addEventListener('click', () => {
+      // Card Click -> Open Lightbox (Event Delegation supports both initial & newly uploaded dispatch cards)
+      const galleryContainer = document.getElementById('gallery-container');
+      if (galleryContainer) {
+        galleryContainer.addEventListener('click', (e) => {
+          const card = e.target.closest('.gallery-card');
+          if (!card) return;
+          activeVisibleCards = Array.from(galleryContainer.querySelectorAll('.gallery-card'));
           const cardIdx = activeVisibleCards.indexOf(card);
           if (cardIdx !== -1) {
             openLightbox(cardIdx);
           }
         });
-      });
+      }
 
       if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
       if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevLightbox(); });

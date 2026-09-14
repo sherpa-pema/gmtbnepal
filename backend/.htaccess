@@ -1,0 +1,2 @@
+# Ensure cPanel / Apache executes index.php first for authenticated sessions
+DirectoryIndex index.php index.html

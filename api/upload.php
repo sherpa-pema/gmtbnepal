@@ -89,8 +89,9 @@ if (!empty($slotKey)) {
 
     // AUTOMATIC DISK CLEANUP: If this slot had a previous custom upload, delete it from disk!
     if (!empty($currentSlot['url']) && str_starts_with($currentSlot['url'], 'uploads/')) {
-        $oldFilePath = ROOT_DIR . '/' . $currentSlot['url'];
-        if (file_exists($oldFilePath) && is_file($oldFilePath)) {
+        $oldFilename = basename($currentSlot['url']);
+        $oldFilePath = UPLOADS_DIR . '/' . $oldFilename;
+        if ($oldFilename !== '.htaccess' && file_exists($oldFilePath) && is_file($oldFilePath)) {
             @unlink($oldFilePath);
         }
     }

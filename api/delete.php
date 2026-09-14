@@ -79,8 +79,9 @@ if (!empty($slotKey)) {
 
     // Delete custom uploaded file if present
     if (!empty($currentSlot['url']) && str_starts_with($currentSlot['url'], 'uploads/')) {
-        $filePath = ROOT_DIR . '/' . $currentSlot['url'];
-        if (file_exists($filePath) && is_file($filePath)) {
+        $cleanFilename = basename($currentSlot['url']);
+        $filePath = UPLOADS_DIR . '/' . $cleanFilename;
+        if ($cleanFilename !== '.htaccess' && file_exists($filePath) && is_file($filePath)) {
             @unlink($filePath);
         }
     }
@@ -122,10 +123,11 @@ if (!empty($galleryId)) {
 
     $itemToDelete = $registry['gallery'][$foundIndex];
 
-    // Delete file from disk
+    // Delete file from disk safely
     if (!empty($itemToDelete['url']) && str_starts_with($itemToDelete['url'], 'uploads/')) {
-        $filePath = ROOT_DIR . '/' . $itemToDelete['url'];
-        if (file_exists($filePath) && is_file($filePath)) {
+        $cleanFilename = basename($itemToDelete['url']);
+        $filePath = UPLOADS_DIR . '/' . $cleanFilename;
+        if ($cleanFilename !== '.htaccess' && file_exists($filePath) && is_file($filePath)) {
             @unlink($filePath);
         }
     }
